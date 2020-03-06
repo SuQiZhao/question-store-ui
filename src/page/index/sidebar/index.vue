@@ -1,13 +1,18 @@
 <template>
   <!--侧边栏-->
-  <el-aside class="menu_aside" style="overflow:visible;">
+  <el-aside class="menu_aside" style="overflow:visible; width:15%;">
     <!--用户信息-->
     <!-- <el-scrollbar style="overflow-x:hidden;height:100%"> -->
     <el-row class="menu">
       <el-col>
-        <el-menu class="el-menu-vertical-demo" :router="true" :default-active="$route.name" unique-opened="true">
-          <el-menu-item >
-            <sidesearch/>
+        <el-menu
+          class="el-menu-vertical-demo"
+          :router="true"
+          :default-active="$route.name"
+          :unique-opened="true"
+        >
+          <el-menu-item>
+            <sidesearch />
           </el-menu-item>
           <el-menu-item index="/wel">
             <i class="el-icon-star-on"></i>
@@ -67,7 +72,7 @@
   </el-aside>
 </template>
 <script>
-  import sidesearch from "./side-search";
+import sidesearch from "./side-search";
 // import userInfo from "./userInfo";
 export default {
   components: {

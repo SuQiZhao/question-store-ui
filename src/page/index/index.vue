@@ -12,7 +12,7 @@
             <div slot="header" class="clearfix">
               <!--面包屑-->
               <breathcrumb />
-              <el-button style="float: right;margin-top:-21px">返回</el-button>
+              <el-button style="float: right;margin-top:-21px" size="mini">返回</el-button>
             </div>
             <!--登录主页-->
             <div class="home">
