@@ -5,6 +5,8 @@
         <div class="profile_pic">
           <el-avatar :size="150" fit="fill" :src="url" @error="handleError"></el-avatar>
         </div>
+      </el-col>
+      <el-col>
         <div class="upload_profilePic">
           <el-button type="success" @click="dialogVisible2 = true" size="small" round>更换头像</el-button>
           <el-dialog title="上传头像" :visible.sync="dialogVisible2" width="30%">
@@ -36,6 +38,9 @@
             </el-form>
           </el-dialog>
         </div>
+      </el-col>
+      <el-col>
+        
       </el-col>
     </el-row>
     <!--资料卡-->
@@ -121,11 +126,11 @@ export default {
     uploadFile() {
       this.$refs.upload.submit();
     }
-  },
+  }
 };
 </script>
 <style lang="scss">
-.upload_profilePic{
+.upload_profilePic {
   text-align: center;
   margin-top: 20px;
 }
