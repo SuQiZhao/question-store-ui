@@ -1,0 +1,54 @@
+<template>
+  <div class="index_main">
+    <el-container direction="vertical" style="height:100%">
+      <!--顶部-->
+      <top />
+      <el-container>
+        <!--侧栏-->
+        <sidebar />
+        <!--主窗体-->
+        <el-main class="index_main">
+          <el-card class="box-card" shadow="never">
+            <div slot="header" class="clearfix">
+              <!--面包屑-->
+              <breathcrumb />
+              <el-button style="float: right;margin-top:-21px">返回</el-button>
+            </div>
+            <!--登录主页-->
+            <div class="home">
+              <!--<router-view> 定义显示部分，就是点击后，区配的内容显示在什么地方，会被匹配到的组件替换掉-->
+              <router-view></router-view>
+              <!-- <homeIndex /> -->
+            </div>
+          </el-card>
+        </el-main>
+      </el-container>
+    </el-container>
+  </div>
+</template>
+<script>
+import top from "./top/index.vue";
+import sidebar from "./sidebar";
+import breathcrumb from "./breathcrumb";
+// import homeIndex from "@/views/home/index"
+export default {
+  components: {
+    top,
+    sidebar,
+    breathcrumb
+    // homeIndex
+  },
+  methods: {}
+};
+</script>
+<style lang="scss">
+.index_main {
+  /*设置内部填充为0，几个布局元素之间没有间距*/
+  padding: 0px;
+  /*外部间距也是如此设置*/
+  margin: 0px;
+  /*统一设置高度为100%*/
+  height: 100%;
+  width: 100%;
+}
+</style>
