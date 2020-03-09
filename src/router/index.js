@@ -19,10 +19,15 @@ const routes = [{
         component: () => import('../views/home/index.vue')
       },
       {
-        path: '/user',
-        name: '个人中心',
-        component: () => import('../views/userIndex/index.vue')
-      }
+        path: '/usersetting',
+        name: '个人资料设置',
+        component: () => import('../views/settings/index.vue')
+      },
+        {
+            path: '/changepwd',
+            name: '密码修改',
+            component: () => import('../views/settings/changePwd/index.vue')
+        }
     ]
   },
   {

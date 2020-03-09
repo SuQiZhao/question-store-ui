@@ -58,10 +58,10 @@
               <i class="el-icon-setting"></i>
               <span>设置</span>
             </template>
-            <el-menu-item index="5-1">
+            <el-menu-item index="/usersetting">
               <i class="el-icon-setting"></i>个人资料设置
             </el-menu-item>
-            <el-menu-item index="5-2">
+            <el-menu-item index="/changepwd">
               <i class="el-icon-key"></i>密码修改
             </el-menu-item>
           </el-submenu>

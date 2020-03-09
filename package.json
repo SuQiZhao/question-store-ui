@@ -10,6 +10,7 @@
   "dependencies": {
     "@smallwei/avue": "^2.4.0",
     "core-js": "^3.6.4",
+    "element-china-area-data": "^4.1.2",
     "element-ui": "^2.13.0",
     "vue": "^2.6.11",
     "vue-router": "^3.1.5",
@@ -43,8 +44,7 @@
     "parserOptions": {
       "parser": "babel-eslint"
     },
-    "rules": {
-    }
+    "rules": {}
   },
   "browserslist": [
     "> 1%",
