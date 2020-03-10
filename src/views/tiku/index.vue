@@ -11,60 +11,22 @@
             <el-row >
                 <el-col :span="6">
                     <el-card class="box-card" shadow="hover">
-                        <div v-for="o in 4" :key="o" class="text item">
-                            {{'列表内容 ' + o }}
-                        </div>
+                        <el-link :underline="false"><i class="tk2-tplist-icon1"></i></el-link>
                     </el-card>
                 </el-col>
                 <el-col :span="6">
                     <el-card class="box-card" shadow="hover">
-                        <div v-for="o in 4" :key="o" class="text item">
-                            {{'列表内容 ' + o }}
-                        </div>
+                        <a href=""><i class="tk2-tplist-icon1"></i></a>
                     </el-card>
                 </el-col>
                 <el-col :span="6">
                     <el-card class="box-card" shadow="hover">
-                        <div v-for="o in 4" :key="o" class="text item">
-                            {{'列表内容 ' + o }}
-                        </div>
+                        <a href=""><i class="tk2-tplist-icon1"></i></a>
                     </el-card>
                 </el-col>
                 <el-col :span="6">
                     <el-card class="box-card" shadow="hover">
-                        <div v-for="o in 4" :key="o" class="text item">
-                            {{'列表内容 ' + o }}
-                        </div>
-                    </el-card>
-                </el-col>
-            </el-row>
-            <el-row >
-                <el-col :span="6">
-                    <el-card class="box-card" shadow="hover">
-                        <div v-for="o in 4" :key="o" class="text item">
-                            {{'列表内容 ' + o }}
-                        </div>
-                    </el-card>
-                </el-col>
-                <el-col :span="6">
-                    <el-card class="box-card" shadow="hover">
-                        <div v-for="o in 4" :key="o" class="text item">
-                            {{'列表内容 ' + o }}
-                        </div>
-                    </el-card>
-                </el-col>
-                <el-col :span="6">
-                    <el-card class="box-card" shadow="hover">
-                        <div v-for="o in 4" :key="o" class="text item">
-                            {{'列表内容 ' + o }}
-                        </div>
-                    </el-card>
-                </el-col>
-                <el-col :span="6">
-                    <el-card class="box-card" shadow="hover">
-                        <div v-for="o in 4" :key="o" class="text item">
-                            {{'列表内容 ' + o }}
-                        </div>
+                        <a href=""><i class="tk2-tplist-icon1"></i></a>
                     </el-card>
                 </el-col>
             </el-row>
@@ -88,4 +50,26 @@
     .tiku_classify{
         padding: 2%;
     }
+    .tk2-tplist-icon1{
+        background-image: url("../../assets/img/lzg-shouye-sasss.png");
+        background-position: -117px -95px !important;
+        height: 78px;
+        width: 82px;
+        margin-top: 40px;
+        margin-bottom: 20px;
+        display: inline-block;
+    }
+    .tk2-tplist-icon2{
+        background-image: url("../../assets/img/lzg-shouye-sasss.png");
+        background-position: -117px -95px !important;
+        height: 78px;
+        width: 82px;
+        margin-top: 40px;
+        margin-bottom: 20px;
+        display: inline-block;
+    }
+    .box-card{
+        text-align: center;
+    }
+
 </style>
