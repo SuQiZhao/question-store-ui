@@ -18,6 +18,9 @@ const routes = [{
         children:[{
             path:'/index',
             component: () => import('../views/index/body.vue')
+        },{
+            path:'/tiku',
+            component: () => import('../views/tiku/index.vue')
         }]
     },
     {

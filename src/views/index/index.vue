@@ -9,7 +9,7 @@
                 <div class="head_menu">
                     <el-menu active-text-color="#99CC99" class="head_select" mode="horizontal" :router="true" :unique-opened="true">
                         <el-menu-item index="/index" style="font-size: 16px" >首页</el-menu-item>
-                        <el-menu-item index="1" style="font-size: 16px">考试题库</el-menu-item>
+                        <el-menu-item index="/tiku" style="font-size: 16px">考试题库</el-menu-item>
                         <el-menu-item index="2" style="font-size: 16px">考试指南</el-menu-item>
                         <el-menu-item index="3" style="font-size: 16px">考试资讯</el-menu-item>
                         <el-menu-item index="4" style="font-size: 16px">在线考试</el-menu-item>
@@ -24,10 +24,31 @@
                 </div>
             </el-header>
             <el-main>
-                <div class="index_body">
+<!--                <div class="index_body">-->
                     <router-view/>
-                </div>
+<!--                </div>-->
             </el-main>
+            <!--脚部-->
+            <el-footer style="height:12%">
+                <div class="footerBox">
+                    <div class="footerText">
+                        <div class="website">
+                            <el-link :underline="false" class="text">网站声明</el-link>
+                            <span class="text">|</span>
+                            <el-link :underline="false" class="text">联系方式</el-link>
+                            <span class="text">|</span>
+                            <el-link :underline="false" class="text">帮助中心</el-link>
+                            <span class="text">|</span>
+                            <el-link :underline="false" class="text">加入我们</el-link>
+                        </div>
+                        <div class="authorData">
+                            <span class="text">广西民族大学相思湖学院2016级软件工程专业</span>
+                            <span class="text">|</span>
+                            <span class="text">苏其钊</span>
+                        </div>
+                    </div>
+                </div>
+            </el-footer>
         </el-container>
     </div>
 </template>
