@@ -21,7 +21,7 @@ export default {
 <style lang="scss" >
 .home_header {
   border-bottom: 1px solid #e9e9e9;
-  background-color: #f8f8f8;
+  background-color: #fff;
   color: #333;
   float: left;
 }

@@ -14,11 +14,11 @@
           <el-menu-item>
             <sidesearch />
           </el-menu-item>
-          <el-menu-item index="/wel">
+          <el-menu-item index="/">
             <i class="el-icon-star-on"></i>
             <span slot="title">首页</span>
           </el-menu-item>
-          <el-menu-item index="/user">
+          <el-menu-item index="/home">
             <i class="el-icon-s-home"></i>
             <span slot="title">个人中心</span>
           </el-menu-item>
