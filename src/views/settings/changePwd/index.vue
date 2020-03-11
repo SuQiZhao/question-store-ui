@@ -1,6 +1,6 @@
 <template>
     <div class="demo-ruleForm">
-        <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px"  label-position="left">
+        <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" label-position="left">
             <el-form-item>
                 <span style="font-size: 24px"><strong>密码修改</strong></span>
             </el-form-item>
@@ -46,10 +46,10 @@
                 },
                 rules: {
                     password: [
-                        { validator: validatePass, trigger: 'blur' }
+                        {validator: validatePass, trigger: 'blur'}
                     ],
                     checkPass: [
-                        { validator: validatePass2, trigger: 'blur' }
+                        {validator: validatePass2, trigger: 'blur'}
                     ],
                 },
                 dialogVisible: false
@@ -57,21 +57,21 @@
         },
         methods: {
             submitForm() {
-                    this.$confirm('即将修改密码，是否继续？', '提示', {
-                        confirmButtonText: '确定',
-                        cancelButtonText: '取消',
-                        type: 'warning'
-                    }).then(() => {
-                        this.$message({
-                            type: 'success',
-                            message: '密码修改成功!'
-                        });
-                    }).catch(() => {
-                        this.$message({
-                            type: 'info',
-                            message: '已取消密码修改!'
-                        });
+                this.$confirm('即将修改密码，是否继续？', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    this.$message({
+                        type: 'success',
+                        message: '密码修改成功!'
                     });
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: '已取消密码修改!'
+                    });
+                });
             },
             resetForm(formName) {
                 this.$refs[formName].resetFields();
@@ -80,7 +80,7 @@
     }
 </script>
 <style lang="scss">
-    .demo-ruleForm{
+    .demo-ruleForm {
         width: 25%;
         text-align: center;
         margin-left: 30%;

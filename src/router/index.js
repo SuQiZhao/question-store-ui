@@ -14,13 +14,22 @@ const routes = [{
     {
         path: '/',
         component: Index,
-        redirect:'/index',
-        children:[{
-            path:'/index',
+        redirect: '/index',
+        children: [{
+            path: '/index',
             component: () => import('../views/index/body.vue')
-        },{
-            path:'/tiku',
+        }, {
+            path: '/tiku',
             component: () => import('../views/tiku/index.vue')
+        }, {
+            path: '/guide',
+            component: () => import('../views/guide/index.vue')
+        }, {
+            path: '/news',
+            component: () => import('../views/news/index.vue')
+        }, {
+            path: '/answer',
+            component: () => import('../views/answer/index.vue')
         }]
     },
     {

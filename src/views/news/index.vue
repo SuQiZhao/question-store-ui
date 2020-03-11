@@ -1,5 +1,5 @@
 <template>
-    <div>登录主页</div>
+    <div>资讯首页</div>
 </template>
 <script>
     export default {};

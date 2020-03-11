@@ -10,25 +10,89 @@
             </div>
         </div>
         <div class="tiku_classify">
-            <el-row>
+            <el-row class="tiku_icon_line1">
                 <el-col :span="6">
                     <el-card class="box-card" shadow="hover">
-                        <el-link :underline="false"><i class="tk2-tplist-icon1"></i></el-link>
+                        <el-row>
+                            <el-link :underline="false" href=""><i class="tk2-tplist-icon1"></i></el-link>
+                        </el-row>
+                        <span class="span_text">财经类题库</span>
                     </el-card>
                 </el-col>
                 <el-col :span="6">
                     <el-card class="box-card" shadow="hover">
-                        <a href=""><i class="tk2-tplist-icon1"></i></a>
+                        <el-row>
+                            <el-link :underline="false" href=""><i class="tk2-tplist-icon2"></i></el-link>
+                        </el-row>
+                        <span class="span_text">法律类题库</span>
                     </el-card>
                 </el-col>
                 <el-col :span="6">
                     <el-card class="box-card" shadow="hover">
-                        <a href=""><i class="tk2-tplist-icon1"></i></a>
+                        <el-row>
+                            <el-link :underline="false" href=""><i class="tk2-tplist-icon3"></i></el-link>
+                        </el-row>
+                        <span class="span_text">建筑类题库</span>
                     </el-card>
                 </el-col>
                 <el-col :span="6">
                     <el-card class="box-card" shadow="hover">
-                        <a href=""><i class="tk2-tplist-icon1"></i></a>
+                        <el-row>
+                            <el-link :underline="false" href=""><i class="tk2-tplist-icon4"></i></el-link>
+                        </el-row>
+                        <span class="span_text">外语类题库</span>
+                    </el-card>
+                </el-col>
+            </el-row>
+            <el-row class="tiku_icon_line2">
+                <el-col :span="6">
+                    <el-card class="box-card" shadow="hover">
+                        <el-row>
+                            <el-link :underline="false" href=""><i class="tk2-tplist-icon5"></i></el-link>
+                        </el-row>
+                        <span class="span_text">计算机类题库</span>
+                    </el-card>
+                </el-col>
+                <el-col :span="6">
+                    <el-card class="box-card" shadow="hover">
+                        <el-row>
+                            <el-link :underline="false" href=""><i class="tk2-tplist-icon6"></i></el-link>
+                        </el-row>
+                        <span class="span_text">资格类题库</span>
+                    </el-card>
+                </el-col>
+                <el-col :span="6">
+                    <el-card class="box-card" shadow="hover">
+                        <el-row>
+                            <el-link :underline="false" href=""><i class="tk2-tplist-icon7"></i></el-link>
+                        </el-row>
+                        <span class="span_text">知识问答题库</span>
+                    </el-card>
+                </el-col>
+                <el-col :span="6">
+                    <el-card class="box-card" shadow="hover">
+                        <el-row>
+                            <el-link :underline="false" href=""><i class="tk2-tplist-icon8"></i></el-link>
+                        </el-row>
+                        <span class="span_text">招录类题库</span>
+                    </el-card>
+                </el-col>
+            </el-row>
+            <el-row class="tiku_icon_line3">
+                <el-col :span="6">
+                    <el-card class="box-card" shadow="hover">
+                        <el-row>
+                            <el-link :underline="false" href=""><i class="tk2-tplist-icon9"></i></el-link>
+                        </el-row>
+                        <span class="span_text">外贸类题库</span>
+                    </el-card>
+                </el-col>
+                <el-col :span="6">
+                    <el-card class="box-card" shadow="hover">
+                        <el-row>
+                            <el-link :underline="false" href=""><i class="tk2-tplist-icon10"></i></el-link>
+                        </el-row>
+                        <span class="span_text">医学类题库</span>
                     </el-card>
                 </el-col>
             </el-row>
@@ -68,7 +132,86 @@
 
     .tk2-tplist-icon2 {
         background-image: url("../../assets/img/lzg-shouye-sasss.png");
-        background-position: -117px -95px !important;
+        background-position: 6px -102px !important;
+        height: 78px;
+        width: 82px;
+        margin-top: 40px;
+        margin-bottom: 20px;
+        display: inline-block;
+    }
+
+    .tk2-tplist-icon3 {
+        background-image: url("../../assets/img/lzg-shouye-sasss.png");
+        background-position: 0 -438px !important;
+        height: 78px;
+        width: 82px;
+        margin-top: 40px;
+        margin-bottom: 20px;
+        display: inline-block;
+    }
+
+    .tk2-tplist-icon4 {
+        background-image: url("../../assets/img/lzg-shouye-sasss.png");
+        background-position: 0 -658px !important;
+        height: 78px;
+        width: 82px;
+        margin-top: 40px;
+        margin-bottom: 20px;
+        display: inline-block;
+    }
+
+    .tk2-tplist-icon5 {
+        background-image: url("../../assets/img/lzg-shouye-sasss.png");
+        background-position: 0 -324px !important;
+        height: 78px;
+        width: 82px;
+        margin-top: 40px;
+        margin-bottom: 20px;
+        display: inline-block;
+    }
+
+    .tk2-tplist-icon6 {
+        background-image: url("../../assets/img/lzg-shouye-sasss.png");
+        background-position: 0 -546px !important;
+        height: 78px;
+        width: 82px;
+        margin-top: 40px;
+        margin-bottom: 20px;
+        display: inline-block;
+    }
+
+    .tk2-tplist-icon7 {
+        background-image: url("../../assets/img/lzg-shouye-sasss.png");
+        height: 78px;
+        width: 82px;
+        margin-top: 40px;
+        margin-bottom: 20px;
+        display: inline-block;
+    }
+
+    .tk2-tplist-icon8 {
+        background-image: url("../../assets/img/lzg-shouye-sasss.png");
+        background-position: 5px -770px !important;
+        height: 78px;
+        width: 82px;
+        margin-top: 40px;
+        margin-bottom: 20px;
+        display: inline-block;
+    }
+
+    .tk2-tplist-icon9 {
+        background-image: url("../../assets/img/lzg-shouye-sasss.png");
+        background-position: -266px 0 !important;
+        height: 78px;
+        width: 82px;
+        margin-top: 40px;
+        margin-bottom: 20px;
+        display: inline-block;
+    }
+
+    .tk2-tplist-icon10 {
+        background-image: url("../../assets/img/lzg-shouye-sasss.png");
+        background-position: 0 -880px !important;
         height: 78px;
         width: 82px;
         margin-top: 40px;
@@ -80,4 +223,9 @@
         text-align: center;
     }
 
+    .span_text {
+        font-size: 16px;
+        letter-spacing: 4px;
+        color: #323232;;
+    }
 </style>

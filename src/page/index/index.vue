@@ -30,6 +30,7 @@
     import top from "./top/index.vue";
     import sidebar from "./sidebar";
     import breathcrumb from "./breathcrumb";
+
     export default {
         components: {
             top,

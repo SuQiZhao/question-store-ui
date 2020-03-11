@@ -1,115 +1,118 @@
 <template>
-  <!--侧边栏-->
-  <el-aside class="menu_aside" style="overflow:visible; width:15%;">
-    <!--用户信息-->
-    <!-- <el-scrollbar style="overflow-x:hidden;height:100%"> -->
-    <el-row class="menu">
-      <el-col>
-        <el-menu
-          class="el-menu-vertical-demo"
-          :router="true"
-          :default-active="$route.name"
-          :unique-opened="true"
-        >
-          <el-menu-item>
-            <sidesearch />
-          </el-menu-item>
-          <el-menu-item index="/">
-            <i class="el-icon-star-on"></i>
-            <span slot="title">首页</span>
-          </el-menu-item>
-          <el-menu-item index="/home">
-            <i class="el-icon-s-home"></i>
-            <span slot="title">个人中心</span>
-          </el-menu-item>
-          <el-menu-item index="4">
-            <i class="el-icon-star-on"></i>
-            <span slot="title">我的收藏</span>
-          </el-menu-item>
-          <el-submenu index="2">
-            <template slot="title">
-              <i class="el-icon-question"></i>
-              <span>我的疑问</span>
-            </template>
-            <el-menu-item index="2-1">
-              <i class="el-icon-edit"></i>草稿
-            </el-menu-item>
-            <el-menu-item index="2-2">
-              <i class="el-icon-circle-check"></i>已解答
-            </el-menu-item>
-            <el-menu-item index="2-3">
-              <i class="el-icon-circle-close"></i>未解答
-            </el-menu-item>
-          </el-submenu>
-          <el-submenu index="3">
-            <template slot="title">
-              <i class="el-icon-upload"></i>
-              <span>我上传的</span>
-            </template>
-            <el-menu-item index="3-1">
-              <i class="el-icon-edit"></i>草稿
-            </el-menu-item>
-            <el-menu-item index="3-2">
-              <i class="el-icon-upload2"></i>已上传
-            </el-menu-item>
-          </el-submenu>
-          <el-submenu index="5">
-            <template slot="title">
-              <i class="el-icon-setting"></i>
-              <span>设置</span>
-            </template>
-            <el-menu-item index="/usersetting">
-              <i class="el-icon-setting"></i>个人资料设置
-            </el-menu-item>
-            <el-menu-item index="/changepwd">
-              <i class="el-icon-key"></i>密码修改
-            </el-menu-item>
-          </el-submenu>
-        </el-menu>
-      </el-col>
-    </el-row>
-    <!-- </el-scrollbar> -->
-  </el-aside>
+    <!--侧边栏-->
+    <el-aside class="menu_aside" style="overflow:visible; width:15%;">
+        <!--用户信息-->
+        <!-- <el-scrollbar style="overflow-x:hidden;height:100%"> -->
+        <el-row class="menu">
+            <el-col>
+                <el-menu
+                        class="el-menu-vertical-demo"
+                        :router="true"
+                        :default-active="$route.name"
+                        :unique-opened="true"
+                >
+                    <el-menu-item>
+                        <sidesearch/>
+                    </el-menu-item>
+                    <el-menu-item index="/">
+                        <i class="el-icon-star-on"></i>
+                        <span slot="title">首页</span>
+                    </el-menu-item>
+                    <el-menu-item index="/home">
+                        <i class="el-icon-s-home"></i>
+                        <span slot="title">个人中心</span>
+                    </el-menu-item>
+                    <el-menu-item index="4">
+                        <i class="el-icon-star-on"></i>
+                        <span slot="title">我的收藏</span>
+                    </el-menu-item>
+                    <el-submenu index="2">
+                        <template slot="title">
+                            <i class="el-icon-question"></i>
+                            <span>我的疑问</span>
+                        </template>
+                        <el-menu-item index="2-1">
+                            <i class="el-icon-edit"></i>草稿
+                        </el-menu-item>
+                        <el-menu-item index="2-2">
+                            <i class="el-icon-circle-check"></i>已解答
+                        </el-menu-item>
+                        <el-menu-item index="2-3">
+                            <i class="el-icon-circle-close"></i>未解答
+                        </el-menu-item>
+                    </el-submenu>
+                    <el-submenu index="3">
+                        <template slot="title">
+                            <i class="el-icon-upload"></i>
+                            <span>我上传的</span>
+                        </template>
+                        <el-menu-item index="3-1">
+                            <i class="el-icon-edit"></i>草稿
+                        </el-menu-item>
+                        <el-menu-item index="3-2">
+                            <i class="el-icon-upload2"></i>已上传
+                        </el-menu-item>
+                    </el-submenu>
+                    <el-submenu index="5">
+                        <template slot="title">
+                            <i class="el-icon-setting"></i>
+                            <span>设置</span>
+                        </template>
+                        <el-menu-item index="/usersetting">
+                            <i class="el-icon-setting"></i>个人资料设置
+                        </el-menu-item>
+                        <el-menu-item index="/changepwd">
+                            <i class="el-icon-key"></i>密码修改
+                        </el-menu-item>
+                    </el-submenu>
+                </el-menu>
+            </el-col>
+        </el-row>
+        <!-- </el-scrollbar> -->
+    </el-aside>
 </template>
 <script>
-import sidesearch from "./side-search";
-// import userInfo from "./userInfo";
-export default {
-  components: {
-    sidesearch
-    // userInfo
-  },
-  data() {
-    return {
-      isCollapse: true
+    import sidesearch from "./side-search";
+    // import userInfo from "./userInfo";
+    export default {
+        components: {
+            sidesearch
+            // userInfo
+        },
+        data() {
+            return {
+                isCollapse: true
+            };
+        }
     };
-  }
-};
 </script>
 <style lang="scss">
-.menu_aside {
-  overflow: hidden;
-  border-right: 2px solid #e9e9e9;
-}
+    .menu_aside {
+        overflow: hidden;
+        border-right: 2px solid #e9e9e9;
+    }
 
-.user_detail {
-  .detail {
-    text-align: left;
-    line-height: 10px;
-    margin-top: 10%;
-    margin-left: 10%;
-  }
-}
-.home_aside {
-  position: relative;
-}
-.userimg {
-  text-align: center;
-}
-.menu_userinfo {
-  background-color: #ffffff;
-  margin: 10px;
-  position: absolute;
-  margin: 30px 0px;
-}
+    .user_detail {
+        .detail {
+            text-align: left;
+            line-height: 10px;
+            margin-top: 10%;
+            margin-left: 10%;
+        }
+    }
+
+    .home_aside {
+        position: relative;
+    }
+
+    .userimg {
+        text-align: center;
+    }
+
+    .menu_userinfo {
+        background-color: #ffffff;
+        margin: 10px;
+        position: absolute;
+        margin: 30px 0px;
+    }
 </style>

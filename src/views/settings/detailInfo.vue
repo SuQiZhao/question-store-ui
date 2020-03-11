@@ -33,7 +33,8 @@
 </template>
 
 <script>
-    import { regionData } from 'element-china-area-data';
+    import {regionData} from 'element-china-area-data';
+
     export default {
         name: "deatailInfo",
         data() {
@@ -44,25 +45,29 @@
                     type: '',
                     sex: '',
                     birthday: '',
-                    area:''
+                    area: ''
                 },
-                rules:{
+                rules: {
                     name: [
-                        { required: true, message: '请输入姓名', trigger: 'blur' },
-                        { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+                        {required: true, message: '请输入姓名', trigger: 'blur'},
+                        {min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur'}
                     ],
                     telephone: [
-                        { required: true, message: '请输入手机号', trigger: 'blur'},
-                        {pattern: /^0{0,1}(13[0-9]|15[7-9]|153|156|18[7-9])[0-9]{8}$/,message: '请输入正确的手机号',trigger: 'blur'}
+                        {required: true, message: '请输入手机号', trigger: 'blur'},
+                        {
+                            pattern: /^0{0,1}(13[0-9]|15[7-9]|153|156|18[7-9])[0-9]{8}$/,
+                            message: '请输入正确的手机号',
+                            trigger: 'blur'
+                        }
                     ],
                     sex: [
-                        { required: true, message: '请选择性别', trigger: 'change' }
+                        {required: true, message: '请选择性别', trigger: 'change'}
                     ],
                     birthday: [
-                        { type: 'date', required: true, message: '请选择出生日期', trigger: 'change' }
+                        {type: 'date', required: true, message: '请选择出生日期', trigger: 'change'}
                     ],
-                    area:[
-                        { required: true, message: '请选择地区', trigger: 'change' }
+                    area: [
+                        {required: true, message: '请选择地区', trigger: 'change'}
                     ]
                 },
                 options: regionData,
