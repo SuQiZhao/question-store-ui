@@ -22,16 +22,16 @@
                         <i class="el-icon-s-home"></i>
                         <span slot="title">个人中心</span>
                     </el-menu-item>
-<!--                    <el-menu-item index="4">-->
-<!--                        <i class="el-icon-star-on"></i>-->
-<!--                        <span slot="title">我的收藏</span>-->
-<!--                    </el-menu-item>-->
+                    <!--                    <el-menu-item index="4">-->
+                    <!--                        <i class="el-icon-star-on"></i>-->
+                    <!--                        <span slot="title">我的收藏</span>-->
+                    <!--                    </el-menu-item>-->
                     <el-submenu index="2">
                         <template slot="title">
                             <i class="el-icon-question"></i>
                             <span>我的提问</span>
                         </template>
-                        <el-menu-item index="2-1">
+                        <el-menu-item index="/myAnswser">
                             <i class="el-icon-more-outline"></i>全部
                         </el-menu-item>
                         <el-menu-item index="2-2">

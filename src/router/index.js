@@ -40,7 +40,12 @@ const routes = [{
             path: '/home',
             name: '个人中心',
             component: () => import('../views/home/index.vue')
-        },
+            },
+            {
+            path: '/myAnswser',
+            name: '全部提问',
+            component: () => import('../views/myAnswser/index.vue')
+            },
             {
                 path: '/usersetting',
                 name: '个人资料设置',
