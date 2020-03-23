@@ -25,7 +25,19 @@
                 </el-card>
             </el-tab-pane>
             <el-tab-pane label="全部问题">
-
+                <!--题库分类tag-->
+                <el-card>
+                    <avue-search :option="option" @change="handleChange" v-model="form"/>
+                    <el-card :key="o" class="questionItem" shadow="hover" v-for="o in count">
+                        <div class="itemTitle" slot="header">
+                            <el-link :underline="false" class="itemTitle" href="">分类问题</el-link>
+                            <el-button style="float: right; padding: 3px 0" type="text">查看详情</el-button>
+                        </div>
+                        <div :key="i" class="text item" v-for="i in 3">
+                            {{'问题详情' + i}}
+                        </div>
+                    </el-card>
+                </el-card>
             </el-tab-pane>
         </el-tabs>
         <!--        </el-card>-->
@@ -37,12 +49,57 @@
         name: "questionList",
         data() {
             return {
-                count: 0
+                count: 0,
+                form: {
+                    classify: ["economics", "laws", "builds", "language", "computer", "condition", "answser", "recruit", "trade", "medical"]
+                },
+                option: {
+                    column: [{
+                        label: '题 库 分 类',
+                        prop: 'classify',
+                        dicData: [{
+                            label: '财 经 类',
+                            value: 'economics'
+                        }, {
+                            label: '法 律 类',
+                            value: 'laws'
+                        }, {
+                            label: '建 筑 类',
+                            value: 'builds'
+                        }, {
+                            label: '外 语 类',
+                            value: 'language'
+                        }, {
+                            label: '计 算 机 类',
+                            value: 'computer'
+                        }, {
+                            label: '资 格 类',
+                            value: 'condition'
+                        }, {
+                            label: '知 识 问 答 题 库',
+                            value: 'answser'
+                        }, {
+                            label: '招 录 类',
+                            value: 'recruit'
+                        }, {
+                            label: '外 贸 类',
+                            value: 'trade'
+                        }, {
+                            label: '医 学 类',
+                            value: 'medical'
+                        }
+                        ]
+                    }]
+                }
             }
         },
         methods: {
             loadMore() {
                 this.count += 2;
+            },
+            // 标签回调事件
+            handleChange(form) {
+                this.$message.success(JSON.stringify(form))
             }
         }
     }

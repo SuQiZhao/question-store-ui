@@ -77,7 +77,7 @@
     }
 </script>
 
-<style scoped>
+<style lang="scss">
     .user_detailinfo {
         width: 25%;
         margin-left: 35%;

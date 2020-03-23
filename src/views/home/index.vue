@@ -8,10 +8,13 @@
         </el-row>
         <el-row :gutter=30 class="questionList">
             <el-col :span=14>
+                <!--左侧列表-->
                 <questionList/>
             </el-col>
             <el-col :span="10">
+                <!--右侧-->
                 <buttonItem/>
+                <hotQuestion/>
             </el-col>
         </el-row>
     </div>
@@ -19,10 +22,12 @@
 <script>
     import questionList from "./questionList";
     import buttonItem from "./buttonItem";
+    import hotQuestion from "./hotQuestion";
 
     export default {
         name: "index",
         components: {
+            "hotQuestion": hotQuestion,
             "questionList": questionList,
             "buttonItem": buttonItem
         },
