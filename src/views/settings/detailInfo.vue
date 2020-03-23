@@ -1,6 +1,6 @@
 <template>
     <div class="user_detailinfo">
-        <el-form label-position="left" label-width="80px" :model="userdetailform" :rules="rules">
+        <el-form :model="userdetailform" :rules="rules" label-position="left" label-width="80px">
             <el-form-item label="姓名" prop="name">
                 <el-input v-model="userdetailform.name"></el-input>
             </el-form-item>
@@ -13,19 +13,19 @@
                     <el-radio label="女"></el-radio>
                 </el-radio-group>
             </el-form-item>
-            <el-form-item label="生日" v-model="userdetailform.birthday" prop="birthday">
+            <el-form-item label="生日" prop="birthday" v-model="userdetailform.birthday">
                 <el-date-picker
-                        v-model="userdetailform.birthday"
+                        placeholder="选择日期"
                         type="date"
-                        placeholder="选择日期">
+                        v-model="userdetailform.birthday">
                 </el-date-picker>
             </el-form-item>
-            <el-form-item label="地区" v-model="userdetailform.area" prop="area">
+            <el-form-item label="地区" prop="area" v-model="userdetailform.area">
                 <el-cascader
-                        size="large"
                         :options="options"
-                        v-model="selectedOptions"
-                        @change="handleChange" style="width:100%">
+                        @change="handleChange"
+                        size="large"
+                        style="width:100%" v-model="selectedOptions">
                 </el-cascader>
             </el-form-item>
         </el-form>

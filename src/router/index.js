@@ -38,6 +38,7 @@ const routes = [{
         // name: '个人主页',
         children: [{
             path: '/home',
+            name: '个人中心',
             component: () => import('../views/home/index.vue')
         },
             {

@@ -3,7 +3,7 @@
         <el-container style="height:100%">
             <!-- 头部-->
             <el-header class="login_head" style="height:12%">
-                <img src="../../assets/img/logo.png" height="100%" style="margin:0px 20%" alt/>
+                <img alt height="100%" src="../../assets/img/logo.png" style="margin:0px 20%"/>
             </el-header>
             <el-main class="login_main">
                 <el-form class="login_form">
@@ -13,20 +13,20 @@
                         </div>
                     </el-form-item>
                     <el-form-item label="账号" prop="username">
-                        <el-input type="username" placeholder="请输入邮箱/手机号/学号"></el-input>
+                        <el-input placeholder="请输入邮箱/手机号/学号" type="username"></el-input>
                     </el-form-item>
                     <el-form-item label="密码" prop="password">
-                        <el-input type="password" placeholder="请输入密码"></el-input>
+                        <el-input placeholder="请输入密码" type="password"></el-input>
                     </el-form-item>
                     <el-form-item>
-                        <el-checkbox v-model="login_checked" class="autoLogin">自动登录</el-checkbox>
+                        <el-checkbox class="autoLogin" v-model="login_checked">自动登录</el-checkbox>
                         <el-link :underline="false" class="forgotPwd">忘记密码？</el-link>
                     </el-form-item>
                     <el-form-item>
-                        <el-button type="primary" class="loginBtn">登 录</el-button>
-                        <el-button type="primary" class="registerBtn" @click="toRegister" plain>注册</el-button>
-                        <dialogForm ref="orderRegister" v-if="dialog_visible"
-                                    :visible.sync="dialog_visible"></dialogForm>
+                        <el-button class="loginBtn" type="primary">登 录</el-button>
+                        <el-button @click="toRegister" class="registerBtn" plain type="primary">注册</el-button>
+                        <dialogForm :visible.sync="dialog_visible" ref="orderRegister"
+                                    v-if="dialog_visible"></dialogForm>
                     </el-form-item>
                 </el-form>
             </el-main>

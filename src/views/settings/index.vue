@@ -3,37 +3,37 @@
         <el-row>
             <el-col>
                 <div class="profile_pic">
-                    <el-avatar :size="150" fit="fill" :src="url" @error="handleError"></el-avatar>
+                    <el-avatar :size="150" :src="url" @error="handleError" fit="fill"></el-avatar>
                 </div>
             </el-col>
             <el-col>
                 <div class="upload_profilePic">
-                    <el-button type="success" @click="dialogVisible2 = true" size="small" round>更换头像</el-button>
-                    <el-dialog title="上传头像" :visible.sync="dialogVisible2" width="30%">
+                    <el-button @click="dialogVisible2 = true" round size="small" type="success">更换头像</el-button>
+                    <el-dialog :visible.sync="dialogVisible2" title="上传头像" width="30%">
                         <el-form :model="picForm">
                             <el-form-item ref="uploadElement">
                                 <el-upload
-                                        ref="upload"
-                                        action="#"
-                                        accept="image/png, image/gif, image/jpg, image/jpeg"
-                                        list-type="picture-card"
-                                        :limit="limitNum"
                                         :auto-upload="false"
                                         :before-upload="handleBeforeUpload"
+                                        :class="{hide:hideUpload}"
+                                        :limit="limitNum"
+                                        :on-change="imgChange"
                                         :on-preview="handlePictureCardPreview"
                                         :on-remove="handleRemove"
-                                        :on-change="imgChange"
-                                        :class="{hide:hideUpload}"
+                                        accept="image/png, image/gif, image/jpg, image/jpeg"
+                                        action="#"
+                                        list-type="picture-card"
+                                        ref="upload"
                                 >
                                     <i class="el-icon-plus"></i>
                                 </el-upload>
                                 <el-dialog :visible.sync="dialogVisible">
-                                    <img width="100%" :src="dialogImageUrl" alt/>
+                                    <img :src="dialogImageUrl" alt width="100%"/>
                                 </el-dialog>
                             </el-form-item>
                             <el-form-item>
-                                <el-button size="small" type="primary" @click="uploadFile">立即上传</el-button>
-                                <el-button size="small" @click="tocancel">取消</el-button>
+                                <el-button @click="uploadFile" size="small" type="primary">立即上传</el-button>
+                                <el-button @click="tocancel" size="small">取消</el-button>
                             </el-form-item>
                         </el-form>
                     </el-dialog>

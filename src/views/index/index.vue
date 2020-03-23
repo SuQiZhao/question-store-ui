@@ -7,8 +7,8 @@
                     <img alt height="100%" src="../../assets/img/logo.png"/>
                 </div>
                 <div class="head_menu">
-                    <el-menu active-text-color="#99CC99" class="head_select" mode="horizontal" :router="true"
-                             :unique-opened="true">
+                    <el-menu :router="true" :unique-opened="true" active-text-color="#99CC99" class="head_select"
+                             mode="horizontal">
                         <el-menu-item index="/index" style="font-size: 16px">首页</el-menu-item>
                         <el-menu-item index="/tiku" style="font-size: 16px">考试题库</el-menu-item>
                         <el-menu-item index="/guide" style="font-size: 16px">考试指南</el-menu-item>

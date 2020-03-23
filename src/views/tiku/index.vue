@@ -11,7 +11,7 @@
         </div>
         <div class="tiku_classify">
             <el-row class="tiku_icon_line1">
-                <el-col :span="6">
+                <el-col :span=6>
                     <el-card class="box-card" shadow="hover">
                         <el-row>
                             <el-link :underline="false" href=""><i class="tk2-tplist-icon1"></i></el-link>
@@ -19,7 +19,7 @@
                         <span class="span_text">财经类题库</span>
                     </el-card>
                 </el-col>
-                <el-col :span="6">
+                <el-col :span=6>
                     <el-card class="box-card" shadow="hover">
                         <el-row>
                             <el-link :underline="false" href=""><i class="tk2-tplist-icon2"></i></el-link>
@@ -27,7 +27,7 @@
                         <span class="span_text">法律类题库</span>
                     </el-card>
                 </el-col>
-                <el-col :span="6">
+                <el-col :span=6>
                     <el-card class="box-card" shadow="hover">
                         <el-row>
                             <el-link :underline="false" href=""><i class="tk2-tplist-icon3"></i></el-link>
@@ -35,7 +35,7 @@
                         <span class="span_text">建筑类题库</span>
                     </el-card>
                 </el-col>
-                <el-col :span="6">
+                <el-col :span=6>
                     <el-card class="box-card" shadow="hover">
                         <el-row>
                             <el-link :underline="false" href=""><i class="tk2-tplist-icon4"></i></el-link>
@@ -53,7 +53,7 @@
                         <span class="span_text">计算机类题库</span>
                     </el-card>
                 </el-col>
-                <el-col :span="6">
+                <el-col :span=6>
                     <el-card class="box-card" shadow="hover">
                         <el-row>
                             <el-link :underline="false" href=""><i class="tk2-tplist-icon6"></i></el-link>
@@ -61,7 +61,7 @@
                         <span class="span_text">资格类题库</span>
                     </el-card>
                 </el-col>
-                <el-col :span="6">
+                <el-col :span=6>
                     <el-card class="box-card" shadow="hover">
                         <el-row>
                             <el-link :underline="false" href=""><i class="tk2-tplist-icon7"></i></el-link>
@@ -69,7 +69,7 @@
                         <span class="span_text">知识问答题库</span>
                     </el-card>
                 </el-col>
-                <el-col :span="6">
+                <el-col :span=6>
                     <el-card class="box-card" shadow="hover">
                         <el-row>
                             <el-link :underline="false" href=""><i class="tk2-tplist-icon8"></i></el-link>
@@ -79,7 +79,7 @@
                 </el-col>
             </el-row>
             <el-row class="tiku_icon_line3">
-                <el-col :span="6">
+                <el-col :span=6>
                     <el-card class="box-card" shadow="hover">
                         <el-row>
                             <el-link :underline="false" href=""><i class="tk2-tplist-icon9"></i></el-link>
@@ -87,7 +87,7 @@
                         <span class="span_text">外贸类题库</span>
                     </el-card>
                 </el-col>
-                <el-col :span="6">
+                <el-col :span=6>
                     <el-card class="box-card" shadow="hover">
                         <el-row>
                             <el-link :underline="false" href=""><i class="tk2-tplist-icon10"></i></el-link>

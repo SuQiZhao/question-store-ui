@@ -2,7 +2,7 @@
     <!--顶部-->
     <el-header class="home_header" style="height:10%">
         <div class="logo_img">
-            <img src="../../../assets/img/logo.png" height="100%" alt/>
+            <img alt height="100%" src="../../../assets/img/logo.png"/>
         </div>
         <topDropdown/>
         <!--    <searchBar />-->

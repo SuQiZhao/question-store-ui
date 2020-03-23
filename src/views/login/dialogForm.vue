@@ -1,69 +1,69 @@
 <template>
     <el-dialog
-            title="用户注册"
-            :modal-append-to-body="false"
-            :close-on-click-modal="false"
-            v-loading="loading"
-            :visible.sync="visible"
             :before-close="modalClose"
+            :close-on-click-modal="false"
             :close-on-press-escape="false"
+            :modal-append-to-body="false"
+            :visible.sync="visible"
             class="registerDialog"
+            title="用户注册"
+            v-loading="loading"
     >
-        <el-form :model="addUserForm" ref="addUserForm" :rules="rules" :inline="true" label-position="left">
-            <el-form-item label="院系：" class="itemInputBox">
-                <el-select v-model="value" placeholder="请选择" prop="collage">
+        <el-form :inline="true" :model="addUserForm" :rules="rules" label-position="left" ref="addUserForm">
+            <el-form-item class="itemInputBox" label="院系：">
+                <el-select placeholder="请选择" prop="collage" v-model="value">
                     <el-option
-                            v-for="item in options"
                             :key="item.value"
                             :label="item.label"
                             :value="item.value"
+                            v-for="item in options"
                     ></el-option>
                 </el-select>
             </el-form-item>
-            <el-form-item label="专业：" class="itemInputBox">
-                <el-select v-model="value" placeholder="请选择" prop="grade">
+            <el-form-item class="itemInputBox" label="专业：">
+                <el-select placeholder="请选择" prop="grade" v-model="value">
                     <el-option
-                            v-for="item in options"
                             :key="item.value"
                             :label="item.label"
                             :value="item.value"
+                            v-for="item in options"
                     ></el-option>
                 </el-select>
             </el-form-item>
-            <el-form-item label="年级：" class="itemInputBox">
-                <el-select v-model="value" placeholder="请选择" prop="collage">
+            <el-form-item class="itemInputBox" label="年级：">
+                <el-select placeholder="请选择" prop="collage" v-model="value">
                     <el-option
-                            v-for="item in options"
                             :key="item.value"
                             :label="item.label"
                             :value="item.value"
+                            v-for="item in options"
                     ></el-option>
                 </el-select>
             </el-form-item>
-            <el-form-item label="班级：" class="itemInputBox">
-                <el-select v-model="value" placeholder="请选择" prop="collage">
+            <el-form-item class="itemInputBox" label="班级：">
+                <el-select placeholder="请选择" prop="collage" v-model="value">
                     <el-option
-                            v-for="item in options"
                             :key="item.value"
                             :label="item.label"
                             :value="item.value"
+                            v-for="item in options"
                     ></el-option>
                 </el-select>
             </el-form-item>
-            <el-form-item label="姓名：" class="itemInputBox" prop="name">
+            <el-form-item class="itemInputBox" label="姓名：" prop="name">
                 <el-input
-                        v-model="addUserForm.name"
                         autocomplete="off"
                         class="inputBox"
                         prefix-icon="el-icon-user"
+                        v-model="addUserForm.name"
                 ></el-input>
             </el-form-item>
-            <el-form-item label="邮箱：" class="itemInputBox" prop="email">
+            <el-form-item class="itemInputBox" label="邮箱：" prop="email">
                 <el-input
-                        v-model="addUserForm.email"
                         autocomplete="off"
                         class="inputBox"
                         prefix-icon="el-icon-message"
+                        v-model="addUserForm.email"
                 ></el-input>
             </el-form-item>
             <!-- <el-form-item label="手机号码：" class="itemInputBox" prop="telephone">
@@ -74,24 +74,24 @@
                 prefix-icon="el-icon-phone-outline"
               ></el-input>
             </el-form-item> -->
-            <el-form-item label="密码：" class="itemInputBox" porp="password">
+            <el-form-item class="itemInputBox" label="密码：" porp="password">
                 <el-input
-                        v-model="addUserForm.password"
                         autocomplete="off"
                         class="inputBox"
                         prefix-icon="el-icon-key"
+                        v-model="addUserForm.password"
                 ></el-input>
             </el-form-item>
-            <el-form-item label="确认密码：" class="itemInputBox" porp="checkpass">
+            <el-form-item class="itemInputBox" label="确认密码：" porp="checkpass">
                 <el-input
-                        v-model="addUserForm.checkpass"
                         autocomplete="off"
                         class="inputBox"
                         prefix-icon="el-icon-key"
+                        v-model="addUserForm.checkpass"
                 ></el-input>
             </el-form-item>
         </el-form>
-        <div slot="footer" class="dialog-footer">
+        <div class="dialog-footer" slot="footer">
             <el-button type="primary">注 册</el-button>
             <el-button>返 回</el-button>
         </div>

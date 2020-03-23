@@ -2,8 +2,8 @@
     <div class="top_dropdown">
         <el-dropdown :hide-on-click="false">
             <div>
-                <el-button type="primary" size="small" plain round>
-                    <el-avatar :size="10" fit="scale-down" :src="url" @error="handleError"></el-avatar>
+                <el-button plain round size="small" type="primary">
+                    <!--                    <el-avatar :size="10" fit="scale-down" :src="url" @error="handleError"></el-avatar>-->
                     专业名 | 用户名
                     <i class="el-icon-arrow-down el-icon--right"></i>
                 </el-button>

@@ -3,7 +3,7 @@
         <el-col>
             <div class="userinfo">
                 <div class="userimg">
-                    <el-avatar :size="150" :fit="fill" :src="url"></el-avatar>
+                    <el-avatar :fit="fill" :size="150" :src="url"></el-avatar>
                 </div>
                 <div class="user_detail">
                     <div>

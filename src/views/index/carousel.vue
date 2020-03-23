@@ -1,8 +1,8 @@
 <template>
     <div class="block">
         <el-carousel height="450px">
-            <el-carousel-item v-for="item in imagesBox" :key="item.id">
-                <img class="carouselImg" :src='item.url' height="100%" width="100%" alt/>
+            <el-carousel-item :key="item.id" v-for="item in imagesBox">
+                <img :src='item.url' alt class="carouselImg" height="100%" width="100%"/>
             </el-carousel-item>
         </el-carousel>
     </div>

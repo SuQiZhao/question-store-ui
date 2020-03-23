@@ -3,8 +3,8 @@
     <div class="index_body">
         <carousel/>
         <div class="body_container">
-            <el-row :gutter="30">
-                <el-col :span="8">
+            <el-row :gutter=30>
+                <el-col :span=8>
                     <div class="kaosizahinan">
                         <el-card class="box-card">
                             <div class="clearfix" slot="header">
@@ -17,7 +17,7 @@
                         </el-card>
                     </div>
                 </el-col>
-                <el-col :span="16">
+                <el-col :span=16>
                     <div class="kaoshizixun">
                         <el-card class="box-card">
                             <div class="clearfix" slot="header">
@@ -32,7 +32,7 @@
                 </el-col>
             </el-row>
             <el-row :gutter="20" style="margin-top: 3%">
-                <el-col :span="14">
+                <el-col :span=14>
                     <div class="kaoshishiti">
                         <el-card class="box-card">
                             <div class="clearfix" slot="header">
@@ -45,7 +45,7 @@
                         </el-card>
                     </div>
                 </el-col>
-                <el-col :span="10">
+                <el-col :span=10>
                     <div class="gonggaotongzhi">
                         <el-card class="box-card">
                             <div class="clearfix" slot="header">

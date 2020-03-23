@@ -1,7 +1,7 @@
 <template>
     <div class="top_search">
         <el-input placeholder="请输入内容" v-model="input">
-            <i slot="prefix" class="el-input__icon el-icon-search"></i>
+            <i class="el-input__icon el-icon-search" slot="prefix"></i>
         </el-input>
     </div>
 </template>

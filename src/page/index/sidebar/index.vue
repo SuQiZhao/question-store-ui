@@ -6,10 +6,10 @@
         <el-row class="menu">
             <el-col>
                 <el-menu
-                        class="el-menu-vertical-demo"
-                        :router="true"
                         :default-active="$route.name"
+                        :router="true"
                         :unique-opened="true"
+                        class="el-menu-vertical-demo"
                 >
                     <el-menu-item>
                         <sidesearch/>

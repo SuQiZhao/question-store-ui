@@ -1,13 +1,13 @@
 <template>
     <div class="guide_classify">
         <el-row class="guide_row">
-            <el-col span="24">
+            <el-col span=24>
                 <el-card class="guide_box">
-                    <div slot="header" class="clearfix">
+                    <div class="clearfix" slot="header">
                         <span style="font-size: 18px">财经类</span>
                     </div>
                     <el-row>
-                        <el-col span="6">
+                        <el-col span=6>
                             <div class="single-guide-content">
                                 <div class="subject-menu">
                                     <div class="subject-icon1">
@@ -62,7 +62,7 @@
         <el-row class="guide_row">
             <el-col span="24">
                 <el-card class="guide_box">
-                    <div slot="header" class="clearfix">
+                    <div class="clearfix" slot="header">
                         <span style="font-size: 18px">建筑类</span>
                     </div>
                     <el-row>
