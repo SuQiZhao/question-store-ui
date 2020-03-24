@@ -18,7 +18,7 @@ export default {
     // refreshBtn:false,
     // // 搜索框与按钮单独成行
     // searchMenuSpan:4,
-    menu:false,
+    // menu:false,
     refreshBtn: false,
     columnBtn: false,
     delBtn: false,
@@ -29,8 +29,8 @@ export default {
     header: false,
     align: 'center',
     menuAlign: 'center',
-    height: 'calc(100% - (80px))',
-    menuWidth: 200,
+    height: 'calc(100% - (90px))',
+    // menuWidth: 200,
     column:[
         {
             label:'标题',

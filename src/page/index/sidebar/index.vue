@@ -34,7 +34,7 @@
                         <el-menu-item index="/myAnswser">
                             <i class="el-icon-more-outline"></i>全部
                         </el-menu-item>
-                        <el-menu-item index="2-2">
+                        <el-menu-item index="/myAnswser/alreadyDone">
                             <i class="el-icon-circle-check"></i>已解答
                         </el-menu-item>
                         <el-menu-item index="2-3">

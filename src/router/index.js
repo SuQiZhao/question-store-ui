@@ -47,6 +47,11 @@ const routes = [{
             component: () => import('../views/myAnswser/index.vue')
             },
             {
+                path: '/myAnswser/alreadyDone',
+                name: '已解答',
+                component: () => import('../views/myAnswser/alreadyDone.vue')
+            },
+            {
                 path: '/usersetting',
                 name: '个人资料设置',
                 component: () => import('../views/settings/index.vue')

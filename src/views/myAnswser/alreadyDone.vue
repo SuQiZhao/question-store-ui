@@ -17,13 +17,13 @@
                         <el-form-item label="提问人：">
                             <el-input placeholder="请输入提问人" v-model="search.askUser"></el-input>
                         </el-form-item>
-<!--                        <el-form-item label="状态：">-->
-<!--                            <el-select placeholder="请选择提问状态" v-model="search.askStatus">-->
-<!--                                <el-option :key="item.value" :label="item.label" :value="item.value"-->
-<!--                                           v-for="item in askStatusArray">-->
-<!--                                </el-option>-->
-<!--                            </el-select>-->
-<!--                        </el-form-item>-->
+                        <el-form-item label="状态：">
+                            <el-select placeholder="请选择提问状态" v-model="search.askStatus">
+                                <el-option :key="item.value" :label="item.label" :value="item.value"
+                                           v-for="item in askStatusArray">
+                                </el-option>
+                            </el-select>
+                        </el-form-item>
                         <el-form-item label="发布时间：">
                             <!--增加折叠添加v-if="menuOpen"-->
                             <el-date-picker
@@ -34,26 +34,22 @@
                                     start-placeholder="开始日期"
                                     type="daterange"
                                     unlink-panels
+                                    v-if="menuOpen"
                                     v-model="search.rangeDate">
                             </el-date-picker>
-                                <!--折叠输入框-->
-<!--                            <span @click="menuOpen = !menuOpen" class="menuShowHide">-->
-<!--                                    {{ menuOpen ? "收起" : "展开" }}&nbsp;-->
-<!--                                    <i-->
-<!--                                            :class="-->
-<!--											menuOpen-->
-<!--												? 'el-icon-arrow-up'-->
-<!--												: 'el-icon-arrow-down'-->
-<!--										"-->
-<!--                                    ></i>-->
-<!--                                </span>-->
+                            <!--                            折叠输入框-->
+                            <span @click="menuOpen = !menuOpen" class="menuShowHide">
+                                                                {{ menuOpen ? "收起" : "展开" }}&nbsp;
+                                <i :class="menuOpen? 'el-icon-arrow-up': 'el-icon-arrow-down'"></i>
+                            </span>
                         </el-form-item>
                         <el-form-item>
                             <el-button @click="searchData" type="primary">查询</el-button>
                             <el-button @click="resetForm">重置</el-button>
                         </el-form-item>
                     </el-form>
-                    <avue-crud :data="data" :option="option" @search-change="searchChange" v-model="obj" :table-loading="loading">
+                    <avue-crud :data="data" :option="option" :table-loading="loading" @search-change="searchChange"
+                               v-model="obj">
                         <!-- 置空提示-->
                         <template slot="empty">
                             <avue-empty
@@ -76,7 +72,7 @@
 
     const cityOptions = ['财经类', '法律类', '建筑类', '外语类', '计算机类', '资格类', '知识问答', '招录类', '外贸类', '医学类'];
     export default {
-        name: "index",
+        name: "alreadyDone",
         data() {
             return {
                 //默认选项
@@ -85,12 +81,14 @@
                 obj: {},
                 data: [],
                 option: option,
-                menuOpen:false,
+                menuOpen: false,
                 askStatusArray: DIC.ASK_STATUS,
                 search: {
                     title: "",
                     askUser: "",
-                    askStatus: ""
+                    askStatus: "",
+                    rangeDate:[],
+                    questionClassify:""
                 },
                 pickerOption: pickerOptions,
                 // menuOpen: false,
@@ -101,7 +99,7 @@
                     pageSize: 10
                 },
                 //动态加载
-                loading:false,
+                loading: false,
             }
         },
         methods: {
@@ -123,7 +121,7 @@
                 ),
                     this.searchData();
             },
-            searchData(){
+            searchData() {
                 //搜索及初始化方法
                 this.loading = true;
             }
