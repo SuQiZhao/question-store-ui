@@ -13,7 +13,7 @@ export const DIC={
             value:2,
         },
     ],
-    QUESTION_CLASSIFY:[
+    QUESTION_CATEGORY:[
         {
             label: '财 经 类',
             value: 'economics'

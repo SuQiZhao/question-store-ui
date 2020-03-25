@@ -88,7 +88,7 @@
                     askUser: "",
                     askStatus: "",
                     rangeDate:[],
-                    questionClassify:""
+                    questionCategory:""
                 },
                 pickerOption: pickerOptions,
                 // menuOpen: false,
@@ -116,7 +116,7 @@
                         askUser: "",
                         askStatus: "",
                         rangeDate:[],
-                        questionClassify:""
+                        questionCategory:""
                     }
                 ),
                     this.searchData();

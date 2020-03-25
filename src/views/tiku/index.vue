@@ -9,7 +9,7 @@
                 <el-button circle icon="el-icon-search"></el-button>
             </div>
         </div>
-        <div class="tiku_classify">
+        <div class="tiku_category">
             <el-row class="tiku_icon_line1">
                 <el-col :span=6>
                     <el-card class="box-card" shadow="hover">
@@ -115,7 +115,7 @@
         background-color: #ffffff;
     }
 
-    .tiku_classify {
+    .tiku_category {
         padding: 2%;
     }
 

@@ -53,13 +53,13 @@
             return {
                 count: 0,
                 form: {
-                    classify: ["economics", "laws", "builds", "language", "computer", "condition", "answser", "recruit", "trade", "medical"]
+                    category: ["economics", "laws", "builds", "language", "computer", "condition", "answser", "recruit", "trade", "medical"]
                 },
                 option: {
                     column: [{
                         label: '题 库 分 类',
-                        prop: 'classify',
-                        dicData: DIC.QUESTION_CLASSIFY
+                        prop: 'category',
+                        dicData: DIC.QUESTION_CATEGORY
                     }]
                 }
             }

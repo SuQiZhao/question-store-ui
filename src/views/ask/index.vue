@@ -1,5 +1,9 @@
 <template>
-    <div>提问页</div>
+    <div>
+        <el-row>
+            
+        </el-row>
+    </div>
 </template>
 
 <script>

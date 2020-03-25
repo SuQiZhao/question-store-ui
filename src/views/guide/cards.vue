@@ -1,5 +1,5 @@
 <template>
-    <div class="guide_classify">
+    <div class="guide_category">
         <el-row class="guide_row">
             <el-col span=24>
                 <el-card class="guide_box">
@@ -276,7 +276,7 @@
         display: flex;
     }
 
-    .guide_classify {
+    .guide_category {
         .guide_row {
             margin-top: 2%;
         }

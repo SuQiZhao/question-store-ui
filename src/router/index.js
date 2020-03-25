@@ -73,7 +73,7 @@ const routes = [{
             },
             {
                 path: '/newquestion',
-                name: '提问',
+                name: '新建提问',
                 component: () => import('../views/ask/index.vue')
             },
         ]

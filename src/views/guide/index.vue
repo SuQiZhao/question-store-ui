@@ -24,7 +24,7 @@
         overflow-x: hidden;
     }
 
-    .guide_classify {
+    .guide_category {
         /*margin-top: 2%;*/
         margin-left: 12%;
         margin-right: 12%;
