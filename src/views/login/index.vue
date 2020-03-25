@@ -12,11 +12,11 @@
                             <i class="el-icon-user"></i>用户登录
                         </div>
                     </el-form-item>
-                    <el-form-item label="账号" prop="username">
-                        <el-input placeholder="请输入邮箱/手机号/学号" type="username"></el-input>
+                    <el-form-item label="账号">
+                        <el-input placeholder="请输入邮箱/手机号/学号" type="username" v-model="username"></el-input>
                     </el-form-item>
-                    <el-form-item label="密码" prop="password">
-                        <el-input placeholder="请输入密码" type="password"></el-input>
+                    <el-form-item label="密码">
+                        <el-input placeholder="请输入密码" type="password" v-model="password"></el-input>
                     </el-form-item>
                     <el-form-item>
                         <el-checkbox class="autoLogin" v-model="login_checked">自动登录</el-checkbox>

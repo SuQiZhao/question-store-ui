@@ -52,6 +52,16 @@ const routes = [{
                 component: () => import('../views/myAnswser/alreadyDone.vue')
             },
             {
+                path: '/myAnswser/notDone',
+                name: '未解答',
+                component: () => import('../views/myAnswser/notDone.vue')
+            },
+            {
+                path: '/myAnswser/alreadyDelete',
+                name: '已删除',
+                component: () => import('../views/myAnswser/alreadyDelete.vue')
+            },
+            {
                 path: '/usersetting',
                 name: '个人资料设置',
                 component: () => import('../views/settings/index.vue')
@@ -60,7 +70,12 @@ const routes = [{
                 path: '/changepwd',
                 name: '密码修改',
                 component: () => import('../views/settings/changePwd/index.vue')
-            }
+            },
+            {
+                path: '/newquestion',
+                name: '提问',
+                component: () => import('../views/ask/index.vue')
+            },
         ]
     },
     {

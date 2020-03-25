@@ -1,12 +1,16 @@
 export const DIC={
     ASK_STATUS:[
         {
-            label:'采纳中',
+            label:'未采纳',
             value:0,
         },
         {
-            label:'已完成',
+            label:'采纳中',
             value:1,
+        },
+        {
+            label:'已采纳',
+            value:2,
         },
     ],
     QUESTION_CLASSIFY:[

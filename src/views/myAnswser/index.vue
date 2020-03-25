@@ -2,8 +2,8 @@
     <div>
         <el-row>
             <el-col :span=24 style="margin-bottom: 2%">
-                <el-checkbox-group size="medium" v-model="checkboxGroup2">
-                    <el-checkbox-button :key="city" :label="city" v-for="city in cities">{{city}}</el-checkbox-button>
+                <el-checkbox-group size="medium" v-model="checkboxGroup">
+                    <el-checkbox-button :key="course" :label="course" v-for="course in courses">{{course}}</el-checkbox-button>
                 </el-checkbox-group>
             </el-col>
         </el-row>
@@ -24,7 +24,7 @@
 <!--                                </el-option>-->
 <!--                            </el-select>-->
 <!--                        </el-form-item>-->
-                        <el-form-item label="发布时间：">
+                        <el-form-item label="时间：">
                             <!--增加折叠添加v-if="menuOpen"-->
                             <el-date-picker
                                     :picker-options="pickerOption"
@@ -74,14 +74,14 @@
     import {DIC} from "../../constant/dicConstant";
     import pickerOptions from "./pickerOptions";
 
-    const cityOptions = ['财经类', '法律类', '建筑类', '外语类', '计算机类', '资格类', '知识问答', '招录类', '外贸类', '医学类'];
+    const courseOptions = ['财经类', '法律类', '建筑类', '外语类', '计算机类', '资格类', '知识问答', '招录类', '外贸类', '医学类'];
     export default {
         name: "index",
         data() {
             return {
                 //默认选项
-                checkboxGroup2: ['财经类', '法律类', '建筑类', '外语类', '计算机类', '资格类', '知识问答', '招录类', '外贸类', '医学类'],
-                cities: cityOptions,
+                checkboxGroup: ['财经类', '法律类', '建筑类', '外语类', '计算机类', '资格类', '知识问答', '招录类', '外贸类', '医学类'],
+                courses: courseOptions,
                 obj: {},
                 data: [],
                 option: option,

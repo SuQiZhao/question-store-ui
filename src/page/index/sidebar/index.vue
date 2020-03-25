@@ -37,10 +37,10 @@
                         <el-menu-item index="/myAnswser/alreadyDone">
                             <i class="el-icon-circle-check"></i>已解答
                         </el-menu-item>
-                        <el-menu-item index="2-3">
+                        <el-menu-item index="/myAnswser/notDone">
                             <i class="el-icon-circle-close"></i>未解答
                         </el-menu-item>
-                        <el-menu-item index="2-4">
+                        <el-menu-item index="/myAnswser/alreadyDelete">
                             <i class="el-icon-delete"></i>已删除
                         </el-menu-item>
                     </el-submenu>

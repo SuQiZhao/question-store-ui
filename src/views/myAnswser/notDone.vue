@@ -40,7 +40,7 @@
                             <!--                            折叠输入框-->
                             <span @click="menuOpen = !menuOpen" class="menuShowHide">
                                                                 {{ menuOpen ? "收起" : "展开" }}&nbsp;
-                                <i :class="menuOpen? 'el-icon-arrow-up': 'el-icon-arrow-down'"></i>
+                                <i :class="menuOpen? 'el-icon-arrow-up': 'el-icon-ar    row-down'"></i>
                             </span>
                         </el-form-item>
                         <el-form-item>
@@ -112,11 +112,11 @@
                 this.search = Object.assign(
                     {},
                     {
-                        clueSource: "",
-                        areaCode: "",
-                        pushStatus: "",
-                        rangeTime: [],
-                        clueName: ""
+                        title: "",
+                        askUser: "",
+                        askStatus: "",
+                        rangeDate:[],
+                        questionClassify:""
                     }
                 ),
                     this.searchData();
