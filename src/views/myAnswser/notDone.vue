@@ -3,7 +3,8 @@
         <el-row>
             <el-col :span=24 style="margin-bottom: 2%">
                 <el-checkbox-group size="medium" v-model="checkboxGroup">
-                    <el-checkbox-button :key="course" :label="course" v-for="course in courses">{{course}}</el-checkbox-button>
+                    <el-checkbox-button :key="course" :label="course" v-for="course in courses">{{course}}
+                    </el-checkbox-button>
                 </el-checkbox-group>
             </el-col>
         </el-row>
@@ -87,8 +88,8 @@
                     title: "",
                     askUser: "",
                     askStatus: "",
-                    rangeDate:[],
-                    questionCategory:""
+                    rangeDate: [],
+                    questionCategory: ""
                 },
                 pickerOption: pickerOptions,
                 // menuOpen: false,
@@ -115,8 +116,8 @@
                         title: "",
                         askUser: "",
                         askStatus: "",
-                        rangeDate:[],
-                        questionCategory:""
+                        rangeDate: [],
+                        questionCategory: ""
                     }
                 ),
                     this.searchData();

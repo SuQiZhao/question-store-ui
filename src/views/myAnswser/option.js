@@ -31,26 +31,26 @@ export default {
     menuAlign: 'center',
     height: 'calc(100% - (90px))',
     // menuWidth: 200,
-    column:[
+    column: [
         {
-            label:'标题',
-            prop:'title',
+            label: '标题',
+            prop: 'title',
         },
         {
-            label:'提问人',
-            prop:'sex'
-        },{
-            label:'阅读量',
-            prop:'reading'
-        },{
+            label: '提问人',
+            prop: 'sex'
+        }, {
+            label: '阅读量',
+            prop: 'reading'
+        }, {
             label: "发布时间",
             prop: "date",
             type: "date",
             format: "yyyy-MM-dd hh:mm:ss",
             valueFormat: "yyyy-MM-dd hh:mm:ss",
-            searchSpan:10,
-            searchRange:false,
-            search:false
+            searchSpan: 10,
+            searchRange: false,
+            search: false
         }
     ],
 };

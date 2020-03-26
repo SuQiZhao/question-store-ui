@@ -1,19 +1,19 @@
-export const DIC={
-    ASK_STATUS:[
+export const DIC = {
+    ASK_STATUS: [
         {
-            label:'未采纳',
-            value:0,
+            label: '未采纳',
+            value: 0,
         },
         {
-            label:'采纳中',
-            value:1,
+            label: '采纳中',
+            value: 1,
         },
         {
-            label:'已采纳',
-            value:2,
+            label: '已采纳',
+            value: 2,
         },
     ],
-    QUESTION_CATEGORY:[
+    QUESTION_CATEGORY: [
         {
             label: '财 经 类',
             value: 'economics'

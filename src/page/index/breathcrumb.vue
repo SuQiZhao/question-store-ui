@@ -35,7 +35,7 @@
     };
 </script>
 <style lang="scss">
-    .el-breadcrumb__item{
+    .el-breadcrumb__item {
         font-size: 18px;
     }
 </style>
