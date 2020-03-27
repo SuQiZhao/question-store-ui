@@ -23,7 +23,7 @@
                         <el-link :underline="false" class="forgotPwd">忘记密码？</el-link>
                     </el-form-item>
                     <el-form-item>
-                        <el-button class="loginBtn" type="primary">登 录</el-button>
+                        <el-button class="loginBtn" type="primary" @click="login">登 录</el-button>
                         <el-button @click="toRegister" class="registerBtn" plain type="primary">注册</el-button>
                         <dialogForm :visible.sync="dialog_visible" ref="orderRegister"
                                     v-if="dialog_visible"></dialogForm>
@@ -56,6 +56,7 @@
 </template>
 <script>
     import dialogForm from "./dialogForm";
+    import{login} from "@/api/user";
 
     export default {
         components: {
@@ -67,6 +68,7 @@
                 login_checked: true,
                 username: "",
                 password: "",
+                data:[],
                 dialogFormVisible: false,
                 form: {
                     name: "",
@@ -101,6 +103,19 @@
         methods: {
             toRegister() {
                 this.dialog_visible = true;
+            },
+            login(){
+                const param = {
+                    username:this.username,
+                    password:this.password,
+                }
+                console.log(this.param);
+                login(param).then(res => {
+                    this.data = res.data.data;
+                    console.log(this.data);
+                }).catch(err => {
+                    this.$message.error(err.data.msg);
+                })
             }
         }
     };

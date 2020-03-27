@@ -1,4 +1,4 @@
-/* eslint disabled */
+
 var ua = window.navigator.userAgent;
 var isIE = ('ActiveXObject' in window);
 var isChrome = ua.match(/Chrome/i);
