@@ -1,8 +1,11 @@
 import request from '@/router/axios';
 
 
-export const login = (params) => request({
+export const login = (username,password) => request({
     url: '/login',
     method: 'post',
-    params: params
+    data: {
+        username,
+        password
+    }
 });

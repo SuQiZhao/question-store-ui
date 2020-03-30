@@ -51,7 +51,7 @@
                             count: '53',
                             title: '已解决',
                             icon: 'el-icon-circle-check',
-                            color: '#FFCC99'
+                            color: '#67C23A'
                         }, {
                             click: function (item) {
                                 alert(JSON.stringify(item));

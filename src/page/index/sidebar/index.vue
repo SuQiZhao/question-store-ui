@@ -114,10 +114,6 @@
         position: relative;
     }
 
-    .userimg {
-        text-align: center;
-    }
-
     .menu_userinfo {
         background-color: #ffffff;
         margin: 10px;

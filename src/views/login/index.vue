@@ -6,24 +6,25 @@
                 <img alt height="100%" src="../../assets/img/logo.png" style="margin:0px 20%"/>
             </el-header>
             <el-main class="login_main">
-                <el-form class="login_form">
+                <el-form :model="loginForm" class="login_form" v-loading="loading" :rules="rules">
                     <el-form-item>
                         <div class="title">
                             <i class="el-icon-user"></i>用户登录
                         </div>
                     </el-form-item>
-                    <el-form-item label="账号">
-                        <el-input placeholder="请输入邮箱/手机号/学号" type="username" v-model="username"></el-input>
+                    <el-form-item label="账号" prop="name">
+                        <el-input placeholder="请输入邮箱/手机号/学号" type="username" v-model="loginForm.username"></el-input>
                     </el-form-item>
-                    <el-form-item label="密码">
-                        <el-input placeholder="请输入密码" type="password" v-model="password"></el-input>
+                    <el-form-item label="密码" prop="pwd">
+                        <el-input auto-complete="off" placeholder="请输入密码" type="password"
+                                  v-model="loginForm.password"></el-input>
                     </el-form-item>
                     <el-form-item>
-                        <el-checkbox class="autoLogin" v-model="login_checked">自动登录</el-checkbox>
+                        <el-checkbox class="autoLogin" v-model="loginForm.login_checked">自动登录</el-checkbox>
                         <el-link :underline="false" class="forgotPwd">忘记密码？</el-link>
                     </el-form-item>
                     <el-form-item>
-                        <el-button class="loginBtn" type="primary" @click="login">登 录</el-button>
+                        <el-button @click="handleLogin" class="loginBtn" type="primary">登 录</el-button>
                         <el-button @click="toRegister" class="registerBtn" plain type="primary">注册</el-button>
                         <dialogForm :visible.sync="dialog_visible" ref="orderRegister"
                                     v-if="dialog_visible"></dialogForm>
@@ -56,7 +57,7 @@
 </template>
 <script>
     import dialogForm from "./dialogForm";
-    import{login} from "@/api/user";
+    import {login} from "@/api/user";
 
     export default {
         components: {
@@ -65,56 +66,53 @@
         data() {
             return {
                 dialog_visible: false,
-                login_checked: true,
-                username: "",
-                password: "",
-                data:[],
-                dialogFormVisible: false,
-                form: {
-                    name: "",
-                    email: "",
-                    password: ""
+                loginForm: {
+                    username: "",
+                    password: "",
+                    login_checked: true,
                 },
-                options: [
-                    {
-                        value: "选项1",
-                        label: "黄金糕"
-                    },
-                    {
-                        value: "选项2",
-                        label: "双皮奶"
-                    },
-                    {
-                        value: "选项3",
-                        label: "蚵仔煎"
-                    },
-                    {
-                        value: "选项4",
-                        label: "龙须面"
-                    },
-                    {
-                        value: "选项5",
-                        label: "北京烤鸭"
-                    }
-                ],
+                data: [],
+                dialogFormVisible: false,
+                loading: false,
+                //element表单校验规则
+                rules: {
+                    name: [
+                        {required: true, message: "请输入用户名", trigger: "blur"},
+                        {min: 2, max: 5, message: "长度在 3 到 5 个字符", trigger: "blur"}
+                    ],
+                    pwd: [
+                        {required: true, message: "请输入密码", trigger: "blur"},
+                        {min: 6, max: 16, message: "长度在 6 到 16 个字符", trigger: "blur"}
+                    ],
+                },
                 value: ""
             };
         },
         methods: {
+            //dialogForm属性绑定变化
             toRegister() {
                 this.dialog_visible = true;
             },
-            login(){
-                const param = {
-                    username:this.username,
-                    password:this.password,
-                }
-                console.log(this.param);
-                login(param).then(res => {
-                    this.data = res.data.data;
-                    console.log(this.data);
+            //前端登陆验证
+            handleLogin() {
+                this.loading = true;
+                let loginParam = {
+                    username: this.loginForm.username,
+                    password: this.loginForm.password
+                };
+                login(loginParam).then(res => {
+                    this.data = res.data;
+                    this.loading = false;
+                    if (res.code != 200) {
+                        return this.$message.error(res.message);
+                    }
+                    this.$message.success("登陆成功");
+                    //将登陆成功的token存储到sessionStorage中
+                    window.sessionStorage.setItem("token",res.data.token);
+                    this.$router.push('/home');
                 }).catch(err => {
-                    this.$message.error(err.data.msg);
+                    this.loading = false;
+                    return this.$message.error(err.data);
                 })
             }
         }
@@ -161,7 +159,7 @@
         float: left;
 
         .el-icon-user {
-            color: #67c23a;
+            color: #10568a;
             margin-right: 25px;
         }
     }
