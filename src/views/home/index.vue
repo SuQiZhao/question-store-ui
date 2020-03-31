@@ -23,6 +23,7 @@
     import questionList from "./questionList";
     import buttonItem from "./buttonItem";
     import hotQuestion from "./hotQuestion";
+    import {getSysUserInfo} from "../../api/user";
 
     export default {
         name: "index",
@@ -33,6 +34,7 @@
         },
         data() {
             return {
+                data:[],
                 option: {
                     span: 6,
                     data: [
@@ -73,6 +75,21 @@
                     ]
                 },
             }
+        },
+        methods:{
+            init(){
+                window.sessionStorage.getItem("token");
+                console.log(window.sessionStorage.getItem("token"));
+                getSysUserInfo().then(res => {
+                    this.data = res.data;
+                    return this.$message.success(this.data);
+                }).catch(err => {
+                    return this.$message.error(err.data);
+                })
+            }
+        },
+        created() {
+            this.init();
         }
     }
 </script>

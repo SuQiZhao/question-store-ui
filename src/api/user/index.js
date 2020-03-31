@@ -9,3 +9,10 @@ export const login = (username,password) => request({
         password
     }
 });
+
+
+export const getSysUserInfo = () => request({
+    url: '/getSysUserInfo',
+    method: 'get',
+    params: {}
+});

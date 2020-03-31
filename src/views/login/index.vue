@@ -6,7 +6,7 @@
                 <img alt height="100%" src="../../assets/img/logo.png" style="margin:0px 20%"/>
             </el-header>
             <el-main class="login_main">
-                <el-form :model="loginForm" class="login_form" v-loading="loading" :rules="rules">
+                <el-form :model="loginForm" class="login_form" v-loading="loading">
                     <el-form-item>
                         <div class="title">
                             <i class="el-icon-user"></i>用户登录
@@ -67,24 +67,24 @@
             return {
                 dialog_visible: false,
                 loginForm: {
-                    username: "",
-                    password: "",
+                    username: '',
+                    password: '',
                     login_checked: true,
                 },
                 data: [],
                 dialogFormVisible: false,
                 loading: false,
                 //element表单校验规则
-                rules: {
-                    name: [
-                        {required: true, message: "请输入用户名", trigger: "blur"},
-                        {min: 2, max: 5, message: "长度在 3 到 5 个字符", trigger: "blur"}
-                    ],
-                    pwd: [
-                        {required: true, message: "请输入密码", trigger: "blur"},
-                        {min: 6, max: 16, message: "长度在 6 到 16 个字符", trigger: "blur"}
-                    ],
-                },
+                // rules: {
+                //     name: [
+                //         {required: true, message: "请输入用户名", trigger: "blur"},
+                //         {min: 2, max: 5, message: "长度在 3 到 5 个字符", trigger: "blur"}
+                //     ],
+                //     pwd: [
+                //         {required: true, message: "请输入密码", trigger: "blur"},
+                //         {min: 6, max: 16, message: "长度在 6 到 16 个字符", trigger: "blur"}
+                //     ],
+                // },
                 value: ""
             };
         },
@@ -109,6 +109,7 @@
                     this.$message.success("登陆成功");
                     //将登陆成功的token存储到sessionStorage中
                     window.sessionStorage.setItem("token",res.data.token);
+                    //到个人中心
                     this.$router.push('/home');
                 }).catch(err => {
                     this.loading = false;

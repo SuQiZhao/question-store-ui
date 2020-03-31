@@ -6,6 +6,14 @@ axios.defaults.timeout = 10000;
 axios.defaults.baseURL = baseUrl;
 //跨域请求，允许保存cookie
 axios.defaults.withCredentials = true;
+
+
+// axios请求拦截
+axios.interceptors.request.use(config => {
+    // 为请求头对象，添加 Token 验证的 Authorization 字段
+    config.headers.Authorization = window.sessionStorage.getItem('token')
+    return config
+})
 /**
  * 统一处理网络请求的响应拦截处理方式，
  */
