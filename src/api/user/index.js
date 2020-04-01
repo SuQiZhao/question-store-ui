@@ -10,9 +10,18 @@ export const login = (username,password) => request({
     }
 });
 
+export const login_v1_1 = (username,password) => request({
+    url: '/login_v1_1',
+    method: 'post',
+    data: {
+        username,
+        password
+    }
+});
 
-export const getSysUserInfo = () => request({
-    url: '/getSysUserInfo',
+
+export const getUserInfo_v1_1 = () => request({
+    url: '/getUserInfo_v1_1',
     method: 'get',
     params: {}
 });

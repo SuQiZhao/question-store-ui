@@ -23,7 +23,7 @@
     import questionList from "./questionList";
     import buttonItem from "./buttonItem";
     import hotQuestion from "./hotQuestion";
-    import {getSysUserInfo} from "../../api/user";
+    import {getUserInfo_v1_1} from "../../api/user";
 
     export default {
         name: "index",
@@ -78,10 +78,10 @@
         },
         methods:{
             init(){
-                window.sessionStorage.getItem("token");
-                console.log(window.sessionStorage.getItem("token"));
-                getSysUserInfo().then(res => {
+                // window.sessionStorage.getItem("token");
+                getUserInfo_v1_1().then(res => {
                     this.data = res.data;
+                    console.log(res.data);
                     return this.$message.success(this.data);
                 }).catch(err => {
                     return this.$message.error(err.data);

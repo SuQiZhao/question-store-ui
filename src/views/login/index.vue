@@ -58,6 +58,7 @@
 <script>
     import dialogForm from "./dialogForm";
     import {login} from "@/api/user";
+    import {login_v1_1} from "../../api/user";
 
     export default {
         components: {
@@ -100,7 +101,7 @@
                     username: this.loginForm.username,
                     password: this.loginForm.password
                 };
-                login(loginParam).then(res => {
+                login_v1_1(loginParam).then(res => {
                     this.data = res.data;
                     this.loading = false;
                     if (res.code != 200) {

@@ -9,11 +9,17 @@ axios.defaults.withCredentials = true;
 
 
 // axios请求拦截
-axios.interceptors.request.use(config => {
-    // 为请求头对象，添加 Token 验证的 Authorization 字段
-    config.headers.Authorization = window.sessionStorage.getItem('token')
-    return config
-})
+axios.interceptors.request.use(function (config) {
+    // Do something before request is sent
+    //window.localStorage.getItem("accessToken") 获取token的value
+    let token = window.sessionStorage.getItem("token")
+    if (token) {
+        //将token放到请求头发送给服务器,将tokenkey放在请求头中
+        config.headers.token = token;
+        //也可以这种写法
+        // config.headers['accessToken'] = Token;
+        return config;
+    }})
 /**
  * 统一处理网络请求的响应拦截处理方式，
  */
