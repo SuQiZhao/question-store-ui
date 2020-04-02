@@ -7,21 +7,26 @@ axios.defaults.baseURL = baseUrl;
 //跨域请求，允许保存cookie
 axios.defaults.withCredentials = true;
 
+//默认头请求添加token
+let AUTH_TOKEN=(function(){
+    return window.sessionStorage.getItem("token");
+})();
+axios.defaults.headers.common['token'] = AUTH_TOKEN;
 
-// axios请求拦截
-axios.interceptors.request.use(function (config) {
-    // Do something before request is sent
-    //window.localStorage.getItem("accessToken") 获取token的value
-    let token = window.sessionStorage.getItem("token")
-    if (token) {
-        //将token放到请求头发送给服务器,将tokenkey放在请求头中
-        config.headers.token = token;
-        //也可以这种写法
-        // config.headers['accessToken'] = Token;
-        return config;
-    }})
+// axios请求拦截 无token不操作
+// axios.interceptors.request.use(function (config) {
+//     let token = window.sessionStorage.getItem("token")
+//     if (token) {
+//         //将token放到请求头发送给服务器,将tokenkey放在请求头中
+//         config.headers.token = token;
+//         //也可以这种写法
+//         // config.headers['accessToken'] = Token;
+//         return config;
+//     }})
+
+
 /**
- * 统一处理网络请求的响应拦截处理方式，
+ * 统一处理响应拦截处理方式，
  */
 axios.interceptors.response.use(success => {
     if (success.status && success.status == 200 && success.data.status == 500) {

@@ -9,7 +9,6 @@
 </template>
 <script>
     export default {
-        name: "carousel",
         data() {
             return {
                 imagesBox: [

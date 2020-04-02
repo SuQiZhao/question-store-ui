@@ -66,7 +66,6 @@
     import carousel from "./carousel";
 
     export default {
-        name: "body",
         components: {carousel},
     }
 </script>

@@ -2,7 +2,7 @@
     <div class="index_main">
         <el-container direction="vertical" style="height:100%">
             <!--顶部-->
-            <top/>
+            <top :data="data" ref="top_dropdown" />
             <el-container>
                 <!--侧栏-->
                 <sidebar/>
@@ -30,6 +30,7 @@
     import top from "./top/index.vue";
     import sidebar from "./sidebar";
     import breathcrumb from "./breathcrumb";
+    import {getUserInfo_v1_1} from "../../api/user";
 
     export default {
         components: {
@@ -37,7 +38,26 @@
             sidebar,
             breathcrumb
         },
-        methods: {}
+        data(){
+            return{
+                data:[],
+            }
+        },
+        methods:{
+            init(){
+                window.sessionStorage.getItem("token");
+                getUserInfo_v1_1().then(res => {
+                    this.data = res.data;
+                    console.log(res.data);
+                    return this.$message.success(this.data);
+                }).catch(err => {
+                    return this.$message.error(err.data);
+                })
+            }
+        },
+        created() {
+            this.init();
+        }
     };
 </script>
 <style lang="scss">

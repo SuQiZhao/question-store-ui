@@ -76,21 +76,21 @@
                 },
             }
         },
-        methods:{
-            init(){
-                // window.sessionStorage.getItem("token");
-                getUserInfo_v1_1().then(res => {
-                    this.data = res.data;
-                    console.log(res.data);
-                    return this.$message.success(this.data);
-                }).catch(err => {
-                    return this.$message.error(err.data);
-                })
-            }
-        },
-        created() {
-            this.init();
-        }
+        // methods:{
+        //     init(){
+        //         window.sessionStorage.getItem("token");
+        //         getUserInfo_v1_1().then(res => {
+        //             this.data = res.data;
+        //             console.log(res.data);
+        //             return this.$message.success(this.data);
+        //         }).catch(err => {
+        //             return this.$message.error(err.data);
+        //         })
+        //     }
+        // },
+        // created() {
+        //     this.init();
+        // }
     }
 </script>
 <style lang="scss">

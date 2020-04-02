@@ -9,48 +9,31 @@
             title="用户注册"
             v-loading="loading"
     >
-        <el-form :inline="true" :model="addUserForm" :rules="rules" label-position="left" ref="addUserForm">
-            <el-form-item class="itemInputBox" label="院系：">
-                <el-select placeholder="请选择" prop="collage" v-model="value">
+        <el-form :inline="true" label-position="left" :model="collageForm" >
+            <el-form-item class="itemInputBox" label="地区：">
+                <el-select placeholder="请选择" v-model="city">
                     <el-option
-                            :key="item.value"
-                            :label="item.label"
-                            :value="item.value"
-                            v-for="item in options"
+                            v-for="item in cityDataJson"
+                            :key="item.id"
+                            :label="item.name"
+                            :value="item.name"
                     ></el-option>
                 </el-select>
             </el-form-item>
-            <el-form-item class="itemInputBox" label="专业：">
-                <el-select placeholder="请选择" prop="grade" v-model="value">
+            <el-form-item class="itemInputBox" label="学校：">
+                <el-select placeholder="请选择">
                     <el-option
-                            :key="item.value"
-                            :label="item.label"
-                            :value="item.value"
-                            v-for="item in options"
+                            v-for="item in universityDataJson"
+                            :key="item.id"
+                            :label="item.name"
+                            :value="item.name"
                     ></el-option>
                 </el-select>
             </el-form-item>
-            <el-form-item class="itemInputBox" label="年级：">
-                <el-select placeholder="请选择" prop="collage" v-model="value">
-                    <el-option
-                            :key="item.value"
-                            :label="item.label"
-                            :value="item.value"
-                            v-for="item in options"
-                    ></el-option>
-                </el-select>
-            </el-form-item>
-            <el-form-item class="itemInputBox" label="班级：">
-                <el-select placeholder="请选择" prop="collage" v-model="value">
-                    <el-option
-                            :key="item.value"
-                            :label="item.label"
-                            :value="item.value"
-                            v-for="item in options"
-                    ></el-option>
-                </el-select>
-            </el-form-item>
-            <el-form-item class="itemInputBox" label="姓名：" prop="name">
+        </el-form>
+        <!--分隔符-->
+        <el-form :inline="false" :model="addUserForm" :rules="rules" label-position="left" ref="addUserForm">
+            <el-form-item label="用户名：">
                 <el-input
                         autocomplete="off"
                         class="inputBox"
@@ -58,7 +41,7 @@
                         v-model="addUserForm.name"
                 ></el-input>
             </el-form-item>
-            <el-form-item class="itemInputBox" label="邮箱：" prop="email">
+            <el-form-item label="邮箱：">
                 <el-input
                         autocomplete="off"
                         class="inputBox"
@@ -74,7 +57,7 @@
                 prefix-icon="el-icon-phone-outline"
               ></el-input>
             </el-form-item> -->
-            <el-form-item class="itemInputBox" label="密码：" porp="password">
+            <el-form-item label="密码：">
                 <el-input
                         autocomplete="off"
                         class="inputBox"
@@ -82,7 +65,7 @@
                         v-model="addUserForm.password"
                 ></el-input>
             </el-form-item>
-            <el-form-item class="itemInputBox" label="确认密码：" porp="checkpass">
+            <el-form-item label="确认密码：">
                 <el-input
                         autocomplete="off"
                         class="inputBox"
@@ -98,6 +81,7 @@
     </el-dialog>
 </template>
 <script>
+    import collageData from '@/assets/json/collageData'
     export default {
         props: {
             visible: {
@@ -126,8 +110,14 @@
                 }
             };
             return {
+                universityDataJson:[],
+                cityDataJson:[],
                 loading: false,
                 dialogFormVisible: false,
+                collageForm:{
+                    collage:'',
+                    city:''
+                },
                 addUserForm: {
                     name: '',
                     email: '',
@@ -153,28 +143,6 @@
                         {validator: validatePass2, trigger: 'blur'}
                     ],
                 },
-                options: [
-                    {
-                        value: "选项1",
-                        label: "黄金糕"
-                    },
-                    {
-                        value: "选项2",
-                        label: "双皮奶"
-                    },
-                    {
-                        value: "选项3",
-                        label: "蚵仔煎"
-                    },
-                    {
-                        value: "选项4",
-                        label: "龙须面"
-                    },
-                    {
-                        value: "选项5",
-                        label: "北京烤鸭"
-                    }
-                ],
                 value: ""
             };
         },
@@ -183,19 +151,17 @@
             modalClose() {
                 this.$emit("update:visible", false); // 直接修改父组件的属性
             }
+        },
+        created() {
+            //获取大学数据
+            this.universityDataJson = collageData.university;
+            //获取城市数据
+            this.cityDataJson = collageData.zone;
+            console.log(this.cityDataJson);
         }
     };
 </script>
 <style lang="scss">
-    .el-select {
-        float: left;
-    }
-
-    .itemInputBox {
-        margin-top: 20px;
-        // .inputBox {
-        //   float: left;
-        //   width: 300px !important;
-        // }
+    .itemInputBox{
     }
 </style>

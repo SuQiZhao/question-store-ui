@@ -57,7 +57,6 @@
 </template>
 <script>
     import dialogForm from "./dialogForm";
-    import {login} from "@/api/user";
     import {login_v1_1} from "../../api/user";
 
     export default {
