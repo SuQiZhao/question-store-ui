@@ -12,7 +12,7 @@ import axios from './router/axios';
 import VueAxios from 'vue-axios';
 //使用axios
 //配置请求的根路径，用于接口访问根路径+接口名称
-Vue.use(VueAxios,axios);
+Vue.use(VueAxios, axios);
 //安装Avue
 Vue.use(Avue);
 // 安装路由

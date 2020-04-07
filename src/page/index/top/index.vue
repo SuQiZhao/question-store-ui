@@ -7,16 +7,20 @@
         <div class="top_dropdown">
             <el-dropdown :hide-on-click="false">
                 <div class="top_dropdown_nickname">
-                    {{data.nickname}}
+                    {{userInfo.nickname}}
                     <i class="el-icon-arrow-down el-icon--right"></i>
                 </div>
                 <el-dropdown-menu>
-                    <el-dropdown-item>个人信息<el-button size="mini" style="float: right;margin-top:2%" plain>编辑</el-button></el-dropdown-item>
-                    <el-dropdown-item>学校：{{data.collageName}}</el-dropdown-item>
-                    <el-dropdown-item>专业：{{data.majorName}}</el-dropdown-item>
-                    <el-dropdown-item>上次登录：{{data.loginTime}}</el-dropdown-item>
+                    <el-dropdown-item>个人信息
+                        <el-button plain size="mini" style="float: right;margin-top:2%">编辑</el-button>
+                    </el-dropdown-item>
+                    <el-dropdown-item>学校：{{userInfo.collageName}}</el-dropdown-item>
+                    <el-dropdown-item>专业：{{userInfo.majorName}}</el-dropdown-item>
+                    <el-dropdown-item>上次登录：{{userInfo.loginTime}}</el-dropdown-item>
                     <el-dropdown-item style="border-top: #EBEEF5 1px solid">问题反馈</el-dropdown-item>
-                    <el-dropdown-item style="border-top: #EBEEF5 1px solid"><el-button size="mini" style="margin-top:2%" plain>退出</el-button></el-dropdown-item>
+                    <el-dropdown-item style="border-top: #EBEEF5 1px solid">
+                        <el-button plain size="mini" style="margin-top:2%" @click="logout">退出</el-button>
+                    </el-dropdown-item>
                 </el-dropdown-menu>
             </el-dropdown>
         </div>
@@ -24,17 +28,32 @@
     </el-header>
 </template>
 <script>
-    // import searchBar from "./top-searchBar";
-    // import topDropdown from "./top-dropdown";
+    import {logout} from "@/api/user";
 
     export default {
-        components: {
-        },
-        props:{
-            data:{}
+        components: {},
+        props: {
+            userInfo: {}
         },
         data() {
             return {
+                loading:false,
+            }
+        },
+        methods:{
+            // 登出方法
+            logout(){
+                this.$confirm("是否退出系统, 是否继续?", "提示", {
+                    confirmButtonText: "确定",
+                    cancelButtonText: "取消",
+                    type: "warning"
+                }).then( () => {
+                    logout().then(() =>{
+                        window.sessionStorage.removeItem("token");
+                        this.$message.success("退出成功！");
+                        this.$router.push('/login');
+                    })
+                });
             }
         }
     };
@@ -56,7 +75,8 @@
         /*position: absolute;*/
         float: right;
     }
-    .top_dropdown_nickname{
+
+    .top_dropdown_nickname {
         font-size: 16px;
     }
 </style>

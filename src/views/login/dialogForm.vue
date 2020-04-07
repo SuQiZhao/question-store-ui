@@ -9,24 +9,24 @@
             title="用户注册"
             v-loading="loading"
     >
-        <el-form :inline="true" label-position="left" :model="collageForm" >
+        <el-form :inline="true" :model="collageForm" label-position="left">
             <el-form-item class="itemInputBox" label="地区：">
                 <el-select placeholder="请选择" v-model="city">
                     <el-option
-                            v-for="item in cityDataJson"
                             :key="item.id"
                             :label="item.name"
                             :value="item.name"
+                            v-for="item in cityDataJson"
                     ></el-option>
                 </el-select>
             </el-form-item>
             <el-form-item class="itemInputBox" label="学校：">
                 <el-select placeholder="请选择">
                     <el-option
-                            v-for="item in universityDataJson"
                             :key="item.id"
                             :label="item.name"
                             :value="item.name"
+                            v-for="item in universityDataJson"
                     ></el-option>
                 </el-select>
             </el-form-item>
@@ -82,6 +82,7 @@
 </template>
 <script>
     import collageData from '@/assets/json/collageData'
+
     export default {
         props: {
             visible: {
@@ -110,13 +111,13 @@
                 }
             };
             return {
-                universityDataJson:[],
-                cityDataJson:[],
+                universityDataJson: [],
+                cityDataJson: [],
                 loading: false,
                 dialogFormVisible: false,
-                collageForm:{
-                    collage:'',
-                    city:''
+                collageForm: {
+                    collage: '',
+                    city: ''
                 },
                 addUserForm: {
                     name: '',
@@ -162,6 +163,6 @@
     };
 </script>
 <style lang="scss">
-    .itemInputBox{
+    .itemInputBox {
     }
 </style>

@@ -2,7 +2,7 @@
     <div class="index_main">
         <el-container direction="vertical" style="height:100%">
             <!--顶部-->
-            <top :data="data" ref="top_dropdown" />
+            <top :userInfo="userInfo" ref="top_dropdown"/>
             <el-container>
                 <!--侧栏-->
                 <sidebar/>
@@ -38,24 +38,26 @@
             sidebar,
             breathcrumb
         },
-        data(){
-            return{
-                data:[],
+        data() {
+            return {
+                data: [],
+                userInfo:[],
+                id:''
             }
         },
-        methods:{
-            init(){
+        methods: {
+            init() {
+                // 获取用户信息
                 window.sessionStorage.getItem("token");
+                console.log(window.sessionStorage.getItem("token"));
                 getUserInfo_v1_1().then(res => {
-                    this.data = res.data;
-                    console.log(res.data);
-                    return this.$message.success(this.data);
+                    this.userInfo = res.data;
                 }).catch(err => {
                     return this.$message.error(err.data);
                 })
             }
         },
-        created() {
+        mounted() {
             this.init();
         }
     };

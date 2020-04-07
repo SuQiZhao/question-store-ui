@@ -57,7 +57,7 @@
 </template>
 <script>
     import dialogForm from "./dialogForm";
-    import {login_v1_1} from "../../api/user";
+    import {login_v1_1} from "@/api/user";
 
     export default {
         components: {
@@ -108,7 +108,7 @@
                     }
                     this.$message.success("登陆成功");
                     //将登陆成功的token存储到sessionStorage中
-                    window.sessionStorage.setItem("token",res.data.token);
+                    window.sessionStorage.setItem("token", res.data.token);
                     //到个人中心
                     this.$router.push('/home');
                 }).catch(err => {

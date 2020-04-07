@@ -1,20 +1,20 @@
 <template>
     <div class="questionList">
         <!--        <el-card>-->
-        <el-tabs type="card" v-infinite-scroll="loadMore">
+        <el-tabs type="card">
             <el-tab-pane label="推荐问题">
-                <el-card :key="o" class="questionItem" shadow="hover" v-for="o in count">
+                <el-card class="questionItem" shadow="hover" v-for="item in questionList" :key="item">
                     <div class="itemTitle" slot="header">
-                        <el-link :underline="false" class="itemTitle" href="">推荐问题</el-link>
+                        <el-link :underline="false" class="itemTitle" href="">{{item.questionTitle}}</el-link>
                         <el-button style="float: right; padding: 3px 0" type="text">查看详情</el-button>
                     </div>
-                    <div :key="i" class="text item" v-for="i in 3">
-                        {{'问题详情' + i}}
+                    <div class="text item">
+                        {{item.questionDetail}}
                     </div>
                 </el-card>
             </el-tab-pane>
             <el-tab-pane label="我的关注">
-                <el-card :key="o" class="questionItem" shadow="hover" v-for="o in count">
+                <el-card class="questionItem" shadow="hover">
                     <div class="itemTitle" slot="header">
                         <el-link :underline="false" class="itemTitle" href="">关注问题</el-link>
                         <el-button style="float: right; padding: 3px 0" type="text">查看详情</el-button>
@@ -28,7 +28,7 @@
                 <!--题库分类tag-->
                 <el-card>
                     <avue-search :option="option" @change="handleChange" v-model="form"/>
-                    <el-card :key="o" class="questionItem" shadow="hover" v-for="o in count">
+                    <el-card class="questionItem" shadow="hover">
                         <div class="itemTitle" slot="header">
                             <el-link :underline="false" class="itemTitle" href="">分类问题</el-link>
                             <el-button style="float: right; padding: 3px 0" type="text">查看详情</el-button>
@@ -46,6 +46,7 @@
 
 <script>
     import {DIC} from "../../constant/dicConstant";
+    import {getPageList} from '@/api/questionInfo'
 
     export default {
         name: "questionList",
@@ -61,17 +62,39 @@
                         prop: 'category',
                         dicData: DIC.QUESTION_CATEGORY
                     }]
+                },
+                questionList:[],
+                total:'',
+                page:{
+                    pageIndex:'',
+                    pageSize:'',
                 }
             }
         },
         methods: {
+            //无限滚动加载
             loadMore() {
                 this.count += 2;
             },
             // 标签回调事件
             handleChange(form) {
                 this.$message.success(JSON.stringify(form))
-            }
+            },
+            init(){
+                let questionInfoPageParam = {
+                    pageIndex: 2,
+                    pageSize: 10,
+                };
+                console.log(questionInfoPageParam);
+                getPageList(questionInfoPageParam).then( res =>{
+                    this.questionList = res.data.records;
+                    this.total = res.data.total;
+                    console.log(this.res.data);
+                });
+            },
+        },
+        created() {
+            this.init();
         }
     }
 </script>
