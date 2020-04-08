@@ -3,7 +3,7 @@
         <el-row>
             <el-col>
                 <div class="profile_pic">
-                    <el-avatar :size="150" :src="url" @error="handleError" fit="fill"></el-avatar>
+                    <el-avatar :size="130" :src="url" @error="handleError" fit="fill"></el-avatar>
                 </div>
             </el-col>
             <el-col>

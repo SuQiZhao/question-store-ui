@@ -31,3 +31,13 @@ export const logout = () => request({
     method: 'post',
     data: {}
 });
+
+export const updateUser = (user) => request({
+    url: '/user/update',
+    method: 'post',
+    data: {
+        user
+    }
+});
+
+

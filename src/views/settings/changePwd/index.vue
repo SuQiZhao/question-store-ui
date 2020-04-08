@@ -1,6 +1,7 @@
 <template>
     <div class="demo-ruleForm">
-        <el-form :model="ruleForm" :rules="rules" label-position="left" label-width="100px" ref="ruleForm" status-icon>
+        <el-form :loading="tableLoading" :model="ruleForm" :rules="rules" label-position="left" label-width="100px"
+                 ref="ruleForm">
             <el-form-item>
                 <span style="font-size: 24px"><strong>密码修改</strong></span>
             </el-form-item>
@@ -52,11 +53,13 @@
                         {validator: validatePass2, trigger: 'blur'}
                     ],
                 },
-                dialogVisible: false
+                dialogVisible: false,
+                tableLoading: false
             };
         },
         methods: {
             submitForm() {
+                this.tableLoading = true;
                 this.$confirm('即将修改密码，是否继续？', '提示', {
                     confirmButtonText: '确定',
                     cancelButtonText: '取消',
@@ -68,13 +71,15 @@
                     });
                 }).catch(() => {
                     this.$message({
-                        type: 'info',
+                        type: 'warning',
                         message: '已取消密码修改!'
                     });
                 });
+                this.tableLoading = false;
             },
+            //重置表单
             resetForm(formName) {
-                this.$refs[formName].resetFields();
+
             }
         }
     }

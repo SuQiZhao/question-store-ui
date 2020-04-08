@@ -75,8 +75,8 @@
                 },
             }
         },
-        methods:{
-            init(){
+        methods: {
+            init() {
                 window.sessionStorage.getItem("token");
             }
         },

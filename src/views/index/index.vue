@@ -14,7 +14,7 @@
                         <el-menu-item index="/guide" style="font-size: 16px">考试指南</el-menu-item>
                         <el-menu-item index="/news" style="font-size: 16px">考试资讯</el-menu-item>
                         <el-menu-item index="/answer" style="font-size: 16px">智慧问答</el-menu-item>
-                        <el-menu-item index="/home" style="font-size: 16px" @click="isLogin">个人中心</el-menu-item>
+                        <el-menu-item @click="isLogin" index="/home" style="font-size: 16px">个人中心</el-menu-item>
                         <el-menu-item style="padding-right: 0px;padding-left: 50px">
                             <el-input placeholder="从智慧题库中搜索" size="small"></el-input>
                         </el-menu-item>
@@ -55,15 +55,13 @@
 </template>
 <script>
     export default {
-    data(){
-        return{
-
-        }
-    },
-        methods:{
-        //页面token判断是否登录拦截
-            isLogin(){
-                if(window.sessionStorage.getItem("token") == null){
+        data() {
+            return {}
+        },
+        methods: {
+            //页面token判断是否登录拦截
+            isLogin() {
+                if (window.sessionStorage.getItem("token") == null) {
                     this.$message.warning("请先登录!");
                     return this.$router.push('/login');
                 }

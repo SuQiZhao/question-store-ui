@@ -12,14 +12,17 @@
                 </div>
                 <el-dropdown-menu>
                     <el-dropdown-item>个人信息
-                        <el-button plain size="mini" style="float: right;margin-top:2%">编辑</el-button>
+                        <el-button :loading="btnLoading" @click="goEdit" plain size="mini"
+                                   style="float: right;margin-top:2%">编辑
+                        </el-button>
                     </el-dropdown-item>
+                    <el-dropdown-item>姓名：{{userInfo.username}}</el-dropdown-item>
                     <el-dropdown-item>学校：{{userInfo.collageName}}</el-dropdown-item>
                     <el-dropdown-item>专业：{{userInfo.majorName}}</el-dropdown-item>
                     <el-dropdown-item>上次登录：{{userInfo.loginTime}}</el-dropdown-item>
                     <el-dropdown-item style="border-top: #EBEEF5 1px solid">问题反馈</el-dropdown-item>
                     <el-dropdown-item style="border-top: #EBEEF5 1px solid">
-                        <el-button plain size="mini" style="margin-top:2%" @click="logout">退出</el-button>
+                        <el-button @click="logout" plain size="mini" style="margin-top:2%">退出</el-button>
                     </el-dropdown-item>
                 </el-dropdown-menu>
             </el-dropdown>
@@ -37,23 +40,27 @@
         },
         data() {
             return {
-                loading:false,
+                loading: false,
+                btnLoading: false,
             }
         },
-        methods:{
+        methods: {
             // 登出方法
-            logout(){
+            logout() {
                 this.$confirm("是否退出系统, 是否继续?", "提示", {
                     confirmButtonText: "确定",
                     cancelButtonText: "取消",
                     type: "warning"
-                }).then( () => {
-                    logout().then(() =>{
+                }).then(() => {
+                    logout().then(() => {
                         window.sessionStorage.removeItem("token");
                         this.$message.success("退出成功！");
                         this.$router.push('/login');
                     })
                 });
+            },
+            goEdit() {
+                this.$router.push('/usersetting');
             }
         }
     };

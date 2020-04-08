@@ -41,15 +41,14 @@
         data() {
             return {
                 data: [],
-                userInfo:[],
-                id:''
+                userInfo: [],
+                id: ''
             }
         },
         methods: {
             init() {
-                // 获取用户信息
+                // 获取token
                 window.sessionStorage.getItem("token");
-                console.log(window.sessionStorage.getItem("token"));
                 getUserInfo_v1_1().then(res => {
                     this.userInfo = res.data;
                 }).catch(err => {
@@ -57,7 +56,7 @@
                 })
             }
         },
-        mounted() {
+        created() {
             this.init();
         }
     };
