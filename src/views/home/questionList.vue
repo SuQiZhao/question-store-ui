@@ -98,7 +98,6 @@
             },
             init() {
                 let questionInfoPageParam = this.page;
-                console.log(questionInfoPageParam);
                 getPageListByCreateTime(questionInfoPageParam).then(res => {
                     this.questionList = res.data.records;
                     this.total = res.data.total;

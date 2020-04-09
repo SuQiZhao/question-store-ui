@@ -23,6 +23,7 @@
     import questionList from "./questionList";
     import buttonItem from "./buttonItem";
     import hotQuestion from "./hotQuestion";
+    import {getQuestionCount} from "../../api/questionInfo";
 
     export default {
         name: "index",
@@ -34,6 +35,11 @@
         data() {
             return {
                 data: [],
+                countData:{
+                    allQuestionCount:'',
+                    resolveQuestionCount:'',
+                    notResolveQuestionCount:''
+                },
                 option: {
                     span: 6,
                     data: [
@@ -41,7 +47,7 @@
                             click: function (item) {
                                 alert(JSON.stringify(item));
                             },
-                            count: '150',
+                            count: '',
                             title: '全部题目',
                             icon: 'el-icon-question',
                             color: '#666699'
@@ -49,7 +55,7 @@
                             click: function (item) {
                                 alert(JSON.stringify(item));
                             },
-                            count: '53',
+                            count: '',
                             title: '已解决',
                             icon: 'el-icon-circle-check',
                             color: '#67C23A'
@@ -57,7 +63,7 @@
                             click: function (item) {
                                 alert(JSON.stringify(item));
                             },
-                            count: '44',
+                            count: '',
                             title: '未解决',
                             icon: 'el-icon-circle-close',
                             color: '#FF0033'
@@ -66,7 +72,7 @@
                             click: function (item) {
                                 alert(JSON.stringify(item));
                             },
-                            count: '44',
+                            count: '',
                             title: '帮助的人',
                             icon: 'el-icon-warning',
                             color: '#66CCCC'
@@ -78,6 +84,13 @@
         methods: {
             init() {
                 window.sessionStorage.getItem("token");
+                getQuestionCount().then(res =>{
+                    this.countData = res.data;
+                    this.option.data[0].count = this.countData.allQuestionCount;
+                    this.option.data[1].count = this.countData.resolveQuestionCount;
+                    this.option.data[2].count = this.countData.notResolveQuestionCount;
+                    console.log(this.countData);
+                })
             }
         },
         created() {
