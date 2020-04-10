@@ -2,7 +2,7 @@
     <!--顶部-->
     <el-header class="home_header" style="height:10%">
         <div class="logo_img">
-            <img alt height="100%" src="../../../assets/img/logo.png"/>
+            <img alt height="100%" src="../../../assets/img/logo3.png"/>
         </div>
         <div class="top_dropdown">
             <el-dropdown :hide-on-click="false">
@@ -19,7 +19,7 @@
                     <el-dropdown-item>姓名：{{userInfo.username}}</el-dropdown-item>
                     <el-dropdown-item>学校：{{userInfo.collageName}}</el-dropdown-item>
                     <el-dropdown-item>专业：{{userInfo.majorName}}</el-dropdown-item>
-                    <el-dropdown-item>上次登录：{{userInfo.loginTime}}</el-dropdown-item>
+                    <el-dropdown-item>登录时间：{{userInfo.loginTime}}</el-dropdown-item>
                     <el-dropdown-item style="border-top: #EBEEF5 1px solid">问题反馈</el-dropdown-item>
                     <el-dropdown-item style="border-top: #EBEEF5 1px solid">
                         <el-button @click="logout" plain size="mini" style="margin-top:2%">退出</el-button>

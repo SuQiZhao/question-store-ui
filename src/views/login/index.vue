@@ -3,7 +3,7 @@
         <el-container style="height:100%">
             <!-- 头部-->
             <el-header class="login_head" style="height:12%">
-                <img alt height="100%" src="../../assets/img/logo.png" style="margin:0px 20%"/>
+                <img alt height="100%" src="../../assets/img/logo3.png" style="margin:0px 20%"/>
             </el-header>
             <el-main class="login_main">
                 <el-form :model="loginForm" class="login_form" v-loading="loading">

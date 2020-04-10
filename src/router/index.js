@@ -72,9 +72,9 @@ const routes = [{
                 component: () => import('../views/settings/changePwd/index.vue')
             },
             {
-                path: '/newquestion',
-                name: '新建提问',
-                component: () => import('../views/ask/index.vue')
+                path: '/questionadd',
+                name: '发布 - 问答',
+                component: () => import('../views/questionAdd/index.vue')
             },
         ]
     },

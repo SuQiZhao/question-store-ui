@@ -35,9 +35,8 @@ export const logout = () => request({
 export const updateUser = (user) => request({
     url: '/user/update',
     method: 'post',
-    data: {
-        user
-    }
+    data: user
 });
+
 
 

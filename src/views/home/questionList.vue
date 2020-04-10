@@ -10,6 +10,10 @@
                     </div>
                     <div class="text item">
                         {{item.questionDetail}}
+                        <div class="textFooter">
+                            <span class="itemCreateTime">题目拥有者：{{item.createUserIdentity}}</span>
+                            <span class="itemCreateTime">{{item.createTime}}</span>
+                        </div>
                     </div>
                 </el-card>
             </el-tab-pane>
@@ -114,11 +118,18 @@
 
 <style lang="scss">
     .questionItem {
-        margin-top: 10px;
+        margin-top: 20px;
+        padding-bottom: 20px;
     }
 
     .itemTitle {
         font-size: 18px;
         font-weight: bold;
+    }
+    .itemCreateTime{
+        font-size: 16px;
+        color: #8c939d;
+        float: right;
+        margin-left: 20px;
     }
 </style>

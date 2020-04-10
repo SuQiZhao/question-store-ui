@@ -1,8 +1,9 @@
 <template>
     <div class="btnBox">
-        <el-card shadow="never">
+        <el-card shadow="always">
             <div class="btnItem">
-                <el-button icon="el-icon-edit" style="height: 100px;width: 48%;font-size: 30px" type="primary">提问
+                <el-button icon="el-icon-edit" style="height: 100px;width: 48%;font-size: 30px" type="primary" @click="handleQuestionAdd">
+                    发布
                 </el-button>
                 <el-button icon="el-icon-magic-stick" style="height: 100px;width: 48%;float: right;font-size: 30px"
                            type="primary">解答
@@ -14,7 +15,17 @@
 
 <script>
     export default {
-        name: "buttonItem"
+        name: "buttonItem",
+        data(){
+            return {
+
+            }
+        },
+        methods:{
+            handleQuestionAdd(){
+                this.$router.push('/questionadd');
+            }
+        }
     }
 </script>
 

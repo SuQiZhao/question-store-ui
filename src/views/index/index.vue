@@ -4,7 +4,7 @@
             <!--头部-->
             <el-header class="index_head" style="height:100px">
                 <div class="head_logo">
-                    <img alt height="100%" src="../../assets/img/logo.png"/>
+                    <img alt height="100%" src="../../assets/img/logo3.png"/>
                 </div>
                 <div class="head_menu">
                     <el-menu :router="true" :unique-opened="true" active-text-color="#99CC99" class="head_select"
