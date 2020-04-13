@@ -3,10 +3,10 @@
         <el-container style="height:100%">
             <!-- 头部-->
             <el-header class="login_head" style="height:12%">
-                <img alt height="100%" src="../../assets/img/logo3.png" style="margin:0px 20%"/>
+                <a href="/"><img alt height="100%" src="../../assets/img/logo3.png" style="margin:0px 20%"/></a>
             </el-header>
             <el-main class="login_main">
-                <el-form :model="loginForm" class="login_form" v-loading="loading">
+                <el-form :model="loginForm" class="login_form" v-loading="loading" ref="loginForm" :rules="rules">
                     <el-form-item>
                         <div class="title">
                             <i class="el-icon-user"></i>用户登录
@@ -20,7 +20,7 @@
                                   v-model="loginForm.password"></el-input>
                     </el-form-item>
                     <el-form-item>
-                        <el-checkbox class="autoLogin" v-model="loginForm.login_checked">自动登录</el-checkbox>
+                        <el-checkbox class="autoLogin" v-model="loginForm.login_checked">记住我</el-checkbox>
                         <el-link :underline="false" class="forgotPwd">忘记密码？</el-link>
                     </el-form-item>
                     <el-form-item>
@@ -58,6 +58,7 @@
 <script>
     import dialogForm from "./dialogForm";
     import {login_v1_1} from "@/api/user";
+    import {getUserInfo_v1_1} from "../../api/user";
 
     export default {
         components: {
@@ -75,17 +76,18 @@
                 dialogFormVisible: false,
                 loading: false,
                 //element表单校验规则
-                // rules: {
-                //     name: [
-                //         {required: true, message: "请输入用户名", trigger: "blur"},
-                //         {min: 2, max: 5, message: "长度在 3 到 5 个字符", trigger: "blur"}
-                //     ],
-                //     pwd: [
-                //         {required: true, message: "请输入密码", trigger: "blur"},
-                //         {min: 6, max: 16, message: "长度在 6 到 16 个字符", trigger: "blur"}
-                //     ],
-                // },
-                value: ""
+                rules: {
+                    name: [
+                        {required: true, message: "请输入用户名", trigger: "blur"},
+                        {min: 2, max: 16, message: "长度在 3 到 16 个字符", trigger: "blur"}
+                    ],
+                    pwd: [
+                        {required: true, message: "请输入密码", trigger: "blur"},
+                        {min: 6, max: 16, message: "长度在 6 到 16 个字符", trigger: "blur"}
+                    ],
+                },
+                value: "",
+                userInfo:[]
             };
         },
         methods: {
@@ -96,6 +98,10 @@
             //前端登陆验证
             handleLogin() {
                 this.loading = true;
+                if (this.loginForm.username == null || this.loginForm.username == "" || this.loginForm.password == null || this.loginForm.password == "") {
+                    this.$message.warning("用户名或者密码不能为空");
+                    return this.loading = false;
+                }
                 let loginParam = {
                     username: this.loginForm.username,
                     password: this.loginForm.password
@@ -109,12 +115,15 @@
                     this.$message.success("登陆成功");
                     //将登陆成功的token存储到sessionStorage中
                     window.sessionStorage.setItem("token", res.data.token);
+                    //存储store对象信息
+                    // this.$store.commit('$_setStorage', {user: this.data})
                     //到个人中心
                     this.$router.push('/home');
                 }).catch(err => {
                     this.loading = false;
                     return this.$message.error(err.data);
-                })
+                });
+                window.sessionStorage.getItem("token");
             }
         }
     };

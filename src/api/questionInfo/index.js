@@ -24,11 +24,20 @@ export const getHotQuestionList = () => request({
 });
 
 /**
- * 热门问题查询接口
+ * 题目统计接口
  */
 export const getQuestionCount = () => request({
     url: '/questionInfo/getQuestionCount',
     method: 'get',
     params: {
     }
+});
+
+/**
+ * 新增问题接口
+ */
+export const addQuestion = (questionInfo) => request({
+    url: '/questionInfo/add',
+    method: 'post',
+    data: questionInfo
 });

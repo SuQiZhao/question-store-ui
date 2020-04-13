@@ -158,7 +158,6 @@
             this.universityDataJson = collageData.university;
             //获取城市数据
             this.cityDataJson = collageData.zone;
-            console.log(this.cityDataJson);
         }
     };
 </script>

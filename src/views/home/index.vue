@@ -89,7 +89,6 @@
                     this.option.data[0].count = this.countData.allQuestionCount;
                     this.option.data[1].count = this.countData.resolveQuestionCount;
                     this.option.data[2].count = this.countData.notResolveQuestionCount;
-                    console.log(this.countData);
                 })
             }
         },

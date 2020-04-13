@@ -22,7 +22,7 @@
     </div>
 </template>
 <script>
-    import {getUserInfo_v1_1, updateUser, updateUserPass} from "../../../api/user";
+    import {getUserInfo_v1_1, updateUser} from "../../../api/user";
     import userInfo from "../../../page/index/sidebar/userInfo";
 
     export default {

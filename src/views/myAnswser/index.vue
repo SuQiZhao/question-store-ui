@@ -82,7 +82,7 @@
         data() {
             return {
                 //默认选项
-                checkboxGroup: ['财经类', '法律类', '建筑类', '外语类', '计算机类', '资格类', '知识问答', '招录类', '外贸类', '医学类'],
+                checkboxGroup: [],
                 courses: courseOptions,
                 obj: {},
                 data: [],

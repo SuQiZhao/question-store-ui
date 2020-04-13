@@ -3,8 +3,8 @@
     <el-row :gutter="30">
       <el-col :span="16">
         <el-form ref="form" :model="form" label-width="80px" :rules="rules">
-          <el-form-item label="分类：" prop="category">
-            <el-select v-model="form.value" placeholder="请选择分类">
+          <el-form-item label="分类：" prop="categoryValue">
+            <el-select v-model="form.categoryValue" placeholder="请选择分类">
               <el-option
                 v-for="item in categoryOptions"
                 :key="item.value"
@@ -18,7 +18,7 @@
             <el-input v-model="form.questionTitle"></el-input>
           </el-form-item>
           <el-form-item label="内容：" prop="description">
-            <el-input type="textarea" v-model="form.description"></el-input>
+            <el-input type="textarea" v-model="form.questionDetail" :rows="8"></el-input>
           </el-form-item>
           <el-form-item label="附件：">
             <el-upload
@@ -63,21 +63,30 @@
 
 <script>
 import { DIC } from "@/constant/dicConstant";
+import  { addQuestion} from "../../api/questionInfo";
+import {getUserInfo_v1_1} from "../../api/user";
+
 export default {
   name: "index",
   data() {
     return {
       form: {
         questionTitle: "",
-        description: "",
-        value: ""
+        questionDetail: "",
+        categoryValue: ""
       },
       rules: {
         questionTitle: [
           { required: true, message: "请输入题目标题", trigger: "blur" }
+        ],
+        categoryValue:[
+          {
+            required: true, message: "请选择题目分类" ,trigger: "change"
+          }
         ]
       },
-      categoryOptions: DIC.QUESTION_CATEGORY
+      categoryOptions: DIC.QUESTION_CATEGORY,
+      currentdate:''
     };
   },
   methods: {
@@ -87,13 +96,45 @@ export default {
     changeSelect() {
       console.log(this.form.value);
     },
-    onSubmit() {},
+    onSubmit() {
+      if(this.form.categoryValue == null || this.form.categoryValue == ""){
+        return this.$message.warning("分类不能为空");
+      }
+      if(this.form.questionTitle == null || this.form.questionTitle == ""){
+        return this.$message.warning("标题不能为空");
+      }
+      this.createTime = new Date().toLocaleString();
+      let questionInfo = {
+        questionCategory: this.form.categoryValue,
+        questionTitle: this.form.questionTitle,
+        questionDetail: this.form.questionDetail,
+        createUserIdentity: this.userInfo.user.cdId,
+        createTime:this.currentdate,
+        deleteFlag:0
+      }
+      console.log(questionInfo);
+      // addQuestion(questionInfo).then( res =>{
+      //   if( res.code != 200){
+      //     return this.$message.error(res.message);
+      //   }
+      // }).catch( err =>{
+      //   this.$message.error(err.data);
+      // })
+    },
     //重置表单
     resetForm() {
       this.$refs["form"].resetFields();
       this.$refs["addUpload"].clearFiles();
       this.$refs["addIpload"].abort();
-      this.form.value = "";
+      this.form.categoryValue = "";
+    },
+    init(){
+    },
+  },
+  //获取user对象信息
+  computed:{
+    userInfo() {
+      return this.$store.state.user;
     }
   }
 };

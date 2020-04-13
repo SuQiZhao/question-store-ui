@@ -51,6 +51,7 @@
                 window.sessionStorage.getItem("token");
                 getUserInfo_v1_1().then(res => {
                     this.userInfo = res.data;
+                    return this.$store.commit('$_setStorage', {user: this.userInfo});
                 }).catch(err => {
                     return this.$message.error(err.data);
                 })

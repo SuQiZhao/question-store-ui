@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
-import store from './store';
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import './plugins/element.js';
@@ -10,6 +9,7 @@ import '@smallwei/avue/lib/index.css';
 import 'babel-polyfill';
 import axios from './router/axios';
 import VueAxios from 'vue-axios';
+import store from './store/index';
 //使用axios
 //配置请求的根路径，用于接口访问根路径+接口名称
 Vue.use(VueAxios, axios);
