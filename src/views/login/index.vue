@@ -70,7 +70,7 @@
                 loginForm: {
                     username: '',
                     password: '',
-                    login_checked: true,
+                    login_checked: false,
                 },
                 data: [],
                 dialogFormVisible: false,

@@ -12,6 +12,7 @@
                         {{item.questionDetail}}
                         <div class="textFooter">
                             <span class="itemCreateTime">题目拥有者：{{item.createUserIdentity}}</span>
+<!--                            <span class="itemCreateTime">{{item.questionCategory}}</span>-->
                             <span class="itemCreateTime">{{item.createTime}}</span>
                         </div>
                     </div>

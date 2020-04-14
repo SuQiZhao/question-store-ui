@@ -41,3 +41,12 @@ export const addQuestion = (questionInfo) => request({
     method: 'post',
     data: questionInfo
 });
+
+/**
+ * 条件查询问题分页接口
+ */
+export const getQuestionPage = (params) => request({
+    url: '/questionInfo/getQuestionPage',
+    method: 'get',
+    params: params
+});

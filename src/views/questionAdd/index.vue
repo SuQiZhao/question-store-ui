@@ -37,7 +37,7 @@
             </el-upload>
           </el-form-item>
           <el-form-item style="float:right">
-            <el-button type="primary" @click="onSubmit">立即创建</el-button>
+            <el-button type="primary" @click="onSubmit" :loading="btnLoading">立即创建</el-button>
             <el-button type="primary" @click="resetForm" plain>重置</el-button>
             <el-button @click="goBack">取消</el-button>
           </el-form-item>
@@ -86,7 +86,8 @@ export default {
         ]
       },
       categoryOptions: DIC.QUESTION_CATEGORY,
-      currentdate:''
+      currentdate:'',
+      btnLoading:false
     };
   },
   methods: {
@@ -97,10 +98,13 @@ export default {
       console.log(this.form.value);
     },
     onSubmit() {
+      this.btnLoading = true;
       if(this.form.categoryValue == null || this.form.categoryValue == ""){
+        this.btnLoading = false;
         return this.$message.warning("分类不能为空");
       }
       if(this.form.questionTitle == null || this.form.questionTitle == ""){
+        this.btnLoading = false;
         return this.$message.warning("标题不能为空");
       }
       this.createTime = new Date().toLocaleString();
@@ -109,17 +113,22 @@ export default {
         questionTitle: this.form.questionTitle,
         questionDetail: this.form.questionDetail,
         createUserIdentity: this.userInfo.user.cdId,
-        createTime:this.currentdate,
-        deleteFlag:0
+        deleteFlag:0,
+        reading:0
       }
       console.log(questionInfo);
-      // addQuestion(questionInfo).then( res =>{
-      //   if( res.code != 200){
-      //     return this.$message.error(res.message);
-      //   }
-      // }).catch( err =>{
-      //   this.$message.error(err.data);
-      // })
+      addQuestion(questionInfo).then( res =>{
+        if( res.code != 200){
+          this.$message.error(res.message);
+          return this.btnLoading = false;
+        }
+        this.$message.success(res.message);
+        this.$router.push('/home');
+        return this.btnLoading = false;
+      }).catch( err =>{
+        this.$message.error(err.data);
+        this.btnLoading = false;
+      })
     },
     //重置表单
     resetForm() {
@@ -127,8 +136,6 @@ export default {
       this.$refs["addUpload"].clearFiles();
       this.$refs["addIpload"].abort();
       this.form.categoryValue = "";
-    },
-    init(){
     },
   },
   //获取user对象信息

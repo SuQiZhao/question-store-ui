@@ -2,16 +2,16 @@
     <div>
         <el-row>
             <el-col :span=24 style="margin-bottom: 2%">
-                <el-checkbox-group size="medium" v-model="checkboxGroup">
-                    <el-checkbox-button :key="course" :label="course" v-for="course in courses">{{course}}
-                    </el-checkbox-button>
-                </el-checkbox-group>
+                <el-radio-group size="medium" :key="course" v-for="course in courses" v-model="checkboxGroup" @change="changeCategory(course.value)">
+                    <el-radio-button ref="categoryBtn" :label="course.label">
+                    </el-radio-button>
+                </el-radio-group>
             </el-col>
         </el-row>
         <el-row class="">
             <el-col :span=24>
                 <div class="avue_panel">
-                    <el-form :inline="true" class="demo-form-inline">
+                    <el-form :inline="true" class="demo-form-inline" ref="questionForm">
                         <el-form-item label="标题名称：">
                             <el-input placeholder="请输入标题名称" v-model="search.title"></el-input>
                         </el-form-item>
@@ -54,8 +54,14 @@
                             <el-button @click="resetForm">重置</el-button>
                         </el-form-item>
                     </el-form>
-                    <avue-crud :data="data" :option="option" :table-loading="loading" @search-change="searchChange"
-                               v-model="obj">
+                    <avue-crud
+                            :data="data"
+                            :option="option"
+                            :table-loading="loading"
+                            @search-change="searchChange"
+                            :page="page"
+                            ref="crud"
+                    >
                         <!-- 置空提示-->
                         <template slot="empty">
                             <avue-empty
@@ -75,16 +81,14 @@
     import option from "./option";
     import {DIC} from "../../constant/dicConstant";
     import pickerOptions from "./pickerOptions";
-
-    const courseOptions = ['财经类', '法律类', '建筑类', '外语类', '计算机类', '资格类', '知识问答', '招录类', '外贸类', '医学类'];
+    import {getQuestionPage} from '@/api/questionInfo';
     export default {
         name: "index",
         data() {
             return {
                 //默认选项
                 checkboxGroup: [],
-                courses: courseOptions,
-                obj: {},
+                courses: DIC.QUESTION_CATEGORY,
                 data: [],
                 option: option,
                 menuOpen: false,
@@ -111,23 +115,60 @@
                 done();
                 this.$message.success(JSON.stringify(params));
             },
+            //重置方法
             resetForm() {
-                //重置方法
-                this.search = Object.assign(
-                    {},
-                    {
-                        clueSource: "",
-                        areaCode: "",
-                        pushStatus: "",
-                        rangeTime: [],
-                        clueName: ""
-                    }
-                ),
-                    this.searchData();
-            },
-            searchData() {
-                //搜索及初始化方法
                 this.loading = true;
+                this.$refs['questionForm'].resetFields();
+                this.init();
+                return this.loading = false;
+            },
+            //搜索方法
+            searchData() {
+                this.loading = true;
+
+            },
+            //初始化表格方法
+            init(){
+                this.loading = true;
+                let params = {
+                    createUserIdentity: this.userInfo.user.cdId,
+                }
+                getQuestionPage(params).then(res => {
+                    if(res.code != 200){
+                        this.$message.error(res.message);
+                        return this.loading = false;
+                    }
+                    console.log(res);
+                    this.data = res.data.records;
+                    return this.loading = false;
+                })
+            },
+            //传入radio的label值进行回调
+            changeCategory(label){
+                this.loading = true;
+                let params = {
+                    questionCategory:label,
+                    createUserIdentity: this.userInfo.user.cdId,
+                }
+                getQuestionPage(params).then(res => {
+                    if(res.code != 200){
+                        this.$message.error(res.message);
+                        return this.loading = false;
+                    }
+                    this.data = res.data.records;
+                    return this.loading = false;
+                }).catch(err =>{
+                    this.$message.error(err.data);
+                })
+                this.loading = false;
+            }
+        },
+        created() {
+            this.init();
+        },
+        computed: {
+            userInfo() {
+                return this.$store.state.user;
             }
         }
     }

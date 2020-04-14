@@ -1,3 +1,4 @@
+import {DIC} from '@/constant/dicConstant'
 export default {
     // title:'表格的标题',
     // menuType:'text',
@@ -34,17 +35,22 @@ export default {
     column: [
         {
             label: '标题',
-            prop: 'title',
+            prop: 'question_title',
         },
         {
-            label: '提问人',
-            prop: 'sex'
-        }, {
+            label: '分类',
+            prop: 'question_category',
+            dicData:DIC.QUESTION_CATEGORY
+        },
+        {
+            label: '内容',
+            prop: 'question_detail'
+        },{
             label: '阅读量',
             prop: 'reading'
         }, {
             label: "发布时间",
-            prop: "date",
+            prop: "create_time",
             type: "date",
             format: "yyyy-MM-dd hh:mm:ss",
             valueFormat: "yyyy-MM-dd hh:mm:ss",
