@@ -1,6 +1,6 @@
 <template>
     <!--侧边栏-->
-    <el-aside class="menu_aside" style="overflow:visible; width:15%;">
+    <el-aside class="menu_aside" style="overflow:visible; width:18%;">
         <!--用户信息-->
         <!-- <el-scrollbar style="overflow-x:hidden;height:100%"> -->
         <el-row class="menu">

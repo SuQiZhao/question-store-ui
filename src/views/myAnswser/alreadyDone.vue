@@ -3,7 +3,7 @@
         <el-row>
             <el-col :span=24 style="margin-bottom: 2%">
                 <el-checkbox-group size="medium" v-model="checkboxGroup">
-                    <el-checkbox-button :key="course" :label="course" v-for="course in courses">{{course}}
+                    <el-checkbox-button :key="course" :label="course" v-for="course in courses">{{course.label}}
                     </el-checkbox-button>
                 </el-checkbox-group>
             </el-col>
@@ -78,7 +78,7 @@
             return {
                 //默认选项
                 checkboxGroup: ['财经类', '法律类', '建筑类', '外语类', '计算机类', '资格类', '知识问答', '招录类', '外贸类', '医学类'],
-                courses: courseOptions,
+                courses:  DIC.QUESTION_CATEGORY,
                 obj: {},
                 data: [],
                 option: option,

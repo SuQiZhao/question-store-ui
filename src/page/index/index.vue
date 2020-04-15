@@ -1,5 +1,6 @@
 <template>
     <div class="index_main">
+        <el-scrollbar style="overflow-x:hidden;height:100%">
         <el-container direction="vertical" style="height:100%">
             <!--顶部-->
             <top :userInfo="userInfo" ref="top_dropdown"/>
@@ -24,6 +25,7 @@
                 </el-main>
             </el-container>
         </el-container>
+        </el-scrollbar>
     </div>
 </template>
 <script>

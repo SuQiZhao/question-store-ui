@@ -10,16 +10,19 @@ export default {
     // //弹出按钮位置
     // menuPosition:'right',
     // // 按钮菜单宽度
-    // menuWidth:220,
+    menuWidth:300,
     // // 组件大小
-    // size:'medium',
+    size:'large',
     // // 菜单栏对齐方式
     // menuAlign:'center',
     // columnBtn:false,
     // refreshBtn:false,
     // // 搜索框与按钮单独成行
     // searchMenuSpan:4,
-    // menu:false,
+    menu:true,
+    index:true,
+    indexLabel:'序号',
+    indexWidth:60,
     refreshBtn: false,
     columnBtn: false,
     delBtn: false,
@@ -29,28 +32,28 @@ export default {
     addBtn: false,
     header: false,
     align: 'center',
-    menuAlign: 'center',
-    height: 'calc(100% - (90px))',
+    menuAlign: 'left',
+    // height: 'calc(100%-80px)',
     // menuWidth: 200,
     column: [
         {
             label: '标题',
-            prop: 'question_title',
+            prop: 'questionTitle',
         },
         {
             label: '分类',
-            prop: 'question_category',
+            prop: 'questionCategory',
             dicData:DIC.QUESTION_CATEGORY
         },
         {
             label: '内容',
-            prop: 'question_detail'
+            prop: 'questionDetail'
         },{
             label: '阅读量',
             prop: 'reading'
         }, {
             label: "发布时间",
-            prop: "create_time",
+            prop: "createTime",
             type: "date",
             format: "yyyy-MM-dd hh:mm:ss",
             valueFormat: "yyyy-MM-dd hh:mm:ss",

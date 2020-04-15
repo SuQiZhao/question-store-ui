@@ -43,10 +43,19 @@ export const addQuestion = (questionInfo) => request({
 });
 
 /**
- * 条件查询问题分页接口
+ * 查询问题分页接口
  */
 export const getQuestionPage = (params) => request({
     url: '/questionInfo/getQuestionPage',
+    method: 'get',
+    params: params
+});
+
+/**
+ * 条件查询问题分页接口
+ */
+export const findQuestionPage = (params) => request({
+    url: '/questionInfo/findQuestionPage',
     method: 'get',
     params: params
 });
