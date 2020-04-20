@@ -6,7 +6,7 @@
                 <a href="/"><img alt height="100%" src="../../assets/img/logo3.png" style="margin:0px 20%"/></a>
             </el-header>
             <el-main class="login_main">
-                <el-form :model="loginForm" class="login_form" v-loading="loading" ref="loginForm" :rules="rules">
+                <el-form :model="loginForm" class="login_form" v-loading="loading" ref="loginForm">
                     <el-form-item>
                         <div class="title">
                             <i class="el-icon-user"></i>用户登录

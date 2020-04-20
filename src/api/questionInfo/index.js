@@ -59,3 +59,12 @@ export const findQuestionPage = (params) => request({
     method: 'get',
     params: params
 });
+
+/**
+ * 修改问题接口
+ */
+export const updateQuestion = (params) => request({
+    url: '/questionInfo/update',
+    method: 'get',
+    params: params
+});

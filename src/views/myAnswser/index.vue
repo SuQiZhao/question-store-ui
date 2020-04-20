@@ -72,11 +72,51 @@
                             </avue-empty>
                         </template>
                         <template slot-scope="scope" slot="menu">
-                            <el-button size="small" icon="el-icon-search" @click="checkOut(scope.row)" plain>查看</el-button>
-                            <el-button size="small" icon="el-icon-edit" @click="editItem(scope.row)" plain>编辑</el-button>
+                            <el-button size="small" icon="el-icon-search" @click="editItem(scope.row,1)" plain>查看</el-button>
+                            <el-button size="small" icon="el-icon-edit" @click="editItem(scope.row,2)" plain>编辑</el-button>
                             <el-button size="small" icon="el-icon-delete" type="danger" @click="deleteItem(scope.row)" plain>删除</el-button>
                         </template>
                     </avue-crud>
+                    <el-dialog title="编辑题目" :visible.sync="dialogFormVisible">
+                        <el-form :model="editForm" label-width="100px" label-position="left">
+                            <el-form-item label="分类：">
+                                <el-select v-model="editForm.questionCategory">
+                                    <el-option
+                                            v-for="item in categoryOptions"
+                                            :key="item.value"
+                                            :label="item.label"
+                                            :value="item.value"
+                                    ></el-option>
+                                </el-select>
+                            </el-form-item>
+                            <el-form-item label="标题：">
+                                <el-input v-model="editForm.questionTitle" ></el-input>
+                            </el-form-item>
+                            <el-form-item label="内容：">
+                                <el-input type="textarea" v-model="editForm.questionDetail" :rows="6" ></el-input>
+                            </el-form-item>
+<!--                            <el-form-item label="附件：" >-->
+<!--                                <el-upload-->
+<!--                                        drag-->
+<!--                                        action="https://jsonplaceholder.typicode.com/posts/"-->
+<!--                                        multiple v-model="editForm.questionAttachment" >-->
+<!--                                    <i class="el-icon-upload"></i>-->
+<!--                                    <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>-->
+<!--                                    <div class="el-upload__tip" slot="tip">只能上传题库相关文件</div>-->
+<!--                                </el-upload>-->
+<!--                            </el-form-item>-->
+                            <el-form-item label="阅读量：">
+                                <el-input :disabled="true" v-model="editForm.reading"></el-input>
+                            </el-form-item>
+                            <el-form-item label="创建时间：">
+                                <el-input :disabled="true" v-model="editForm.createTime"></el-input>
+                            </el-form-item>
+                        </el-form>
+                        <div slot="footer" class="dialog-footer">
+                            <el-button @click="dialogFormVisible = false">取 消</el-button>
+                            <el-button type="primary" @click="updateQuestion">确 定</el-button>
+                        </div>
+                    </el-dialog>
                 </div>
             </el-col>
         </el-row>
@@ -113,13 +153,49 @@
                 },
                 //动态加载
                 loading: false,
-                radioLabel:''
+                radioLabel:'',
+                dialogFormVisible:false,
+                editForm:{
+                    questionTitle:'',
+                    questionCategory:'',
+                    questionDetail:'',
+                    questionAttachment:'',
+                    createTime:'',
+                    updateTime:'',
+                    reading:'',
+                    isResolve:'',
+                    resolveUser:''
+                },
+                categoryOptions:DIC.QUESTION_CATEGORY,
             }
         },
         methods: {
+            updateQuestion(){
+                this.$confirm('即将更新题目，是否继续？','提示',{
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type:'warning'
+                }).then( () => {
+
+                })
+            },
+            //编辑问题
+            editItem(row){
+                this.dialogFormVisible = true;
+                this.uploadItem = true;
+                console.log(row);
+                this.editForm.questionTitle = row.questionTitle;
+                this.editForm.questionCategory = row.questionCategory;
+                this.editForm.questionDetail = row.questionDetail;
+                this.editForm.questionAttachment = row.questionAttachment;
+                this.editForm.createTime = row.createTime;
+                this.editForm.updateTime = row.updateTime;
+                this.editForm.reading = row.reading;
+                this.editForm.isResolve = row.isResolve;
+                this.editForm.resolveUser = row.resolveUser;
+            },
             //删除方法
             deleteItem(){
-
             },
             handleAdd(label){
                 this.$router.push('/questionAdd');
