@@ -25,7 +25,7 @@
                         <!--                                </el-option>-->
                         <!--                            </el-select>-->
                         <!--                        </el-form-item>-->
-                        <el-form-item label="时间：">
+                        <el-form-item label="发布时间：">
                             <!--增加折叠添加v-if="menuOpen"-->
                             <el-date-picker
                                     :picker-options="pickerOption"
@@ -80,7 +80,7 @@
                     <el-dialog title="编辑题目" :visible.sync="dialogFormVisible">
                         <el-form :model="editForm" label-width="100px" label-position="left">
                             <el-form-item label="分类：">
-                                <el-select v-model="editForm.questionCategory">
+                                <el-select v-model="editForm.questionCategory" :disabled=checkOutDis>
                                     <el-option
                                             v-for="item in categoryOptions"
                                             :key="item.value"
@@ -90,10 +90,10 @@
                                 </el-select>
                             </el-form-item>
                             <el-form-item label="标题：">
-                                <el-input v-model="editForm.questionTitle" ></el-input>
+                                <el-input v-model="editForm.questionTitle" :disabled=checkOutDis></el-input>
                             </el-form-item>
                             <el-form-item label="内容：">
-                                <el-input type="textarea" v-model="editForm.questionDetail" :rows="6" ></el-input>
+                                <el-input type="textarea" v-model="editForm.questionDetail" :rows="6" :disabled=checkOutDis></el-input>
                             </el-form-item>
 <!--                            <el-form-item label="附件：" >-->
 <!--                                <el-upload-->
@@ -108,8 +108,8 @@
                             <el-form-item label="阅读量：">
                                 <el-input :disabled="true" v-model="editForm.reading"></el-input>
                             </el-form-item>
-                            <el-form-item label="创建时间：">
-                                <el-input :disabled="true" v-model="editForm.createTime"></el-input>
+                            <el-form-item label="修改时间：">
+                                <el-input :disabled="true" v-model="editForm.updatedTime"></el-input>
                             </el-form-item>
                         </el-form>
                         <div slot="footer" class="dialog-footer">
@@ -127,7 +127,7 @@
     import option from "./option";
     import {DIC} from "../../constant/dicConstant";
     import pickerOptions from "./pickerOptions";
-    import {findQuestionPage} from '@/api/questionInfo';
+    import {findQuestionPage,updateQuestion} from '@/api/questionInfo';
     export default {
         name: "index",
         data() {
@@ -156,43 +156,73 @@
                 radioLabel:'',
                 dialogFormVisible:false,
                 editForm:{
+                    cdId:'',
                     questionTitle:'',
                     questionCategory:'',
                     questionDetail:'',
                     questionAttachment:'',
                     createTime:'',
-                    updateTime:'',
+                    updatedTime:'',
                     reading:'',
                     isResolve:'',
                     resolveUser:''
                 },
                 categoryOptions:DIC.QUESTION_CATEGORY,
+                checkOutDis:false
             }
         },
         methods: {
+            //修改方法
             updateQuestion(){
                 this.$confirm('即将更新题目，是否继续？','提示',{
                     confirmButtonText: '确定',
                     cancelButtonText: '取消',
                     type:'warning'
                 }).then( () => {
-
+                    this.loading = true;
+                    let params = {
+                        cdId:this.editForm.cdId,
+                        questionTitle:this.editForm.questionTitle,
+                        questionCategory:this.editForm.questionCategory,
+                        questionDetail:this.editForm.questionDetail,
+                        isResolve:this.editForm.isResolve,
+                        deleteFlag: 0
+                    };
+                    updateQuestion(params).then(res => {
+                        if(res.code === 200){
+                            this.init();
+                            this.loading = false;
+                            return this.$message.success(res.message);
+                        }
+                        this.init();
+                        this.loading = false;
+                        return this.$message.error(res.message);
+                    }).catch(err =>{
+                        this.init();
+                        this.loading = false;
+                        return this.$message.error(err.data);
+                    })
                 })
             },
             //编辑问题
-            editItem(row){
+            editItem(row,type){
                 this.dialogFormVisible = true;
-                this.uploadItem = true;
                 console.log(row);
+                this.editForm.cdId = row.cdId;
                 this.editForm.questionTitle = row.questionTitle;
                 this.editForm.questionCategory = row.questionCategory;
                 this.editForm.questionDetail = row.questionDetail;
                 this.editForm.questionAttachment = row.questionAttachment;
                 this.editForm.createTime = row.createTime;
-                this.editForm.updateTime = row.updateTime;
+                this.editForm.updatedTime = row.updatedTime;
                 this.editForm.reading = row.reading;
                 this.editForm.isResolve = row.isResolve;
                 this.editForm.resolveUser = row.resolveUser;
+                if(type === 1){
+                    this.checkOutDis = true;
+                }else if(type === 2){
+                    this.checkOutDis = false;
+                }
             },
             //删除方法
             deleteItem(){

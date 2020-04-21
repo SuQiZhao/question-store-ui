@@ -63,8 +63,8 @@ export const findQuestionPage = (params) => request({
 /**
  * 修改问题接口
  */
-export const updateQuestion = (params) => request({
+export const updateQuestion = (questionInfo) => request({
     url: '/questionInfo/update',
-    method: 'get',
-    params: params
+    method: 'post',
+    data: questionInfo
 });
