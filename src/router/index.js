@@ -43,38 +43,28 @@ const routes = [{
         },
             {
                 path: '/myAnswser',
-                name: '全部提问',
+                name: '全 部 提 问',
                 component: () => import('../views/myAnswser/index.vue')
             },
             {
-                path: '/myAnswser/alreadyDone',
-                name: '已解答',
-                component: () => import('../views/myAnswser/alreadyDone.vue')
-            },
-            {
-                path: '/myAnswser/notDone',
-                name: '未解答',
-                component: () => import('../views/myAnswser/notDone.vue')
-            },
-            {
-                path: '/myAnswser/alreadyDelete',
-                name: '已删除',
-                component: () => import('../views/myAnswser/alreadyDelete.vue')
-            },
-            {
                 path: '/usersetting',
-                name: '个人资料设置',
+                name: '个 人 资 料 设 置',
                 component: () => import('../views/settings/index.vue')
             },
             {
                 path: '/changepwd',
-                name: '密码修改',
+                name: '密 码 修 改',
                 component: () => import('../views/settings/changePwd/index.vue')
             },
             {
                 path: '/questionadd',
                 name: '发布 - 问答',
                 component: () => import('../views/questionAdd/index.vue')
+            },
+            {
+                path: '/questiondetail',
+                name: '问答 - 详情',
+                component: () => import('../views/detailInfo/index.vue')
             },
         ]
     },

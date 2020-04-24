@@ -6,7 +6,7 @@
                 <el-card :key="item" class="questionItem" shadow="hover" v-for="item in questionList">
                     <div class="itemTitle" slot="header">
                         <el-link :underline="false" class="itemTitle" href="">{{item.questionTitle}}</el-link>
-                        <el-button style="float: right; padding: 3px 0" type="text">查看详情</el-button>
+                        <el-button style="float: right; padding: 3px 0" type="text" @click="checkInfo(item)">查看详情</el-button>
                     </div>
                     <div class="text item">
                         {{item.questionDetail}}
@@ -97,6 +97,12 @@
             //         return this.$message.error(err.data);
             //     });
             // },
+            checkInfo(item){
+                let cdId = item.cdId;
+                this.$router.push({
+                    path:'@/views/detailInfo/index' ,
+                    query:{cdId:cdId}})
+            },
             // 分类标签回调事件
             handleChange(form) {
                 this.$message.success(JSON.stringify(form))

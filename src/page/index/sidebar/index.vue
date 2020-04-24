@@ -26,42 +26,50 @@
                     <!--                        <i class="el-icon-star-on"></i>-->
                     <!--                        <span slot="title">我的收藏</span>-->
                     <!--                    </el-menu-item>-->
-                    <el-submenu index="2">
-                        <template slot="title">
-                            <i class="el-icon-question"></i>
-                            <span>我的提问</span>
-                        </template>
-                        <el-menu-item index="/myAnswser">
-                            <i class="el-icon-more-outline"></i>全部
-                        </el-menu-item>
-                        <el-menu-item index="/myAnswser/alreadyDone">
-                            <i class="el-icon-circle-check"></i>已解答
-                        </el-menu-item>
-                        <el-menu-item index="/myAnswser/notDone">
-                            <i class="el-icon-circle-close"></i>未解答
-                        </el-menu-item>
-                        <el-menu-item index="/myAnswser/alreadyDelete">
-                            <i class="el-icon-delete"></i>已删除
-                        </el-menu-item>
-                    </el-submenu>
-                    <el-submenu index="3">
-                        <template slot="title">
-                            <i class="el-icon-upload"></i>
-                            <span>我的回答</span>
-                        </template>
-                        <el-menu-item index="3-1">
-                            <i class="el-icon-more-outline"></i>全部
-                        </el-menu-item>
-                        <el-menu-item index="3-2">
-                            <i class="el-icon-circle-check"></i>已解决
-                        </el-menu-item>
-                        <el-menu-item index="3-3">
-                            <i class="el-icon-circle-close"></i>未解决
-                        </el-menu-item>
-                        <el-menu-item index="3-4">
-                            <i class="el-icon-delete"></i>已删除
-                        </el-menu-item>
-                    </el-submenu>
+                    <el-menu-item index="/myAnswser">
+                        <i class="el-icon-question"></i>
+                        <span slot="title">我的提问</span>
+                    </el-menu-item>
+<!--                    <el-submenu index="2">-->
+<!--                        <template slot="title">-->
+<!--                            <i class="el-icon-question"></i>-->
+<!--                            <span>我的提问</span>-->
+<!--                        </template>-->
+<!--                        <el-menu-item index="/myAnswser">-->
+<!--                            <i class="el-icon-more-outline"></i>全部-->
+<!--                        </el-menu-item>-->
+<!--                        <el-menu-item index="/myAnswser/alreadyDone">-->
+<!--                            <i class="el-icon-circle-check"></i>已解答-->
+<!--                        </el-menu-item>-->
+<!--                        <el-menu-item index="/myAnswser/notDone">-->
+<!--                            <i class="el-icon-circle-close"></i>未解答-->
+<!--                        </el-menu-item>-->
+<!--                        <el-menu-item index="/myAnswser/alreadyDelete">-->
+<!--                            <i class="el-icon-delete"></i>已删除-->
+<!--                        </el-menu-item>-->
+<!--                    </el-submenu>-->
+                    <el-menu-item index="3">
+                        <i class="el-icon-upload"></i>
+                        <span slot="title">我的回答</span>
+                    </el-menu-item>
+<!--                    <el-submenu index="3">-->
+<!--                        <template slot="title">-->
+<!--                            <i class="el-icon-upload"></i>-->
+<!--                            <span>我的回答</span>-->
+<!--                        </template>-->
+<!--                        <el-menu-item index="3-1">-->
+<!--                            <i class="el-icon-more-outline"></i>全部-->
+<!--                        </el-menu-item>-->
+<!--                        <el-menu-item index="3-2">-->
+<!--                            <i class="el-icon-circle-check"></i>已解决-->
+<!--                        </el-menu-item>-->
+<!--                        <el-menu-item index="3-3">-->
+<!--                            <i class="el-icon-circle-close"></i>未解决-->
+<!--                        </el-menu-item>-->
+<!--                        <el-menu-item index="3-4">-->
+<!--                            <i class="el-icon-delete"></i>已删除-->
+<!--                        </el-menu-item>-->
+<!--                    </el-submenu>-->
                     <el-submenu index="5">
                         <template slot="title">
                             <i class="el-icon-s-tools"></i>

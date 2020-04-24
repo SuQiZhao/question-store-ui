@@ -1,15 +1,15 @@
 export const DIC = {
-    ASK_STATUS: [
+    IS_RESOLVE: [
         {
-            label: '未采纳',
+            label: '未解决',
             value: 0,
         },
         {
-            label: '采纳中',
+            label: '已解决',
             value: 1,
         },
         {
-            label: '已采纳',
+            label: '已删除',
             value: 2,
         },
     ],

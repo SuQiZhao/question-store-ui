@@ -18,13 +18,13 @@
 <!--                        <el-form-item label="提问人：">-->
 <!--                            <el-input placeholder="请输入提问人" v-model="search.askUser"></el-input>-->
 <!--                        </el-form-item>-->
-                        <!--                        <el-form-item label="状态：">-->
-                        <!--                            <el-select placeholder="请选择提问状态" v-model="search.askStatus">-->
-                        <!--                                <el-option :key="item.value" :label="item.label" :value="item.value"-->
-                        <!--                                           v-for="item in askStatusArray">-->
-                        <!--                                </el-option>-->
-                        <!--                            </el-select>-->
-                        <!--                        </el-form-item>-->
+                        <el-form-item label="状态：">
+                            <el-select placeholder="请选择提问状态" v-model="search.isResolve">
+                                <el-option :key="item.value" :label="item.label" :value="item.value"
+                                           v-for="item in askStatusArray">
+                                </el-option>
+                            </el-select>
+                        </el-form-item>
                         <el-form-item label="发布时间：">
                             <!--增加折叠添加v-if="menuOpen"-->
                             <el-date-picker
@@ -35,19 +35,16 @@
                                     start-placeholder="开始日期"
                                     type="daterange"
                                     unlink-panels
-                                    v-model="search.rangeDate">
+                                    v-model="search.rangeDate"
+                                    v-if="menuOpen">
                             </el-date-picker>
-                            <!--折叠输入框-->
-                            <!--                            <span @click="menuOpen = !menuOpen" class="menuShowHide">-->
-                            <!--                                    {{ menuOpen ? "收起" : "展开" }}&nbsp;-->
-                            <!--                                    <i-->
-                            <!--                                            :class="-->
-                            <!--											menuOpen-->
-                            <!--												? 'el-icon-arrow-up'-->
-                            <!--												: 'el-icon-arrow-down'-->
-                            <!--										"-->
-                            <!--                                    ></i>-->
-                            <!--                                </span>-->
+<!--                            折叠输入框-->
+                                                        <span @click="menuOpen = !menuOpen" class="menuShowHide">
+                                                                {{ menuOpen ? "收起" : "展开" }}&nbsp;
+                                                                <i
+                                                                        :class="menuOpen? 'el-icon-arrow-up': 'el-icon-arrow-down'"
+                                                                ></i>
+                                                            </span>
                         </el-form-item>
                         <el-form-item>
                             <el-button @click="searchData" type="primary">查询</el-button>
@@ -72,9 +69,9 @@
                             </avue-empty>
                         </template>
                         <template slot-scope="scope" slot="menu">
-                            <el-button size="small" icon="el-icon-search" @click="editItem(scope.row,1)" plain>查看</el-button>
-                            <el-button size="small" icon="el-icon-edit" @click="editItem(scope.row,2)" plain>编辑</el-button>
-                            <el-button size="small" icon="el-icon-delete" type="danger" @click="deleteItem(scope.row)" plain>删除</el-button>
+                            <el-button size="small" icon="el-icon-search" @click="editItem(scope.row,1)" type="text">查看</el-button>
+                            <el-button size="small" icon="el-icon-edit" @click="editItem(scope.row,2)" type="text">编辑</el-button>
+                            <el-button size="small" icon="el-icon-close" @click="deleteItem(scope.row)" type="text">关闭</el-button>
                         </template>
                     </avue-crud>
                     <el-dialog title="编辑题目" :visible.sync="dialogFormVisible">
@@ -113,8 +110,8 @@
                             </el-form-item>
                         </el-form>
                         <div slot="footer" class="dialog-footer">
-                            <el-button @click="dialogFormVisible = false">取 消</el-button>
-                            <el-button type="primary" @click="updateQuestion">确 定</el-button>
+                            <el-button @click="dialogFormVisible = false" >取 消</el-button>
+                            <el-button type="primary" @click="updateQuestion" v-if="handleEdit">确 定</el-button>
                         </div>
                     </el-dialog>
                 </div>
@@ -138,10 +135,11 @@
                 data: [],
                 option: option,
                 menuOpen: false,
-                askStatusArray: DIC.ASK_STATUS,
+                askStatusArray: DIC.IS_RESOLVE,
                 search: {
                     questionTitle: '',
-                    rangeDate:[]
+                    rangeDate:[],
+                    isResolve:''
                 },
                 pickerOption: pickerOptions,
                 // menuOpen: false,
@@ -168,7 +166,8 @@
                     resolveUser:''
                 },
                 categoryOptions:DIC.QUESTION_CATEGORY,
-                checkOutDis:false
+                checkOutDis:false,
+                handleEdit:true
             }
         },
         methods: {
@@ -190,6 +189,7 @@
                     };
                     updateQuestion(params).then(res => {
                         if(res.code === 200){
+                            this.dialogFormVisible = false;
                             this.init();
                             this.loading = false;
                             return this.$message.success(res.message);
@@ -198,6 +198,7 @@
                         this.loading = false;
                         return this.$message.error(res.message);
                     }).catch(err =>{
+                        this.dialogFormVisible = false;
                         this.init();
                         this.loading = false;
                         return this.$message.error(err.data);
@@ -218,14 +219,43 @@
                 this.editForm.reading = row.reading;
                 this.editForm.isResolve = row.isResolve;
                 this.editForm.resolveUser = row.resolveUser;
+                //type 1为查看 2为编辑
                 if(type === 1){
                     this.checkOutDis = true;
+                    this.handleEdit = false;
                 }else if(type === 2){
+                    this.handleEdit = true;
                     this.checkOutDis = false;
                 }
             },
             //删除方法
-            deleteItem(){
+            deleteItem(row){
+                this.$confirm('即将关闭题目，是否继续？','提示',{
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type:'warning'
+                }).then( () =>{
+                    this.loading = true;
+                    let param ={
+                        cdId:row.cdId,
+                        questionTitle:row.questionTitle,
+                        questionCategory:row.questionCategory,
+                        isResolve:2,
+                        deleteFlag: 0
+                    };
+                    updateQuestion(param).then( res =>{
+                        if (res.code === 200){
+                            this.init();
+                            this.loading = false;
+                            return this.$message.success(res.message);
+                        }
+                        this.init();
+                        this.loading = false;
+                        return this.$message.error(res.message);
+                    }).catch( err => {
+                        return this.$message.error(err.data);
+                    })
+                })
             },
             handleAdd(label){
                 this.$router.push('/questionAdd');
@@ -259,7 +289,8 @@
                     questionCategory: this.checkboxGroup,
                     questionTitle:this.search.questionTitle,
                     startDate:this.search.rangeDate[0],
-                    endDate:this.search.rangeDate[1]
+                    endDate:this.search.rangeDate[1],
+                    isResolve:this.search.isResolve
                 };
                 findQuestionPage(params).then( res=>{
                     if (res.code != 200){
@@ -281,7 +312,7 @@
                     current: this.page.currentPage,
                     size: this.page.pageSize,
                     createUserIdentity: this.userInfo.user.cdId,
-                    questionCategory: this.checkboxGroup
+                    questionCategory: this.checkboxGroup,
                 }
                 findQuestionPage(params).then(res => {
                     if(res.code != 200){

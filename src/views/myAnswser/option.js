@@ -10,9 +10,9 @@ export default {
     // //弹出按钮位置
     // menuPosition:'right',
     // // 按钮菜单宽度
-    menuWidth:300,
+    menuWidth:290,
     // // 组件大小
-    size:'large',
+    // size:'large',
     // // 菜单栏对齐方式
     // menuAlign:'center',
     // columnBtn:false,
@@ -32,9 +32,8 @@ export default {
     addBtn: false,
     header: false,
     align: 'center',
-    menuAlign: 'left',
+    menuAlign: 'center',
     // height: 'calc(100%-80px)',
-    // menuWidth: 200,
     column: [
         {
             label: '标题',

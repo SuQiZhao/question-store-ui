@@ -6,7 +6,7 @@
                     发布
                 </el-button>
                 <el-button icon="el-icon-magic-stick" style="height: 100px;width: 48%;float: right;font-size: 30px"
-                           type="primary">解答
+                           type="primary" @click="handleAsk">解答
                 </el-button>
             </div>
         </el-card>
@@ -24,6 +24,9 @@
         methods:{
             handleQuestionAdd(){
                 this.$router.push('/questionadd');
+            },
+            handleAsk(){
+                this.$router.push('/questiondetail')
             }
         }
     }
