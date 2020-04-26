@@ -38,5 +38,11 @@ export const updateUser = (user) => request({
     data: user
 });
 
+export const getUser = (id) => request({
+    url: '/user/info',
+    method: 'get',
+    params: {id}
+});
+
 
 

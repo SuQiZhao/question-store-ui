@@ -14,6 +14,7 @@
                             <span class="itemCreateTime">题目拥有者：{{item.createUserIdentity}}</span>
 <!--                            <span class="itemCreateTime">{{item.questionCategory}}</span>-->
                             <span class="itemCreateTime">{{item.createTime}}</span>
+                            <span class="itemCreateTime">来自：{{item.questionCategory}}</span>
                         </div>
                     </div>
                 </el-card>
@@ -97,11 +98,11 @@
             //         return this.$message.error(err.data);
             //     });
             // },
-            checkInfo(item){
-                let cdId = item.cdId;
+            checkInfo(item) {
                 this.$router.push({
-                    path:'@/views/detailInfo/index' ,
-                    query:{cdId:cdId}})
+                    name: '问答 - 详情',
+                    params:{cdId:item.cdId}
+                })
             },
             // 分类标签回调事件
             handleChange(form) {
@@ -134,7 +135,7 @@
         font-weight: bold;
     }
     .itemCreateTime{
-        font-size: 16px;
+        font-size: 14px;
         color: #8c939d;
         float: right;
         margin-left: 20px;

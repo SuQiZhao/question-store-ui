@@ -68,15 +68,6 @@
                             icon: 'el-icon-circle-close',
                             color: '#FF0033'
                         },
-                        // {
-                        //     click: function (item) {
-                        //         alert(JSON.stringify(item));
-                        //     },
-                        //     count: '',
-                        //     title: '帮助的人',
-                        //     icon: 'el-icon-warning',
-                        //     color: '#66CCCC'
-                        // }
                     ]
                 },
             }

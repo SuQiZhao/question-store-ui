@@ -68,3 +68,12 @@ export const updateQuestion = (questionInfo) => request({
     method: 'post',
     data: questionInfo
 });
+
+/**
+ * id查询问题接口
+ */
+export const getQuestionInfo = (id) => request({
+    url: '/questionInfo/info',
+    method: 'get',
+    params: {id}
+});

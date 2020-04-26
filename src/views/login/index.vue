@@ -116,7 +116,7 @@
                     //将登陆成功的token存储到sessionStorage中
                     window.sessionStorage.setItem("token", res.data.token);
                     //存储store对象信息
-                    // this.$store.commit('$_setStorage', {user: this.data})
+                    this.$store.commit('$_setStorage', {user: this.data})
                     //到个人中心
                     this.$router.push('/home');
                 }).catch(err => {
