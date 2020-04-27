@@ -2,12 +2,12 @@
     <div class="btnBox">
         <el-card shadow="always">
             <div class="btnItem">
-                <el-button icon="el-icon-edit" style="height: 100px;width: 48%;font-size: 30px" type="primary" @click="handleQuestionAdd">
+                <el-button icon="el-icon-edit" style="height: 100px;width: 100%;font-size: 30px" type="primary" @click="handleQuestionAdd">
                     发布
                 </el-button>
-                <el-button icon="el-icon-magic-stick" style="height: 100px;width: 48%;float: right;font-size: 30px"
-                           type="primary" @click="handleAsk">解答
-                </el-button>
+<!--                <el-button icon="el-icon-magic-stick" style="height: 100px;width: 48%;float: right;font-size: 30px"-->
+<!--                           type="primary" @click="handleAsk">解答-->
+<!--                </el-button>-->
             </div>
         </el-card>
     </div>

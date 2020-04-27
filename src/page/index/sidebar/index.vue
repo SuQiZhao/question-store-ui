@@ -19,67 +19,39 @@
                         <span slot="title">首页</span>
                     </el-menu-item>
                     <el-menu-item index="/home">
-                        <i class="el-icon-s-home"></i>
+                        <i class="el-icon-house"></i>
                         <span slot="title">个人中心</span>
                     </el-menu-item>
-                    <!--                    <el-menu-item index="4">-->
-                    <!--                        <i class="el-icon-star-on"></i>-->
-                    <!--                        <span slot="title">我的收藏</span>-->
-                    <!--                    </el-menu-item>-->
                     <el-menu-item index="/myAnswser">
-                        <i class="el-icon-question"></i>
+                        <i class="el-icon-edit"></i>
                         <span slot="title">我的提问</span>
                     </el-menu-item>
-<!--                    <el-submenu index="2">-->
-<!--                        <template slot="title">-->
-<!--                            <i class="el-icon-question"></i>-->
-<!--                            <span>我的提问</span>-->
-<!--                        </template>-->
-<!--                        <el-menu-item index="/myAnswser">-->
-<!--                            <i class="el-icon-more-outline"></i>全部-->
-<!--                        </el-menu-item>-->
-<!--                        <el-menu-item index="/myAnswser/alreadyDone">-->
-<!--                            <i class="el-icon-circle-check"></i>已解答-->
-<!--                        </el-menu-item>-->
-<!--                        <el-menu-item index="/myAnswser/notDone">-->
-<!--                            <i class="el-icon-circle-close"></i>未解答-->
-<!--                        </el-menu-item>-->
-<!--                        <el-menu-item index="/myAnswser/alreadyDelete">-->
-<!--                            <i class="el-icon-delete"></i>已删除-->
-<!--                        </el-menu-item>-->
-<!--                    </el-submenu>-->
                     <el-menu-item index="3">
-                        <i class="el-icon-upload"></i>
+                        <i class="el-icon-magic-stick"></i>
                         <span slot="title">我的回答</span>
                     </el-menu-item>
-<!--                    <el-submenu index="3">-->
-<!--                        <template slot="title">-->
-<!--                            <i class="el-icon-upload"></i>-->
-<!--                            <span>我的回答</span>-->
-<!--                        </template>-->
-<!--                        <el-menu-item index="3-1">-->
-<!--                            <i class="el-icon-more-outline"></i>全部-->
-<!--                        </el-menu-item>-->
-<!--                        <el-menu-item index="3-2">-->
-<!--                            <i class="el-icon-circle-check"></i>已解决-->
-<!--                        </el-menu-item>-->
-<!--                        <el-menu-item index="3-3">-->
-<!--                            <i class="el-icon-circle-close"></i>未解决-->
-<!--                        </el-menu-item>-->
-<!--                        <el-menu-item index="3-4">-->
-<!--                            <i class="el-icon-delete"></i>已删除-->
-<!--                        </el-menu-item>-->
-<!--                    </el-submenu>-->
                     <el-submenu index="5">
                         <template slot="title">
-                            <i class="el-icon-s-tools"></i>
-                            <span>设置</span>
+                            <i class="el-icon-setting"></i>
+                            <span>个人设置</span>
                         </template>
                         <el-menu-item index="/usersetting">
-                            <i class="el-icon-setting"></i>个人资料设置
+                            <i class="el-icon-info"></i>个人资料设置
                         </el-menu-item>
                         <el-menu-item index="/changepwd">
                             <i class="el-icon-key"></i>密码修改
+                        </el-menu-item>
+                    </el-submenu>
+                    <el-submenu index="6" v-if="isShow">
+                        <template slot="title">
+                            <i class="el-icon-setting"></i>
+                            <span>系统管理</span>
+                        </template>
+                        <el-menu-item index="/notice" >
+                            <i class="el-icon-edit-outline"></i>通知公告
+                        </el-menu-item>
+                        <el-menu-item index="/">
+                            <i class="el-icon-user"></i>账号管理
                         </el-menu-item>
                     </el-submenu>
                 </el-menu>
@@ -98,8 +70,19 @@
         },
         data() {
             return {
-                isCollapse: true
+                isCollapse: true,
+                isShow:false
             };
+        },
+        methods:{
+            getUserLevel(){
+                if(this.$store.state.user.user.userLevel == 2 || this.$store.state.user.user.userLevel == 3){
+                    return this.isShow = true;
+                }
+            }
+        },
+        created() {
+            this.getUserLevel();
         }
     };
 </script>

@@ -77,3 +77,12 @@ export const getQuestionInfo = (id) => request({
     method: 'get',
     params: {id}
 });
+
+/**
+ * 查询问题分页接口
+ */
+export const getSameQuestions = (questionTitle) => request({
+    url: '/questionInfo/getSameQuestions',
+    method: 'get',
+    params: {questionTitle}
+});

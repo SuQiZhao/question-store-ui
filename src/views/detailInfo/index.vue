@@ -12,7 +12,6 @@
                                 <span class="infoSpan">来自：{{questionInfo.questionCategory}}</span>
                             </div>
                         </div>
-
                     </div>
                     <div class="text item">
                         {{questionInfo.questionDetail}}
@@ -33,9 +32,12 @@
                     <el-tabs @tab-click="handleClick">
                         <el-tab-pane label="全部回答">
                             <div>
-                            <el-card class="box-card" v-for="item in answserData" :key="item" shadow="never">
+                            <el-card class="answser-card" v-for="item in answserData" :key="item" shadow="never">
                                 <div slot="header" class="clearfix">
                                     <span>{{item.nickname}}</span>
+                                    <div class="infoAuther">
+                                        <span class="infoSpan">回答于：{{item.createTime}}</span>
+                                    </div>
                                 </div>
                                 <div class="text item">
                                     {{item.content}}
@@ -54,7 +56,9 @@
                         <strong style="font-size: 18px">相关问题</strong>
                     </div>
                     <div class="text item">
-                        列表内容
+                        <div class="sameLink" v-for="link in sameQuestions" :key="link">
+                            <el-link>{{link.questionTitle}}</el-link>
+                        </div>
                     </div>
                 </el-card>
             </el-col>
@@ -66,6 +70,7 @@
     import {getQuestionInfo} from '@/api/questionInfo';
     import {DIC} from '@/constant/dicConstant';
     import {addAnswser,findAnswserPage} from "@/api/questionAnswser";
+    import {getSameQuestions} from "../../api/questionInfo";
 
     export default {
         name: "index",
@@ -75,7 +80,8 @@
                 textarea:'',
                 category:DIC.QUESTION_CATEGORY,
                 btnLoading:false,
-                answserData:[]
+                answserData:[],
+                sameQuestions:[]
             }
         },
         methods:{
@@ -101,6 +107,7 @@
                         this.btnLoading = false;
                         this.textarea = '';
                         this.init();
+                        this.getAnswser();
                     }else{
                         this.btnLoading = false;
                         this.$message.error(res.message);
@@ -123,20 +130,35 @@
             },
             getAnswser(){
                 let params = {
-                    questionId: this.questionInfo.cdId
+                    // questionId: this.questionInfo.cdId
+                    //接收路由传递过来的题目id
+                    questionId: this.$route.params.cdId
                 };
                 findAnswserPage(params).then(res => {
                     if(res.code == 200){
-                        this.answserData = res.data;
-                        console.log(res);
+                        this.answserData = res.data.records;
                     }else{
                         this.$message.error(res.message);
+                    }
+                })
+            },
+            getSameQuestions(){
+                let questionTitle = this.$route.params.questionTitle;
+                console.log(questionTitle);
+                getSameQuestions(questionTitle).then(res =>{
+                    if(res.code == 200){
+                        return this.sameQuestions = res.data;
+                    }else {
+                        return this.$message.error(res.message);
                     }
                 })
             }
         },
         created() {
             this.init();
+            this.getSameQuestions();
+        },
+        mounted(){
             this.getAnswser();
         },
         //获取user对象信息
@@ -164,5 +186,8 @@
         color: #8c939d;
         /*float: right;*/
         margin-left: 20px;
+    }
+    .answser-card{
+        margin-top: 20px;
     }
 </style>

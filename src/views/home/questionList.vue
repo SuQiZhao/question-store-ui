@@ -1,6 +1,6 @@
 <template>
     <div class="questionList">
-        <!--        <el-card>-->
+                <el-card>
         <el-tabs type="card" >
             <el-tab-pane label="最新问题">
                 <el-card :key="item" class="questionItem" shadow="hover" v-for="item in questionList">
@@ -12,47 +12,38 @@
                         {{item.questionDetail}}
                         <div class="textFooter">
                             <span class="itemCreateTime">题目拥有者：{{item.createUserIdentity}}</span>
-<!--                            <span class="itemCreateTime">{{item.questionCategory}}</span>-->
                             <span class="itemCreateTime">{{item.createTime}}</span>
                             <span class="itemCreateTime">来自：{{item.questionCategory}}</span>
                         </div>
                     </div>
                 </el-card>
             </el-tab-pane>
-            <el-tab-pane label="我的关注">
-                <el-card class="questionItem" shadow="hover">
+            <el-tab-pane label="热门问题">
+                <el-card :key="item" class="questionItem" shadow="hover" v-for="item in hotQuestionList">
                     <div class="itemTitle" slot="header">
-                        <el-link :underline="false" class="itemTitle" href="">关注问题</el-link>
-                        <el-button style="float: right; padding: 3px 0" type="text">查看详情</el-button>
+                        <el-link :underline="false" class="itemTitle" href="">{{item.questionTitle}}</el-link>
+                        <span class="itemContent">阅读量：{{item.reading}}</span>
+                        <el-button style="float: right; padding: 3px 0" type="text" @click="checkInfo(item)">查看详情</el-button>
                     </div>
-                    <div>
-                        问题详情
+                    <div class="text item">
+                        {{item.questionDetail}}
+                        <div class="textFooter">
+                            <span class="itemCreateTime">题目拥有者：{{item.createUserIdentity}}</span>
+                            <!--                            <span class="itemCreateTime">{{item.questionCategory}}</span>-->
+                            <span class="itemCreateTime">{{item.createTime}}</span>
+                            <span class="itemCreateTime">来自：{{item.questionCategory}}</span>
+                        </div>
                     </div>
                 </el-card>
             </el-tab-pane>
-            <!--            <el-tab-pane label="全部问题">-->
-            <!--                &lt;!&ndash;题库分类tag&ndash;&gt;-->
-            <!--                <el-card>-->
-            <!--                    <avue-search :option="option" @change="handleChange" v-model="form"/>-->
-            <!--                    <el-card class="questionItem" shadow="hover">-->
-            <!--                        <div class="itemTitle" slot="header">-->
-            <!--                            <el-link :underline="false" class="itemTitle" href="">分类问题</el-link>-->
-            <!--                            <el-button style="float: right; padding: 3px 0" type="text">查看详情</el-button>-->
-            <!--                        </div>-->
-            <!--                        <div :key="i" class="text item" v-for="i in 3">-->
-            <!--                            {{'问题详情' + i}}-->
-            <!--                        </div>-->
-            <!--                    </el-card>-->
-            <!--                </el-card>-->
-            <!--            </el-tab-pane>-->
         </el-tabs>
-        <!--        </el-card>-->
+                </el-card>
     </div>
 </template>
 
 <script>
     import {DIC} from "../../constant/dicConstant";
-    import {getPageListByCreateTime} from '@/api/questionInfo'
+    import {getPageListByCreateTime,getHotQuestionList} from '@/api/questionInfo'
 
     export default {
         name: "questionList",
@@ -84,6 +75,7 @@
                     ]
                 },
                 records: [],
+                hotQuestionList:[]
             }
         },
         methods: {
@@ -101,7 +93,9 @@
             checkInfo(item) {
                 this.$router.push({
                     name: '问答 - 详情',
-                    params:{cdId:item.cdId}
+                    params:{
+                        cdId:item.cdId,
+                        questionTitle:item.questionTitle}
                 })
             },
             // 分类标签回调事件
@@ -117,9 +111,18 @@
                     return this.$message.error(err.data);
                 });
             },
+            getHotQuestionList(){
+                getHotQuestionList().then( res =>{
+                    console.log(res)
+                    this.hotQuestionList = res.data;
+                }).catch( err =>{
+                    this.$message.error("获取热门问题失败");
+                })
+            }
         },
         created() {
             this.init();
+            this.getHotQuestionList();
         }
     }
 </script>
@@ -139,5 +142,10 @@
         color: #8c939d;
         float: right;
         margin-left: 20px;
+    }
+    .itemContent{
+        font-size: 12px;
+        color:#CCCCCC;
+        margin-left: 60px;
     }
 </style>
