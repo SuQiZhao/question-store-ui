@@ -66,6 +66,16 @@ const routes = [{
                 name: '问答 - 详情',
                 component: () => import('../views/detailInfo/index.vue')
             },
+            {
+                path: '/notice',
+                name: '通 知 公 告',
+                component: () => import('../views/notice/index.vue')
+            },
+            {
+                path: '/addnotice',
+                name: '新增通知公告',
+                component: () => import('../views/notice/add.vue')
+            },
         ]
     },
     {

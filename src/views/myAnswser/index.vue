@@ -69,12 +69,12 @@
                             </avue-empty>
                         </template>
                         <template slot-scope="scope" slot="menu">
-                            <el-button size="small" icon="el-icon-search" @click="editItem(scope.row,1)" type="text">查看</el-button>
-                            <el-button size="small" icon="el-icon-edit" @click="editItem(scope.row,2)" type="text">编辑</el-button>
-                            <el-button size="small" icon="el-icon-close" @click="deleteItem(scope.row)" type="text">关闭</el-button>
+                            <el-button size="small" @click="editItem(scope.row,1)" type="text">查看</el-button>
+                            <el-button size="small" @click="editItem(scope.row,2)" type="text">编辑</el-button>
+                            <el-button size="small" @click="deleteItem(scope.row)" type="text">关闭</el-button>
                         </template>
                     </avue-crud>
-                    <el-dialog title="编辑题目" :visible.sync="dialogFormVisible">
+                    <el-dialog :title="title" :visible.sync="dialogFormVisible">
                         <el-form :model="editForm" label-width="100px" label-position="left">
                             <el-form-item label="分类：">
                                 <el-select v-model="editForm.questionCategory" :disabled=checkOutDis>
@@ -167,7 +167,8 @@
                 },
                 categoryOptions:DIC.QUESTION_CATEGORY,
                 checkOutDis:false,
-                handleEdit:true
+                handleEdit:true,
+                title:'',
             }
         },
         methods: {
@@ -208,7 +209,6 @@
             //编辑问题
             editItem(row,type){
                 this.dialogFormVisible = true;
-                console.log(row);
                 this.editForm.cdId = row.cdId;
                 this.editForm.questionTitle = row.questionTitle;
                 this.editForm.questionCategory = row.questionCategory;
@@ -221,9 +221,11 @@
                 this.editForm.resolveUser = row.resolveUser;
                 //type 1为查看 2为编辑
                 if(type === 1){
+                    this.title = '查看题目';
                     this.checkOutDis = true;
                     this.handleEdit = false;
                 }else if(type === 2){
+                    this.title = '编辑题目';
                     this.handleEdit = true;
                     this.checkOutDis = false;
                 }
@@ -319,7 +321,6 @@
                         this.$message.error(res.message);
                         return this.loading = false;
                     }
-                    console.log(res);
                     this.data = res.data.records;
                     this.page.total = res.data.total;
                     return this.loading = false;
