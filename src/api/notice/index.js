@@ -30,8 +30,8 @@ export const updateNotice = (params) => request({
 /**
  * 关闭通知公告
  */
-export const deleteNotice = (id) => request({
-    url: '/noticeMsg/delete/{id}',
+export const deleteNotice = (unid) => request({
+    url: '/noticeMsg/delete',
     method: 'post',
-    data: id
+    data: unid
 });

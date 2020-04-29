@@ -14,7 +14,7 @@
             <el-col :span="10">
                 <!--右侧-->
                 <buttonItem/>
-                <hotQuestion/>
+                <notice/>
             </el-col>
         </el-row>
     </div>
@@ -22,13 +22,13 @@
 <script>
     import questionList from "./questionList";
     import buttonItem from "./buttonItem";
-    import hotQuestion from "./hotQuestion";
+    import notice from "./notice";
     import {getQuestionCount} from "../../api/questionInfo";
 
     export default {
         name: "index",
         components: {
-            "hotQuestion": hotQuestion,
+            "notice": notice,
             "questionList": questionList,
             "buttonItem": buttonItem
         },

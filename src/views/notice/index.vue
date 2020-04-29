@@ -170,6 +170,7 @@
                 }).then( () =>{
                     this.loading = true;
                     deleteNotice(row.unid).then(res =>{
+                        console.log(row.unid);
                         if (res.code == 200){
                             this.$message.success(res.message);
                             this.init();

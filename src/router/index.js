@@ -27,9 +27,6 @@ const routes = [{
         }, {
             path: '/news',
             component: () => import('../views/news/index.vue')
-        }, {
-            path: '/answer',
-            component: () => import('../views/answer/index.vue')
         }]
     },
     {
@@ -42,8 +39,13 @@ const routes = [{
             component: () => import('../views/home/index.vue')
         },
             {
-                path: '/myAnswser',
+                path: '/myQuestion',
                 name: '全 部 提 问',
+                component: () => import('../views/myQuestions/index.vue')
+            },
+            {
+                path: '/myAnswser',
+                name: '全 部 回 答',
                 component: () => import('../views/myAnswser/index.vue')
             },
             {
@@ -75,6 +77,11 @@ const routes = [{
                 path: '/addnotice',
                 name: '新增通知公告',
                 component: () => import('../views/notice/add.vue')
+            },
+            {
+                path: '/accountManage',
+                name: '账号管理',
+                component: () => import('../views/accountManage/index.vue')
             },
         ]
     },

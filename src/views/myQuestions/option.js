@@ -33,23 +33,31 @@ export default {
     header: false,
     align: 'center',
     menuAlign: 'center',
+    // height: 'calc(100%-80px)',
     column: [
         {
-            label: '题目标题',
+            label: '标题',
             prop: 'questionTitle',
         },
         {
-            label: '回答内容',
-            prop: 'content',
-        }, {
+            label: '分类',
+            prop: 'questionCategory',
+            dicData:DIC.QUESTION_CATEGORY
+        },
+        {
+            label: '内容',
+            prop: 'questionDetail'
+        },{
             label: '状态',
-            prop: 'isBest',
-            dicData:DIC.IS_BEST
+            prop: 'isResolve',
+            dicData:DIC.IS_RESOLVE
         }, {
-            label: "回答时间",
+            label: "发布时间",
             prop: "createTime",
             type: "date",
             format: "yyyy-MM-dd hh:mm:ss",
+            valueFormat: "yyyy-MM-dd hh:mm:ss",
+            searchSpan: 10,
             searchRange: false,
             search: false
         }

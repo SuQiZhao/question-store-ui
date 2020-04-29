@@ -1,4 +1,18 @@
 export const DIC = {
+    IS_BEST:[
+        {
+            label: '未使用',
+            value: '0',
+        },
+        {
+            label: '已使用',
+            value: '1',
+        },
+        {
+            label: '已关闭',
+            value: '2',
+        }
+    ],
     IS_RESOLVE: [
         {
             label: '未解决',
@@ -9,7 +23,7 @@ export const DIC = {
             value: 1,
         },
         {
-            label: '已删除',
+            label: '已关闭',
             value: 2,
         },
     ],

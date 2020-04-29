@@ -22,17 +22,17 @@
                         <i class="el-icon-house"></i>
                         <span slot="title">个人中心</span>
                     </el-menu-item>
-                    <el-menu-item index="/myAnswser">
+                    <el-menu-item index="/myQuestion">
                         <i class="el-icon-edit"></i>
                         <span slot="title">我的提问</span>
                     </el-menu-item>
-                    <el-menu-item index="3">
+                    <el-menu-item index="/myAnswser">
                         <i class="el-icon-magic-stick"></i>
                         <span slot="title">我的回答</span>
                     </el-menu-item>
                     <el-submenu index="5">
                         <template slot="title">
-                            <i class="el-icon-setting"></i>
+                            <i class="el-icon-user"></i>
                             <span>个人设置</span>
                         </template>
                         <el-menu-item index="/usersetting">
@@ -81,7 +81,7 @@
                 }
             }
         },
-        created() {
+        mounted() {
             this.getUserLevel();
         }
     };
