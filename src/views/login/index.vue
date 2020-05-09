@@ -19,10 +19,10 @@
                         <el-input auto-complete="off" placeholder="请输入密码" type="password"
                                   v-model="loginForm.password"></el-input>
                     </el-form-item>
-                    <el-form-item>
-                        <el-checkbox class="autoLogin" v-model="loginForm.login_checked">记住我</el-checkbox>
-                        <el-link :underline="false" class="forgotPwd">忘记密码？</el-link>
-                    </el-form-item>
+<!--                    <el-form-item>-->
+<!--                        <el-checkbox class="autoLogin" v-model="loginForm.login_checked">记住我</el-checkbox>-->
+<!--                        <el-link :underline="false" class="forgotPwd">忘记密码？</el-link>-->
+<!--                    </el-form-item>-->
                     <el-form-item>
                         <el-button @click="handleLogin" class="loginBtn" type="primary">登 录</el-button>
                         <el-button @click="toRegister" class="registerBtn" plain type="primary">注册</el-button>
@@ -30,6 +30,56 @@
                                     v-if="dialog_visible"></dialogForm>
                     </el-form-item>
                 </el-form>
+                <el-drawer
+                        :before-close="handleClose"
+                        :visible.sync="dialog"
+                        direction="rtl"
+                        custom-class="demo-drawer"
+                        ref="drawer"
+                >
+                    <div slot="title">
+                        <div class="title">
+                            <i class="el-icon-user"></i>用户注册
+                        </div>
+                    </div>
+                    <div class="demo-drawer__content">
+                        <el-form :model="addForm" label-width="90px" label-position="left">
+<!--                            <el-form-item class="dialog_title">-->
+<!--                                <i class="el-icon-user"></i>-->
+<!--                                <span style="font-size: 40px">用户注册</span>-->
+<!--                            </el-form-item>-->
+                            <el-form-item label="我是：" >
+                                <el-select v-model="value" placeholder="请选择">
+                                    <el-option
+                                            v-for="item in options"
+                                            :key="item.value"
+                                            :label="item.label"
+                                            :value="item.value">
+                                    </el-option>
+                                </el-select>
+                            </el-form-item>
+                            <el-form-item label="用户名：" >
+                                <el-input v-model="addForm.username" size="small"></el-input>
+                            </el-form-item>
+                            <el-form-item label="密码：" >
+                                <el-input v-model="addForm.password" size="small"></el-input>
+                            </el-form-item>
+                            <el-form-item label="确认密码：" >
+                                <el-input v-model="addForm.checkpass" size="small"></el-input>
+                            </el-form-item>
+                            <el-form-item label="学校：" >
+                                <el-input v-model="addForm.collageName" size="small"></el-input>
+                            </el-form-item>
+                            <el-form-item label="专业：" >
+                                <el-input v-model="addForm.majorName" size="small"></el-input>
+                            </el-form-item>
+                        </el-form>
+                        <div class="demo-drawer__footer">
+                            <el-button @click="cancelForm">取 消</el-button>
+                            <el-button type="primary" :loading="btnLoading">注 册</el-button>
+                        </div>
+                    </div>
+                </el-drawer>
             </el-main>
             <!--脚部-->
             <el-footer style="height:12%">
@@ -56,21 +106,22 @@
     </div>
 </template>
 <script>
-    import dialogForm from "./dialogForm";
+    // import dialogForm from "./dialogForm";
     import {login_v1_1} from "@/api/user";
     import {getUserInfo_v1_1} from "../../api/user";
 
     export default {
-        components: {
-            dialogForm
-        },
         data() {
             return {
+                dialog:false,
                 dialog_visible: false,
                 loginForm: {
                     username: '',
                     password: '',
                     login_checked: false,
+                },
+                addForm: {
+
                 },
                 data: [],
                 dialogFormVisible: false,
@@ -87,13 +138,35 @@
                     ],
                 },
                 value: "",
-                userInfo:[]
+                userInfo:[],
+                btnLoading:false,
+                options: [{
+                    value: '1',
+                    label: '学生'
+                }, {
+                    value: '2',
+                    label: '教师'
+                }],
             };
         },
         methods: {
+            handleClose(done) {
+                this.$confirm('确认关闭？')
+                    .then(_ => {
+                        done();
+                    })
+                    .catch(_ => {});
+            },
+            cancelForm(done){
+                this.$confirm('确认关闭？')
+                    .then(_ => {
+                        this.dialog = false;
+                    })
+                    .catch(_ => {});
+            },
             //dialogForm属性绑定变化
             toRegister() {
-                this.dialog_visible = true;
+                this.dialog = true;
             },
             //前端登陆验证
             handleLogin() {
@@ -129,6 +202,29 @@
     };
 </script>
 <style lang="scss">
+    /*抽屉去掉element-ui的drawer标题选中状态*/
+    :focus{
+        outline:0;
+    }
+    .demo-drawer__footer{
+        width:100%;
+        position:absolute;
+        bottom:0;
+        left:0;
+        border-top:1px solid #e8e8e8;
+        padding:10px 16px;
+        text-align:center;
+        background-color:white;
+    }
+    .dialog_title{
+        .el-icon-user{
+            font-size: 45px;
+        }
+    }
+    .demo-drawer__content{
+        padding-left: 5%;
+        padding-right: 20%;
+    }
     .footerBox {
         text-align: center;
         margin: 40px 0px;
@@ -181,7 +277,7 @@
         margin-left: 70%;
         padding: 30px 30px;
         background-color: #fff;
-        opacity: 0.93;
+        opacity: 0.9;
         border-radius: 20px;
     }
 
