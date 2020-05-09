@@ -10,7 +10,7 @@ export default {
     // //弹出按钮位置
     // menuPosition:'right',
     // // 按钮菜单宽度
-    menuWidth:150,
+    menuWidth:180,
     // // 组件大小
     // size:'large',
     // // 菜单栏对齐方式
@@ -20,9 +20,9 @@ export default {
     // // 搜索框与按钮单独成行
     // searchMenuSpan:4,
     menu:true,
-    index:true,
-    indexLabel:'序号',
-    indexWidth:50,
+    // index:true,
+    // indexLabel:'序号',
+    // indexWidth:60,
     refreshBtn: false,
     columnBtn: false,
     delBtn: false,
@@ -36,29 +36,27 @@ export default {
     // height: 'calc(100%-80px)',
     column: [
         {
-            label: '标题',
-            prop: 'questionTitle',
+            label: '用户名',
+            prop: 'username',
         },
         {
-            label: '分类',
-            prop: 'questionCategory',
-            dicData:DIC.QUESTION_CATEGORY
+            label: '昵称',
+            prop: 'nickname',
         },
         {
-            label: '内容',
-            prop: 'questionDetail'
+            label: '学校',
+            prop: 'collageName',
+            width:200
+        },
+        {
+            label: '专业',
+            prop: 'majorName'
         },{
-            label: '状态',
-            prop: 'isResolve',
-            dicData:DIC.IS_RESOLVE
-        }, {
-            label: "发布时间",
+            label: "创建时间",
             prop: "createTime",
             type: "date",
             format: "yyyy-MM-dd hh:mm:ss",
-            valueFormat: "yyyy-MM-dd hh:mm:ss",
-            searchSpan: 10,
-            searchRange: false,
+            // valueFormat: "yyyy-MM-dd hh:mm:ss",
             search: false
         }
     ],

@@ -10,7 +10,7 @@ export default {
     // //弹出按钮位置
     // menuPosition:'right',
     // // 按钮菜单宽度
-    menuWidth:120,
+    menuWidth:150,
     // // 组件大小
     // size:'large',
     // // 菜单栏对齐方式

@@ -20,27 +20,27 @@
                                 </el-option>
                             </el-select>
                         </el-form-item>
-                        <el-form-item label="回答时间：">
-                            <!--增加折叠添加v-if="menuOpen"-->
-                            <el-date-picker
-                                    :picker-options="pickerOption"
-                                    align="right"
-                                    end-placeholder="结束日期"
-                                    range-separator="至"
-                                    start-placeholder="开始日期"
-                                    type="daterange"
-                                    unlink-panels
-                                    v-model="search.rangeDate"
-                                    v-if="menuOpen">
-                            </el-date-picker>
-                            <!--                            折叠输入框-->
-                            <span @click="menuOpen = !menuOpen" class="menuShowHide">
-                                                            {{ menuOpen ? "收起" : "展开" }}&nbsp;
-                                                            <i
-                                                                    :class="menuOpen? 'el-icon-arrow-up': 'el-icon-arrow-down'"
-                                                            ></i>
-                                                        </span>
-                        </el-form-item>
+<!--                        <el-form-item label="回答时间：">-->
+<!--                            &lt;!&ndash;增加折叠添加v-if="menuOpen"&ndash;&gt;-->
+<!--                            <el-date-picker-->
+<!--                                    :picker-options="pickerOption"-->
+<!--                                    align="right"-->
+<!--                                    end-placeholder="结束日期"-->
+<!--                                    range-separator="至"-->
+<!--                                    start-placeholder="开始日期"-->
+<!--                                    type="daterange"-->
+<!--                                    unlink-panels-->
+<!--                                    v-model="search.rangeDate"-->
+<!--                                    v-if="menuOpen">-->
+<!--                            </el-date-picker>-->
+<!--                            &lt;!&ndash;                            折叠输入框&ndash;&gt;-->
+<!--                            <span @click="menuOpen = !menuOpen" class="menuShowHide">-->
+<!--                                                            {{ menuOpen ? "收起" : "展开" }}&nbsp;-->
+<!--                                                            <i-->
+<!--                                                                    :class="menuOpen? 'el-icon-arrow-up': 'el-icon-arrow-down'"-->
+<!--                                                            ></i>-->
+<!--                                                        </span>-->
+<!--                        </el-form-item>-->
                         <el-form-item>
                             <el-button @click="searchData" type="primary">查询</el-button>
                             <el-button @click="resetForm">重置</el-button>
@@ -88,7 +88,7 @@
                     content:'',
                     questionTitle:'',
                     isBest:'',
-                    rangeTime:[]
+                    rangeDate:[]
                 },
                 answserStatusArray:DIC.IS_BEST,
                 menuOpen:false,
@@ -106,7 +106,15 @@
         },
         methods:{
             resetForm(){
-
+                this.loading = true;
+                this.search = {
+                    content:'',
+                    questionTitle:'',
+                    isBest:'',
+                    rangeDate:[]
+                };
+                this.init();
+                return this.loading = false;
             },
             searchData(){
                 this.loading = true;
@@ -114,7 +122,9 @@
                     userId:this.userInfo.cdId,
                     questionTitle: this.search.questionTitle,
                     content:this.search.content,
-                    isBest: this.search.isBest
+                    isBest: this.search.isBest,
+                    startDate:this.search.rangeDate[0],
+                    endDate:this.search.rangeDate[1]
                 }
                 findAnswserPage(params).then(res =>{
                     if(res.code == 200){

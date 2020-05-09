@@ -114,7 +114,8 @@ export default {
         questionDetail: this.form.questionDetail,
         createUserIdentity: this.userInfo.user.cdId,
         deleteFlag:0,
-        reading:0
+        reading:0,
+        isResolve:0
       }
       console.log(questionInfo);
       addQuestion(questionInfo).then( res =>{

@@ -99,7 +99,8 @@
                     userId:this.$store.state.user.user.cdId,
                     userLevel:this.$store.state.user.user.userLevel,
                     nickname:this.$store.state.user.user.nickname,
-                    content:this.textarea
+                    content:this.textarea,
+                    isBest:0
                 };
                 addAnswser(params).then(res =>{
                     if(res.code == 200){

@@ -50,7 +50,7 @@
                         <el-menu-item index="/notice" >
                             <i class="el-icon-edit-outline"></i>通知公告
                         </el-menu-item>
-                        <el-menu-item index="/">
+                        <el-menu-item index="/accountManage">
                             <i class="el-icon-user"></i>账号管理
                         </el-menu-item>
                     </el-submenu>
@@ -71,17 +71,17 @@
         data() {
             return {
                 isCollapse: true,
-                isShow:false
+                isShow:true
             };
         },
         methods:{
             getUserLevel(){
-                if(this.$store.state.user.user.userLevel == 2 || this.$store.state.user.user.userLevel == 3){
-                    return this.isShow = true;
+                if(this.$store.state.user.user.userLevel == 1){
+                    return this.isShow = false;
                 }
             }
         },
-        mounted() {
+        created() {
             this.getUserLevel();
         }
     };

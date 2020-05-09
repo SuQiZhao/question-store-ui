@@ -43,7 +43,7 @@
 
 <script>
     import {DIC} from "../../constant/dicConstant";
-    import {getPageListByCreateTime,getHotQuestionList} from '@/api/questionInfo'
+    import {findQuestionPage,getHotQuestionList} from '@/api/questionInfo'
 
     export default {
         name: "questionList",
@@ -103,13 +103,22 @@
                 this.$message.success(JSON.stringify(form))
             },
             init() {
-                let questionInfoPageParam = this.page;
-                getPageListByCreateTime(questionInfoPageParam).then(res => {
+                let params = {
+                    isResolve:0
+                }
+                findQuestionPage(params).then(res => {
                     this.questionList = res.data.records;
                     this.total = res.data.total;
                 }).catch(err => {
                     return this.$message.error(err.data);
                 });
+                // let questionInfoPageParam = this.page;
+                // getPageListByCreateTime(questionInfoPageParam).then(res => {
+                //     this.questionList = res.data.records;
+                //     this.total = res.data.total;
+                // }).catch(err => {
+                //     return this.$message.error(err.data);
+                // });
             },
             getHotQuestionList(){
                 getHotQuestionList().then( res =>{

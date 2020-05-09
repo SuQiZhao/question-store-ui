@@ -44,5 +44,11 @@ export const getUser = (id) => request({
     params: {id}
 });
 
+export const findUserPage = (params) => request({
+    url: '/user/findUserPage',
+    method: 'get',
+    params: params
+});
+
 
 
