@@ -50,5 +50,11 @@ export const findUserPage = (params) => request({
     params: params
 });
 
+export const addUser = (user) => request({
+    url: '/user/add',
+    method: 'post',
+    data: user
+});
+
 
 

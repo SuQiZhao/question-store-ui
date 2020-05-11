@@ -12,17 +12,36 @@
                             <i class="el-icon-user"></i>用户登录
                         </div>
                     </el-form-item>
-                    <el-form-item label="账号" prop="name">
-                        <el-input placeholder="请输入邮箱/手机号/学号" type="username" v-model="loginForm.username"></el-input>
-                    </el-form-item>
-                    <el-form-item label="密码" prop="pwd">
-                        <el-input auto-complete="off" placeholder="请输入密码" type="password"
-                                  v-model="loginForm.password"></el-input>
-                    </el-form-item>
-<!--                    <el-form-item>-->
-<!--                        <el-checkbox class="autoLogin" v-model="loginForm.login_checked">记住我</el-checkbox>-->
-<!--                        <el-link :underline="false" class="forgotPwd">忘记密码？</el-link>-->
-<!--                    </el-form-item>-->
+<!--                    <el-tabs v-model="activeName" type="card" @tab-click="handleClick">-->
+<!--                        <el-tab-pane label="学生" name="student">-->
+<!--                            <el-form-item label="账号" prop="name">-->
+<!--                                <el-input placeholder="请输入学号" type="username" v-model="loginForm.username"></el-input>-->
+<!--                            </el-form-item>-->
+<!--                            <el-form-item label="密码" prop="pwd">-->
+<!--                                <el-input auto-complete="off" placeholder="请输入密码" type="password"-->
+<!--                                          v-model="loginForm.password"></el-input>-->
+<!--                            </el-form-item>-->
+<!--                        </el-tab-pane>-->
+<!--                        <el-tab-pane label="教职工" name="teacher">-->
+<!--                            <el-form-item label="账号" prop="name">-->
+<!--                                <el-input placeholder="请输入教职工账号" type="username" v-model="loginForm.username"></el-input>-->
+<!--                            </el-form-item>-->
+<!--                            <el-form-item label="密码" prop="pwd">-->
+<!--                                <el-input auto-complete="off" placeholder="请输入密码" type="password"-->
+<!--                                          v-model="loginForm.password"></el-input>-->
+<!--                            </el-form-item>-->
+<!--                        </el-tab-pane>-->
+<!--                        <el-tab-pane label="管理员" name="admin">-->
+                            <el-form-item label="账号" prop="name">
+                                <el-input placeholder="请输入账号" type="username" v-model="loginForm.username"></el-input>
+                            </el-form-item>
+                            <el-form-item label="密码" prop="pwd">
+                                <el-input auto-complete="off" placeholder="请输入密码" type="password"
+                                          v-model="loginForm.password"></el-input>
+                            </el-form-item>
+<!--                        </el-tab-pane>-->
+<!--                    </el-tabs>-->
+
                     <el-form-item>
                         <el-button @click="handleLogin" class="loginBtn" type="primary">登 录</el-button>
                         <el-button @click="toRegister" class="registerBtn" plain type="primary">注册</el-button>
@@ -37,19 +56,16 @@
                         custom-class="demo-drawer"
                         ref="drawer"
                 >
+<!--                    title插槽-->
                     <div slot="title">
                         <div class="title">
                             <i class="el-icon-user"></i>用户注册
                         </div>
                     </div>
                     <div class="demo-drawer__content">
-                        <el-form :model="addForm" label-width="90px" label-position="left">
-<!--                            <el-form-item class="dialog_title">-->
-<!--                                <i class="el-icon-user"></i>-->
-<!--                                <span style="font-size: 40px">用户注册</span>-->
-<!--                            </el-form-item>-->
-                            <el-form-item label="我是：" >
-                                <el-select v-model="value" placeholder="请选择">
+                        <el-form :model="addForm" label-width="100px" label-position="left" ref="addForm" v-loading="addLoading">
+                            <el-form-item label="我是：">
+                                <el-select v-model="addForm.userLevel" placeholder="请选择" @change="handleChange">
                                     <el-option
                                             v-for="item in options"
                                             :key="item.value"
@@ -58,25 +74,53 @@
                                     </el-option>
                                 </el-select>
                             </el-form-item>
-                            <el-form-item label="用户名：" >
-                                <el-input v-model="addForm.username" size="small"></el-input>
+                            <el-form-item :label="accountLabel" >
+                                <el-input v-model="addForm.username"
+                                          :maxlength="accountLength"
+                                          minlength="4"
+                                          show-word-limit
+                                          :placeholder="accountPlaceholder"></el-input>
                             </el-form-item>
                             <el-form-item label="密码：" >
-                                <el-input v-model="addForm.password" size="small"></el-input>
+                                <el-input v-model="addForm.password"
+                                          type="password"
+                                          show-password
+                                          maxlength="16"
+                                          placeholder="请输入密码"
+                                          minlength="6"></el-input>
                             </el-form-item>
                             <el-form-item label="确认密码：" >
-                                <el-input v-model="addForm.checkpass" size="small"></el-input>
+                                <el-input v-model="addForm.checkpass"
+                                          type="password"
+                                          show-password
+                                          maxlength="16"
+                                          placeholder="请再次输入密码"
+                                          minlength="6"></el-input>
                             </el-form-item>
-                            <el-form-item label="学校：" >
-                                <el-input v-model="addForm.collageName" size="small"></el-input>
+                            <el-form-item label="学校：">
+                                <el-select v-model="addForm.collageName"
+                                           :loading="selectLoading"
+                                           placeholder="请输入学校名称"
+                                           filterable
+                                           remote
+                                           :remote-method="searchData">
+                                    <el-option
+                                            v-for="item in collageList"
+                                            :key="item.collageName"
+                                            :label="item.collageName"
+                                            :value="item.collageName">
+                                    </el-option>
+                                </el-select>
                             </el-form-item>
                             <el-form-item label="专业：" >
-                                <el-input v-model="addForm.majorName" size="small"></el-input>
+                                <el-input v-model="addForm.majorName" maxlength="16" placeholder="请输入专业名称"></el-input>
                             </el-form-item>
                         </el-form>
                         <div class="demo-drawer__footer">
-                            <el-button @click="cancelForm">取 消</el-button>
-                            <el-button type="primary" :loading="btnLoading">注 册</el-button>
+                            <el-button type="primary"
+                                       :loading="btnLoading"
+                                       style="width: 40%" @click="handleAdd">注 册</el-button>
+                            <el-button @click="cancelForm" style="width: 40%">取 消</el-button>
                         </div>
                     </div>
                 </el-drawer>
@@ -106,22 +150,32 @@
     </div>
 </template>
 <script>
-    // import dialogForm from "./dialogForm";
-    import {login_v1_1} from "@/api/user";
+    import {getCollageName} from "@/api/collageList";
+    import {login_v1_1,addUser} from "@/api/user";
     import {getUserInfo_v1_1} from "../../api/user";
 
     export default {
         data() {
             return {
+                accountLength:12,
+                accountLabel:'学号',
+                accountPlaceholder:'请输入学号',
+                activeName:'student',
+                collageList:[],
+                selectLoading:false,
                 dialog:false,
-                dialog_visible: false,
                 loginForm: {
                     username: '',
                     password: '',
                     login_checked: false,
                 },
                 addForm: {
-
+                    userLevel:'',
+                    username:'',
+                    password:'',
+                    checkpass:'',
+                    collageName:'',
+                    majorName:''
                 },
                 data: [],
                 dialogFormVisible: false,
@@ -137,7 +191,6 @@
                         {min: 6, max: 16, message: "长度在 6 到 16 个字符", trigger: "blur"}
                     ],
                 },
-                value: "",
                 userInfo:[],
                 btnLoading:false,
                 options: [{
@@ -145,15 +198,84 @@
                     label: '学生'
                 }, {
                     value: '2',
-                    label: '教师'
+                    label: '教职工'
                 }],
+                addLoading:false
             };
         },
         methods: {
+            handleChange(){
+                if(this.addForm.userLevel == 2){
+                    this.accountLength = 16;
+                    this.accountLabel = '用户名：';
+                    this.accountPlaceholder = '请输入用户名';
+                }else{
+                    this.accountLength = 12;
+                    this.accountLabel = '学号：';
+                    this.accountPlaceholder = '请输入学号';
+                }
+            },
+            handleAdd(){
+                this.addLoading = true;
+                if(this.addForm.password != this.addForm.checkpass){
+                    this.$message.error("两次输入密码不一致！")
+                    return this.addLoading = false;
+                }
+                let params = {
+                    userLevel:this.addForm.userLevel,
+                    username:this.addForm.username,
+                    password:this.addForm.password,
+                    collageName:this.addForm.collageName,
+                    majorName:this.addForm.majorName,
+                    deleteFlag:0,
+                    status:0
+                }
+                addUser(params).then(res => {
+                    if(res.code == 200){
+                        this.$message.success("注册成功！");
+                        //关闭遮罩层 清除数据
+                        this.addForm = {
+                            userLevel:'',
+                            username:'',
+                            password:'',
+                            checkpass:'',
+                            collageName:'',
+                            majorName:''
+                        }
+                        this.addLoading = false;
+                        return this.dialog = false;
+                    } else {
+                        this.addLoading = false;
+                        return this.$message.error(res.message);
+                    }
+                })
+            },
+            searchData(collageName){
+                if (collageName != ''){
+                    this.selectLoading = true;
+                    getCollageName(collageName).then(res => {
+                        if(res.code == 200){
+                            this.collageList = res.data;
+                            this.selectLoading = false;
+                        }else {
+                            this.$message.error("系统繁忙");
+                        }
+                    })
+                }
+            },
             handleClose(done) {
                 this.$confirm('确认关闭？')
                     .then(_ => {
                         done();
+                        // this.$refs['addForm'].resetFields();
+                        this.addForm = {
+                            userLevel:'',
+                            username:'',
+                            password:'',
+                            checkpass:'',
+                            collageName:'',
+                            majorName:''
+                        }
                     })
                     .catch(_ => {});
             },
@@ -161,6 +283,14 @@
                 this.$confirm('确认关闭？')
                     .then(_ => {
                         this.dialog = false;
+                        this.addForm = {
+                            userLevel:'',
+                            username:'',
+                            password:'',
+                            checkpass:'',
+                            collageName:'',
+                            majorName:''
+                        }
                     })
                     .catch(_ => {});
             },
@@ -223,7 +353,7 @@
     }
     .demo-drawer__content{
         padding-left: 5%;
-        padding-right: 20%;
+        padding-right: 30%;
     }
     .footerBox {
         text-align: center;

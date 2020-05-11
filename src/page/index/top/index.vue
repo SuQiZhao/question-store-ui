@@ -16,7 +16,7 @@
                                    style="float: right;margin-top:2%">编辑
                         </el-button>
                     </el-dropdown-item>
-                    <el-dropdown-item>姓名：{{userInfo.username}}</el-dropdown-item>
+                    <el-dropdown-item>学号：{{userInfo.username}}</el-dropdown-item>
                     <el-dropdown-item>学校：{{userInfo.collageName}}</el-dropdown-item>
                     <el-dropdown-item>专业：{{userInfo.majorName}}</el-dropdown-item>
                     <el-dropdown-item>登录时间：{{userInfo.loginTime}}</el-dropdown-item>

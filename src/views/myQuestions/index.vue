@@ -3,7 +3,7 @@
         <el-row>
             <el-col :span=24 style="margin-bottom: 2%">
                 <el-radio-group :key="course" v-for="course in courses" v-model="checkboxGroup" @change="changeCategory(course.value)">
-                    <el-radio-button :label="course.label" >
+                    <el-radio-button :label="course.label" :key="label">
                     </el-radio-button>
                 </el-radio-group>
             </el-col>
