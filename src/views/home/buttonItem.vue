@@ -39,6 +39,6 @@
     }
 
     .btnBox {
-        margin-top: 10%;
+        margin-top: 4%;
     }
 </style>

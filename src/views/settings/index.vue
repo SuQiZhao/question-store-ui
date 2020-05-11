@@ -1,56 +1,75 @@
 <template>
     <div class="user_profile">
-        <el-row>
-            <el-col>
+        <el-row :gutter=0>
+            <el-col :span=4>
                 <div class="profile_pic">
                     <el-avatar :size="130" :src="url" @error="handleError" fit="fill"></el-avatar>
+                    <div style="text-align: center;margin-top: 10px">
+                        <el-button @click="dialogVisible2 = true" round size="small" type="success">更换头像</el-button>
+                        <div class="upload_profilePic">
+                            <el-dialog :visible.sync="dialogVisible2" title="上传头像" width="50%">
+                                <el-form :model="picForm">
+                                    <el-form-item ref="uploadElement">
+                                        <el-upload
+                                                :auto-upload="false"
+                                                :before-upload="handleBeforeUpload"
+                                                :class="{hide:hideUpload}"
+                                                :limit="limitNum"
+                                                :on-change="imgChange"
+                                                :on-preview="handlePictureCardPreview"
+                                                :on-remove="handleRemove"
+                                                accept="image/png, image/gif, image/jpg, image/jpeg"
+                                                action="#"
+                                                list-type="picture-card"
+                                                ref="upload"
+                                        >
+                                            <i class="el-icon-plus"></i>
+                                        </el-upload>
+                                        <el-dialog :visible.sync="dialogVisible">
+                                            <img :src="dialogImageUrl" alt width="100%"/>
+                                        </el-dialog>
+                                    </el-form-item>
+                                    <el-form-item>
+                                        <el-button @click="uploadFile" size="small" type="primary">立即上传</el-button>
+                                        <el-button @click="tocancel" size="small">取消</el-button>
+                                    </el-form-item>
+                                </el-form>
+                            </el-dialog>
+                        </div>
+                    </div>
                 </div>
             </el-col>
-            <el-col>
-                <div class="upload_profilePic">
-                    <el-button @click="dialogVisible2 = true" round size="small" type="success">更换头像</el-button>
-                    <el-dialog :visible.sync="dialogVisible2" title="上传头像" width="30%">
-                        <el-form :model="picForm">
-                            <el-form-item ref="uploadElement">
-                                <el-upload
-                                        :auto-upload="false"
-                                        :before-upload="handleBeforeUpload"
-                                        :class="{hide:hideUpload}"
-                                        :limit="limitNum"
-                                        :on-change="imgChange"
-                                        :on-preview="handlePictureCardPreview"
-                                        :on-remove="handleRemove"
-                                        accept="image/png, image/gif, image/jpg, image/jpeg"
-                                        action="#"
-                                        list-type="picture-card"
-                                        ref="upload"
-                                >
-                                    <i class="el-icon-plus"></i>
-                                </el-upload>
-                                <el-dialog :visible.sync="dialogVisible">
-                                    <img :src="dialogImageUrl" alt width="100%"/>
-                                </el-dialog>
-                            </el-form-item>
-                            <el-form-item>
-                                <el-button @click="uploadFile" size="small" type="primary">立即上传</el-button>
-                                <el-button @click="tocancel" size="small">取消</el-button>
-                            </el-form-item>
-                        </el-form>
-                    </el-dialog>
-                </div>
-            </el-col>
-            <el-col>
+            <el-col :span=20>
+                <el-form ref="infoForm"
+                         class="infoForm"
+                         label-width="120px" inline="true">
+                    <el-form-item label="账号：">
+                        <el-input v-model="infoForm.username"></el-input>
+                    </el-form-item>
+                    <el-form-item label="昵称：">
+                        <el-input v-model="infoForm.nickname"></el-input>
+                    </el-form-item>
+                    <el-form-item label="地区：" prop="area">
+                        <el-cascader
+                                :options="options"
+                                @change="handleChange"
+                                size="large"
+                                style="width:150%" v-model="infoForm.area">
+                        </el-cascader>
+                    </el-form-item>
+                </el-form>
             </el-col>
         </el-row>
         <!--资料卡-->
-        <deatail-info/>
+<!--        <deatail-info/>-->
     </div>
 </template>
 <script>
     import DeatailInfo from "./detailInfo";
+    import {regionData} from 'element-china-area-data';
 
     export default {
-        components: {DeatailInfo},
+        // components: {DeatailInfo},
         data() {
             return {
                 url:
@@ -62,10 +81,19 @@
                 // formLabelWidth: "80px",
                 limitNum: 1,
                 picForm: {},
-                dialogVisible2: false //弹窗
+                dialogVisible2: false,//弹窗
+                infoForm:{
+                    username:'',
+                    nickname:'',
+                    area:''
+                },
+                options: regionData,
             };
         },
         methods: {
+            handleChange(){
+                console.log(this.infoForm.area);
+            },
             //图片加载失败时的回调
             handleError() {
                 return true;
@@ -129,6 +157,9 @@
     };
 </script>
 <style lang="scss">
+    .infoForm{
+
+    }
     .upload_profilePic {
         text-align: center;
         margin-top: 20px;
