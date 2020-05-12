@@ -22,6 +22,7 @@
                     let matched = val.matched.filter(item => item.name);
                     // 拿到过滤好的路由v-for遍历出来
                     this.breadList = matched;
+                    console.log(this.breadList);
                 }
             }
         },

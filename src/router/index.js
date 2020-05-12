@@ -74,6 +74,11 @@ const routes = [{
                 component: () => import('../views/notice/index.vue')
             },
             {
+                path: '/noticedetail',
+                name: '通知公告详情',
+                component: () => import('../views/notice/detail.vue')
+            },
+            {
                 path: '/addnotice',
                 name: '新增通知公告',
                 component: () => import('../views/notice/add.vue')

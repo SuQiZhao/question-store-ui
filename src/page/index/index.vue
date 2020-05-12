@@ -6,7 +6,7 @@
             <top :userInfo="userInfo" ref="top_dropdown"/>
             <el-container>
                 <!--侧栏-->
-                <sidebar/>
+                <sidebar />
                 <!--主窗体-->
                 <el-main class="index_main">
                     <el-card class="box-card" shadow="never">

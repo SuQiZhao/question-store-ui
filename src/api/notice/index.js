@@ -35,3 +35,12 @@ export const deleteNotice = (unid) => request({
     method: 'post',
     data: unid
 });
+
+/**
+ * id查询问题接口
+ */
+export const getNotice = (unid) => request({
+    url: '/noticeMsg/info',
+    method: 'get',
+    params: {unid}
+});

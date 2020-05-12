@@ -24,9 +24,6 @@
         methods:{
             handleQuestionAdd(){
                 this.$router.push('/questionadd');
-            },
-            handleAsk(){
-                this.$router.push('/questiondetail')
             }
         }
     }

@@ -82,7 +82,6 @@
                     title:this.form.title,
                     content:this.form.content
                 };
-                console.log(param)
                 addNotice(param).then(res =>{
                     if (res.code == 200){
                         this.btnLoading = false;

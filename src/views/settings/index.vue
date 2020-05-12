@@ -3,9 +3,9 @@
         <el-row :gutter=0>
             <el-col :span=4>
                 <div class="profile_pic">
-                    <el-avatar :size="130" :src="url" @error="handleError" fit="fill"></el-avatar>
+                    <el-avatar :size="130" :src="url" @error="handleError" fit="fill" shape="square"></el-avatar>
                     <div style="text-align: center;margin-top: 10px">
-                        <el-button @click="dialogVisible2 = true" round size="small" type="success">更换头像</el-button>
+                        <el-button @click="dialogVisible2 = true" round size="small" type="success" :disabled="changeProfile">更换头像</el-button>
                         <div class="upload_profilePic">
                             <el-dialog :visible.sync="dialogVisible2" title="上传头像" width="50%">
                                 <el-form :model="picForm">
@@ -39,23 +39,86 @@
                     </div>
                 </div>
             </el-col>
-            <el-col :span=20>
+            <el-col :span=20 v-if="isShow2">
                 <el-form ref="infoForm"
                          class="infoForm"
-                         label-width="120px" inline="true">
+                         label-width="100px"
+                         label-position="right"
+                         v-loading="loading">
                     <el-form-item label="账号：">
-                        <el-input v-model="infoForm.username"></el-input>
+                        {{infoForm.username}}
                     </el-form-item>
                     <el-form-item label="昵称：">
-                        <el-input v-model="infoForm.nickname"></el-input>
+                        {{infoForm.nickname}}
+                    </el-form-item>
+                    <el-form-item label="电话号码：">
+                        {{infoForm.telephone}}
+                    </el-form-item>
+                    <el-form-item label="邮箱：">
+                        {{infoForm.email}}
+                    </el-form-item>
+                    <el-form-item label="学校：">
+                        {{infoForm.collageName}}
+                    </el-form-item>
+                    <el-form-item label="地区：" prop="area">
+                        {{infoForm.area}}
+                    </el-form-item>
+                    <el-form-item label="专业：">
+                        {{infoForm.majorName}}
+                    </el-form-item>
+                    <el-form-item>
+                        <el-button @click="handleChange" type="text">立即修改</el-button>
+                    </el-form-item>
+                </el-form>
+            </el-col>
+            <el-col :span=20 v-if="isShow">
+                <el-form ref="infoForm"
+                         class="infoForm"
+                         label-width="100px"
+                         label-position="right"
+                         v-loading="loading">
+                    <el-form-item label="账号：">
+                        <el-input v-model="infoForm.username" disabled="disable"></el-input>
+                    </el-form-item>
+                    <el-form-item label="昵称：">
+                        <el-input v-model="infoForm.nickname" placeholder="请输入昵称" ></el-input>
+                    </el-form-item>
+                    <el-form-item label="电话号码：">
+                        <el-input v-model="infoForm.telephone" placeholder="请输入电话号码"></el-input>
+                    </el-form-item>
+                    <el-form-item label="邮箱：">
+                        <el-input v-model="infoForm.email" placeholder="请输入邮箱"></el-input>
+                    </el-form-item>
+                    <el-form-item label="学校：">
+                        <el-select v-model="infoForm.collageName"
+                                   :loading="selectLoading"
+                                   placeholder="请输入学校名称"
+                                   filterable
+                                   remote
+                                   :remote-method="searchData">
+                            <el-option
+                                    v-for="item in collageList"
+                                    :key="item.collageName"
+                                    :label="item.collageName"
+                                    :value="item.collageName">
+                            </el-option>
+                        </el-select>
                     </el-form-item>
                     <el-form-item label="地区：" prop="area">
                         <el-cascader
                                 :options="options"
-                                @change="handleChange"
                                 size="large"
-                                style="width:150%" v-model="infoForm.area">
+                                placeholder="请选择地区"
+                                style="width:100%"
+                                v-model="infoForm.area">
                         </el-cascader>
+                    </el-form-item>
+                    <el-form-item label="专业：">
+                        <el-input v-model="infoForm.majorName" placeholder="请输入专业"></el-input>
+                    </el-form-item>
+                    <el-form-item size="large">
+                        <el-button type="primary" @click="handleSubmit">修改</el-button>
+                        <el-button @click="goBack">返回</el-button>
                     </el-form-item>
                 </el-form>
             </el-col>
@@ -65,13 +128,21 @@
     </div>
 </template>
 <script>
-    import DeatailInfo from "./detailInfo";
+    import {getCollageName} from "@/api/collageList";
     import {regionData} from 'element-china-area-data';
+    import {getUser, getUserInfo_v1_1, updateUser} from "../../api/user";
+    import userInfo from "../../page/index/sidebar/userInfo";
 
     export default {
         // components: {DeatailInfo},
         data() {
             return {
+                isShow2:true,
+                isShow:false,
+                changeProfile:'disable',
+                loading:false,
+                collageList:[],
+                selectLoading:false,
                 url:
                     "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg",
                 imageUrl: "",
@@ -85,14 +156,39 @@
                 infoForm:{
                     username:'',
                     nickname:'',
-                    area:''
+                    area:'',
+                    collageName: '',
+                    majorName: '',
+                    telephone: '',
+                    email:''
                 },
                 options: regionData,
             };
         },
         methods: {
             handleChange(){
-                console.log(this.infoForm.area);
+                this.isShow2 = false;
+                this.isShow = true;
+                this.changeProfile = false;
+            },
+            goBack(){
+                this.init();
+                this.isShow2 = true;
+                this.isShow = false;
+                this.changeProfile = true;
+            },
+            searchData(collageName){
+                if (collageName != ''){
+                    this.selectLoading = true;
+                    getCollageName(collageName).then(res => {
+                        if(res.code == 200){
+                            this.collageList = res.data;
+                            this.selectLoading = false;
+                        }else {
+                            this.$message.error("系统繁忙");
+                        }
+                    })
+                }
             },
             //图片加载失败时的回调
             handleError() {
@@ -152,13 +248,66 @@
             },
             uploadFile() {
                 this.$refs.upload.submit();
+            },
+            init(){
+                this.loading = true;
+                // getUserInfo_v1_1().then(res =>{
+                //     if(res.code == 200){
+                //         this.infoForm = res.data;
+                //         this.loading = false;
+                //     }else{
+                //         this.$message.error("系统繁忙");
+                //     }
+                // })
+                getUser(this.userInfo.cdId).then(res =>{
+                    this.infoForm = res.data;
+                    this.loading = false;
+                })
+            },
+            handleSubmit(){
+                this.loading = true;
+                let params = {
+                    cdId:this.userInfo.cdId,
+                    password:this.userInfo.password,
+                    collageName:this.infoForm.collageName,
+                    userLevel:this.userInfo.userLevel,
+                    deleteFlag:0,
+                    username:this.userInfo.username,
+                    nickname:this.infoForm.nickname,
+                    area:this.infoForm.area,
+                    majorName:this.infoForm.majorName,
+                    telephone:this.infoForm.telephone,
+                    email:this.infoForm.email
+                }
+                updateUser(params).then(res => {
+                    if(res.code == 200){
+                        this.$message.success(res.message);
+                        this.loading = false;
+                        this.goBack();
+                    } else {
+                        this.$message.error(res.message);
+                        this.loading = false;
+                    }
+                })
             }
+        },
+        computed:{
+          userInfo(){
+              return this.$store.state.user.user;
+          }
+        },
+        created() {
+            this.init();
         }
     };
 </script>
 <style lang="scss">
+    .user_profile{
+        /*height: 550px;*/
+    }
     .infoForm{
-
+        padding-left: 5%;
+        padding-right: 40%;
     }
     .upload_profilePic {
         text-align: center;

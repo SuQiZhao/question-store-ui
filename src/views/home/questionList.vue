@@ -5,10 +5,10 @@
             <el-tab-pane label="最新问题">
                 <el-card :key="item" class="questionItem" shadow="hover" v-for="item in questionList">
                     <div class="itemTitle" slot="header">
-                        <el-link :underline="false" class="itemTitle" href="">{{item.questionTitle}}</el-link>
+                        <el-link :underline="false" class="itemTitle" @click="checkInfo(item)">{{item.questionTitle}}</el-link>
                         <el-button style="float: right; padding: 3px 0" type="text" @click="checkInfo(item)">查看详情</el-button>
                     </div>
-                    <div class="text item">
+                    <div class="text-item">
                         {{item.questionDetail}}
                         <div class="textFooter">
                             <span class="itemCreateTime">题目拥有者：{{item.createUserIdentity}}</span>
@@ -122,7 +122,6 @@
             },
             getHotQuestionList(){
                 getHotQuestionList().then( res =>{
-                    console.log(res)
                     this.hotQuestionList = res.data;
                 }).catch( err =>{
                     this.$message.error("获取热门问题失败");
@@ -137,6 +136,9 @@
 </script>
 
 <style lang="scss">
+    .text-item{
+        font-size: 12px;
+    }
     .questionItem {
         margin-top: 20px;
         padding-bottom: 20px;

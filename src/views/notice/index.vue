@@ -170,7 +170,6 @@
                 }).then( () =>{
                     this.loading = true;
                     deleteNotice(row.unid).then(res =>{
-                        console.log(row.unid);
                         if (res.code == 200){
                             this.$message.success(res.message);
                             this.init();
@@ -186,7 +185,6 @@
             editItem(row,type){
                 //1为查看 2为编辑
                 this.dialogFormVisible = true;
-                console.log(this.$store.state.user.user);
                 this.editForm.unid = row.unid;
                 this.editForm.title = row.title;
                 this.editForm.content = row.content;

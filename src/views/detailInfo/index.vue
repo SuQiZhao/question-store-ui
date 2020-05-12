@@ -145,7 +145,6 @@
             },
             getSameQuestions(){
                 let questionTitle = this.$route.params.questionTitle;
-                console.log(questionTitle);
                 getSameQuestions(questionTitle).then(res =>{
                     if(res.code == 200){
                         return this.sameQuestions = res.data;

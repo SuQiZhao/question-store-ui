@@ -95,7 +95,6 @@ export default {
       this.$router.go(-1);
     },
     changeSelect() {
-      console.log(this.form.value);
     },
     onSubmit() {
       this.btnLoading = true;
@@ -117,7 +116,6 @@ export default {
         reading:0,
         isResolve:0
       }
-      console.log(questionInfo);
       addQuestion(questionInfo).then( res =>{
         if( res.code != 200){
           this.$message.error(res.message);

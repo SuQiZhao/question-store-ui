@@ -5,7 +5,8 @@
                 <span>通知公告</span>
             </div>
                 <div v-for="item in noticeMsgList" :key="item">
-                    <el-link type="danger" style="font-size: 18px">{{item.title}}</el-link>
+                    <el-link style="font-size: 18px" @click="handleClick(item)">{{item.title}}</el-link>
+                    <span class="notice-time">{{item.createTime.substr(0,10)}}</span>
                 </div>
         </el-card>
     </div>
@@ -25,10 +26,17 @@
             // 数据初始化方法
             init(){
                 findNoticePage().then( res =>{
-                    console.log(res);
                     this.noticeMsgList = res.data.records;
                 }).catch( err =>{
                     this.$message.error("获取通知公告失败");
+                })
+            },
+            handleClick(item){
+                this.$router.push({
+                    name: '通知公告详情',
+                    params:{
+                        unid:item.unid
+                    }
                 })
             }
         },
@@ -39,5 +47,9 @@
 </script>
 
 <style lang="scss">
-
+.notice-time{
+    /*font-size: 14px;*/
+    color: #8c939d;
+    float: right;
+}
 </style>
