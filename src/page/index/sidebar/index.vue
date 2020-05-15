@@ -11,9 +11,15 @@
                         :unique-opened="true"
                         class="el-menu-vertical-demo"
                 >
-                    <el-menu-item>
-                        <sidesearch/>
-                    </el-menu-item>
+<!--                    <el-menu-item>-->
+<!--                        <sidesearch/>-->
+<!--                        <div class="side_search">-->
+<!--                            <el-input placeholder="请输入题目标题" v-model="input" size="medium" style="width: 80%">-->
+<!--&lt;!&ndash;                                <i class="el-input__icon el-icon-search" slot="prefix"></i>&ndash;&gt;-->
+<!--                            </el-input>-->
+<!--                            <el-button 下·下·icon="el-icon-search" circle size="mini"></el-button>-->
+<!--                        </div>-->
+<!--                    </el-menu-item>-->
                     <el-menu-item index="/">
                         <i class="el-icon-star-on"></i>
                         <span slot="title">首页</span>
@@ -65,7 +71,7 @@
     // import userInfo from "./userInfo";
     export default {
         components: {
-            sidesearch
+            // sidesearch
             // userInfo
         },
         data() {

@@ -131,7 +131,6 @@
     import {getCollageName} from "@/api/collageList";
     import {regionData} from 'element-china-area-data';
     import {getUser, getUserInfo_v1_1, updateUser} from "../../api/user";
-    import userInfo from "../../page/index/sidebar/userInfo";
 
     export default {
         // components: {DeatailInfo},
@@ -265,29 +264,35 @@
                 })
             },
             handleSubmit(){
-                this.loading = true;
-                let params = {
-                    cdId:this.userInfo.cdId,
-                    password:this.userInfo.password,
-                    collageName:this.infoForm.collageName,
-                    userLevel:this.userInfo.userLevel,
-                    deleteFlag:0,
-                    username:this.userInfo.username,
-                    nickname:this.infoForm.nickname,
-                    area:this.infoForm.area,
-                    majorName:this.infoForm.majorName,
-                    telephone:this.infoForm.telephone,
-                    email:this.infoForm.email
-                }
-                updateUser(params).then(res => {
-                    if(res.code == 200){
-                        this.$message.success(res.message);
-                        this.loading = false;
-                        this.goBack();
-                    } else {
-                        this.$message.error(res.message);
-                        this.loading = false;
+                this.$confirm('即将修改个人信息，是否继续？','提示',{
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type:'warning'
+                }).then(() =>{
+                    this.loading = true;
+                    let params = {
+                        cdId:this.userInfo.cdId,
+                        password:this.userInfo.password,
+                        collageName:this.infoForm.collageName,
+                        userLevel:this.userInfo.userLevel,
+                        deleteFlag:0,
+                        username:this.userInfo.username,
+                        nickname:this.infoForm.nickname,
+                        area:this.infoForm.area,
+                        majorName:this.infoForm.majorName,
+                        telephone:this.infoForm.telephone,
+                        email:this.infoForm.email
                     }
+                    updateUser(params).then(res => {
+                        if(res.code == 200){
+                            this.$message.success(res.message);
+                            this.loading = false;
+                            this.goBack();
+                        } else {
+                            this.$message.error(res.message);
+                            this.loading = false;
+                        }
+                    })
                 })
             }
         },

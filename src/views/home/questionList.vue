@@ -137,7 +137,7 @@
 
 <style lang="scss">
     .text-item{
-        font-size: 12px;
+        font-size: 14px;
     }
     .questionItem {
         margin-top: 20px;
@@ -145,7 +145,7 @@
     }
 
     .itemTitle {
-        font-size: 18px;
+        font-size: 20px;
         font-weight: bold;
     }
     .itemCreateTime{

@@ -40,22 +40,22 @@ const routes = [{
         },
             {
                 path: '/myQuestion',
-                name: '全 部 提 问',
+                name: '全部提问',
                 component: () => import('../views/myQuestions/index.vue')
             },
             {
                 path: '/myAnswser',
-                name: '全 部 回 答',
+                name: '全部回答',
                 component: () => import('../views/myAnswser/index.vue')
             },
             {
                 path: '/usersetting',
-                name: '个 人 资 料 设 置',
+                name: '个人资料设置',
                 component: () => import('../views/settings/index.vue')
             },
             {
                 path: '/changepwd',
-                name: '密 码 修 改',
+                name: '密码修改',
                 component: () => import('../views/settings/changePwd/index.vue')
             },
             {
@@ -70,7 +70,7 @@ const routes = [{
             },
             {
                 path: '/notice',
-                name: '通 知 公 告',
+                name: '通知公告',
                 component: () => import('../views/notice/index.vue')
             },
             {
@@ -87,6 +87,11 @@ const routes = [{
                 path: '/accountManage',
                 name: '账号管理',
                 component: () => import('../views/accountManage/index.vue')
+            },
+            {
+                path: '/search',
+                name: '搜索',
+                component: () => import('../views/search/index.vue')
             },
         ]
     },
