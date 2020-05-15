@@ -256,5 +256,9 @@
 </script>
 
 <style lang="scss">
-
+    .menuShowHide {
+        margin-left: 10px;
+        color: #097ce3;
+        cursor: pointer;
+    }
 </style>

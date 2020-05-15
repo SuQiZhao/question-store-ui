@@ -8,7 +8,7 @@
             <el-form-item label="原密码" prop="oldPassword">
                 <el-input autocomplete="off" type="password" v-model="ruleForm.oldPassword"></el-input>
             </el-form-item>
-            <el-form-item label="密码" prop="password">
+            <el-form-item label="新密码" prop="password">
                 <el-input autocomplete="off" type="password" v-model="ruleForm.password"></el-input>
             </el-form-item>
             <el-form-item label="确认密码" prop="checkPass">

@@ -12,7 +12,7 @@ export default {
     // // 按钮菜单宽度
     menuWidth:150,
     // // 组件大小
-    // size:'large',
+    // size:'medium',
     // // 菜单栏对齐方式
     // menuAlign:'center',
     // columnBtn:false,
@@ -22,7 +22,7 @@ export default {
     menu:true,
     index:true,
     indexLabel:'序号',
-    indexWidth:50,
+    indexWidth:80,
     refreshBtn: false,
     columnBtn: false,
     delBtn: false,

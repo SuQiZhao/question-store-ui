@@ -69,9 +69,9 @@
                             </avue-empty>
                         </template>
                         <template slot-scope="scope" slot="menu">
-                            <el-button size="small" @click="editItem(scope.row,1)" type="text">查看</el-button>
-                            <el-button size="small" @click="editItem(scope.row,2)" type="text">编辑</el-button>
-                            <el-button size="small" @click="deleteItem(scope.row)" type="text">关闭</el-button>
+                            <el-button @click="editItem(scope.row,1)" type="text">查看</el-button>
+                            <el-button @click="editItem(scope.row,2)" type="text">编辑</el-button>
+                            <el-button @click="deleteItem(scope.row)" type="text">关闭</el-button>
                         </template>
                     </avue-crud>
                     <el-dialog :title="title" :visible.sync="dialogFormVisible">
@@ -361,14 +361,33 @@
 </script>
 
 <style lang="scss">
+    .el-table__header-wrapper{
+        font-size: 14px;
+        border-spacing: 0;
+        border-top-width: 0px;
+        border-right-width: 0px;
+        border-bottom-width: 0px;
+        border-left-width: 0px;
+        th {
+            font-weight: normal;
+        }
+        .avue-crud .el-table th{
+            color: #666666 !important;
+        }
+    }
+    .avue-crud{
+        .el-table{
+            font-size: 14px;
+            th{
+                font-weight: normal;
+            }
+        }
+    }
     .avue_panel {
         /*margin-top: 3%;*/
         position: relative;
         padding-top: 2%;
         border-top: 1px solid #e3e3e3;
-        .avue-crud{
-            font-size: 16px;
-        }
     }
 
     .demo-form-inline {

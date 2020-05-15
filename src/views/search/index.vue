@@ -4,7 +4,7 @@
         </el-row>
         <el-row>
             <el-col :span=24>
-                <div class="">
+                <div class="avue_panel">
                     <el-form :inline="true" class="demo-form-inline" ref="questionForm" :model="search">
                         <el-form-item label="标题名称：">
                             <el-input placeholder="请输入标题名称" v-model="search.questionTitle"></el-input>
@@ -34,6 +34,7 @@
                             @size-change="sizeChange"
                             :page="page"
                             ref="crud"
+                            @row-click="handleRowClick"
                     >
                         <!-- 置空提示-->
                         <template slot="empty">
@@ -78,6 +79,14 @@
             }
         },
         methods: {
+            handleRowClick(row){
+                this.$router.push({
+                    name: '问答 - 详情',
+                    params:{
+                        cdId:row.cdId
+                    }
+                })
+            },
             handleAdd(label){
                 this.$router.push('/questionAdd');
             },
@@ -154,29 +163,35 @@
 </script>
 
 <style lang="scss">
-    .avue_panel {
-        /*margin-top: 3%;*/
-        /*position: relative;*/
-        /*padding-top: 2%;*/
-        /*border-top: 1px solid #e3e3e3;*/
-        .avue-crud{
-            /*font-size: 16px;*/
-        }
-    }
 
     .demo-form-inline {
         .el-form-item {
             margin-left: 20px;
-
             .el-input {
                 width: 220px;
             }
         }
     }
-
-    .menuShowHide {
-        margin-left: 10px;
-        color: #097ce3;
-        cursor: pointer;
+    .el-table__header-wrapper{
+        font-size: 14px;
+        border-spacing: 0;
+        border-top-width: 0px;
+        border-right-width: 0px;
+        border-bottom-width: 0px;
+        border-left-width: 0px;
+        th {
+            font-weight: normal;
+        }
+        .avue-crud .el-table th{
+            color: #666666 !important;
+        }
+    }
+    .avue-crud{
+        .el-table{
+            font-size: 14px;
+            th{
+                font-weight: normal;
+            }
+        }
     }
 </style>

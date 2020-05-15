@@ -29,34 +29,34 @@ export const DIC = {
     ],
     QUESTION_CATEGORY: [
         {
-            label: '财 经 类',
+            label: '财经类',
             value: 'economics'
         }, {
-            label: '法 律 类',
+            label: '法律类',
             value: 'laws'
         }, {
-            label: '建 筑 类',
+            label: '建筑类',
             value: 'builds'
         }, {
-            label: '外 语 类',
+            label: '外语类',
             value: 'language'
         }, {
-            label: '计 算 机 类',
+            label: '计算机类',
             value: 'computer'
         }, {
-            label: '资 格 类',
+            label: '资格类',
             value: 'condition'
         }, {
-            label: '知 识 问 答 题 库',
+            label: '知识问答题库',
             value: 'answser'
         }, {
-            label: '招 录 类',
+            label: '招录类',
             value: 'recruit'
         }, {
-            label: '外 贸 类',
+            label: '外贸类',
             value: 'trade'
         }, {
-            label: '医 学 类',
+            label: '医学类',
             value: 'medical'
         }
     ]

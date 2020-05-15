@@ -74,5 +74,6 @@
         height: 100%;
         width: 100%;
         overflow: hidden;
+        font-family: 微软雅黑;
     }
 </style>

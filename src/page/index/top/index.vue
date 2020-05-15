@@ -58,6 +58,8 @@
                     params:{
                         title:this.input
                     }
+                }).catch(err => {
+                    console.log(err);
                 })
             },
             // 登出方法
@@ -71,6 +73,7 @@
                         window.sessionStorage.removeItem("token");
                         this.$message.success("退出成功！");
                         this.$router.push('/login');
+                        this.$router.go(0);
                     })
                 });
             },
